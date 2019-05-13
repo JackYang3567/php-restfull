@@ -1,0 +1,13 @@
+{
+
+    "require": {
+        "gregwar/captcha": "1.*",
+        "ramsey/uuid": "^3.8"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

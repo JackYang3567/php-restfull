@@ -1,0 +1,54 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录-X-admin2.1</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+   
+
+</head>
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message"></div>
+        <div id="darkbannerwrap"></div>
+        
+        <form method="post" action="/member/index.php/Author/" >
+           <select name="cls" id="cls" lay-verify="required" lay-filter="myselect">
+                    <option value="">请选择彩种类型</option>
+                                        <option value="1">高频彩种</option>
+                                        <option value="3">低频彩种</option>
+                                        <option value="6">十一选五</option>
+                                        <option value="7">快三</option>
+                                        <option value="8">快乐十分</option>
+                                        <option value="9">极速彩种</option>
+                                        <option value="4">境外彩种</option>
+                                        <option value="5">计算型彩种</option>
+                                    </select>
+            <hr class="hr15">
+               <select name="cls" id="cls" lay-verify="required" lay-filter="myselect">
+            <option value="">请选择彩种类型</option>
+                                        <option value="1">高频彩种</option>
+                                        <option value="3">低频彩种</option>
+                                        <option value="6">十一选五</option>
+                                        <option value="7">快三</option>
+                                        <option value="8">快乐十分</option>
+                                        <option value="9">极速彩种</option>
+                                        <option value="4">境外彩种</option>
+                                        <option value="5">计算型彩种</option>
+                                    </select>
+            <hr class="hr15">
+             <input type="text" name="phrase" />
+             <img src="/handler/session.php" />
+            
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
+        </form>
+       
+    </div>
+
+</body>
+</html>
