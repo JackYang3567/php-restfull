@@ -16,7 +16,7 @@
         <div class="message"></div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" action="/member/index.php/Author/" >
+        <form method="post" action="/lottery/index.php/Lottery/FreeApi/" >
            <select name="cls" id="cls" lay-verify="required" lay-filter="myselect">
                     <option value="">请选择彩种类型</option>
                                         <option value="1">高频彩种</option>
@@ -31,6 +31,7 @@
             <hr class="hr15">
                <select name="code" id="cls" lay-verify="required" lay-filter="myselect">
             <option value="">请选择彩种类型</option>
+                                        <option value="ffc">[ffc]XX分分彩</option>
                                         <option value="jsks">[jsks]江苏快三</option>
                                         <option value="ahks">[ahks]安徽快三</option>
                                         <option value="hbks">[hbks]湖北快三</option>
@@ -39,7 +40,7 @@
                                     </select>
             <hr class="hr15">
              <input type="text" name="captcha" />
-             <img src="/handler/session.php" />
+             <img src="/handler/session.php?type=free" />
             
             <input value="获取实时采集试用账号" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >

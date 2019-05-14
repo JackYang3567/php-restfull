@@ -8,7 +8,12 @@ use Gregwar\Captcha\CaptchaBuilder;
 // it for check when the form is submitted
 $captcha = new CaptchaBuilder;
 
-$_SESSION['phrase'] = $captcha->getPhrase();
+$captchaText = isset($_GET['type'] )? strtoupper($_GET['type']."-captcha") : strtoupper("captcha");
+
+//$_SESSION['CAPTCHA']
+//$_SESSION['FREE-CAPTCHA']
+
+$_SESSION[$captchaText] = $captcha->getPhrase();
 // Setting the header to image jpeg because we here render an image
 header('Content-Type: image/jpeg');
 // Running the actual rendering of the captcha image
@@ -16,3 +21,4 @@ $captcha
     ->build()
     ->output()
 ;
+

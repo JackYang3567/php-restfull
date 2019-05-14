@@ -58,7 +58,7 @@ CREATE TABLE `access_token` (
   `expire_at` timestamp  NULL COMMENT 'token到期时间', 
   PRIMARY KEY (`Id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='试用token';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='token';
 
 
 -- 登录日志sessions
@@ -70,7 +70,7 @@ CREATE TABLE `sessions` (
   `email`    VARCHAR(500)  NOT NULL DEFAULT '' COMMENT 'email',
   `member_id` int(11)  NULL  COMMENT '会员id',  
   `admin_id`  int(11)  NULL COMMENT '管理员id',  
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间', 
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录sessions', 
    PRIMARY KEY (`Id`),
   UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='登录日志sessions';
@@ -98,7 +98,7 @@ INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) VALUES ('时时�
 INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) VALUES ('境外彩种','abroad','境外彩种');
 INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) VALUES ('其他类','other','其他类');
 
--- 彩票种类
+-- 彩票
 DROP TABLE IF EXISTS `lottery`;
 CREATE TABLE `lottery` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键彩票id',
@@ -108,7 +108,7 @@ CREATE TABLE `lottery` (
   `remarks` VARCHAR(500)   NULL DEFAULT '' COMMENT '彩票备注',
   PRIMARY KEY (`Id`) ,
   UNIQUE KEY `name` (`name`,`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='彩票种类';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='彩票';
 INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`)  VALUES (4,'江苏快三','jsks','快三类');
 INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`)  VALUES (4,'安徽快三','ahks','快三类');
 INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`)  VALUES (4,'湖北快三','hbks','快三类');
@@ -119,22 +119,8 @@ INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`)  VALUES (9,'极速时
 INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`)  VALUES (9,'极速赛车','jisuscssc','时时彩类');
 
 
--- 彩票API价格表
-DROP TABLE IF EXISTS `prices`;
-CREATE TABLE `prices` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键价格id',
-  `lottery_id` int(11)  NULL  COMMENT 'lottery表Id',  
-  `month` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别0:会员(月付)',
-  `season` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别1:金牌会员(季付)',
-  `halfyear` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别2：白金会员(半年付)',
-  `year` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别3：钻石会员(年付)',
-  `threeyear` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别4：金钻会员(3年付)',
-  `price` decimal(8,2)  NULL DEFAULT '0' COMMENT '定价', 
-  `remarks` VARCHAR(500)   NULL DEFAULT '' COMMENT '彩票备注',
-  PRIMARY KEY (`Id`) 
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='价格表';
-INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`price`,`remarks`)  VALUES (1,0,20,55,100,190,550,'江苏快三');
-INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`price`,`remarks`)  VALUES (2,0,20,55,100,190,550,'安徽快三');
+
+
 
 
 

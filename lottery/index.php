@@ -3,7 +3,9 @@
     #set autoloader
     #do not use spl_autoload_register with out parameter
     #it will disable the autoloading of formats
-    spl_autoload_register('spl_autoload');
+    //spl_autoload_register('spl_autoload');
+    require_once 'lottery.php';
     $r = new Restler();
-    $r->addAPIClass('Member');
+    $r->setSupportedFormats('JsonFormat');
+    $r->addAPIClass('Lottery');
     $r->handle();
