@@ -129,12 +129,11 @@ CREATE TABLE `prices` (
   `halfyear` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别2：白金会员(半年付)',
   `year` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别3：钻石会员(年付)',
   `threeyear` int(11) NOT NULL DEFAULT 0 COMMENT '价格级别4：金钻会员(3年付)',
-  `price` decimal(8,2)  NULL DEFAULT '0' COMMENT '定价', 
   `remarks` VARCHAR(500)   NULL DEFAULT '' COMMENT '彩票备注',
   PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='价格表';
-INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`price`,`remarks`)  VALUES (1,0,20,55,100,190,550,'江苏快三');
-INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`price`,`remarks`)  VALUES (2,0,20,55,100,190,550,'安徽快三');
+INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (1,20,55,100,190,550,'江苏快三');
+INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (2,30,55,100,190,550,'安徽快三');
 
 
 
