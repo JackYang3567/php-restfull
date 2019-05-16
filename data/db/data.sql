@@ -15,6 +15,7 @@ CREATE TABLE `code` (
   UNIQUE KEY `expect` (`expect`,`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7083 DEFAULT CHARSET=utf8 COMMENT='彩票数据表';
 
+-- ======== 系统基本数据表 ======
 -- 管理员admin
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
@@ -40,11 +41,61 @@ CREATE TABLE `member` (
   `email` varchar(50) NULL COMMENT '会员邮箱',  
   `phone` varchar(15)  NULL DEFAULT '0' COMMENT '会员手机号',  
   `qq_number` varchar(20) NOT NULL DEFAULT '' COMMENT '会员QQ号',
-  `pass` varchar(20) NOT NULL DEFAULT '' COMMENT '会员登录密码', 
+  `pass` varchar(32) NOT NULL DEFAULT '' COMMENT '会员登录密码', 
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '会员注册时间', 
   PRIMARY KEY (`Id`),
   UNIQUE KEY `name` (`name`,`email`,`phone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='会员member';
+
+
+-- 支付payment
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE `payment` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键payment id',
+  `member_id` int(11)  NULL  COMMENT '会员id', 
+  `method` bigint(1)  NULL  COMMENT '支付方式1:支付宝,2:微信支付,3:微信支付官方,4:QQ钱包支付,5:QQ钱包支付官方',  
+  `amount` decimal(8,2)  NULL DEFAULT '0' COMMENT '支付金额1:50,2:100,3:135:', 
+  `payer` varchar(50) NOT NULL DEFAULT '0' COMMENT '付款人姓名',
+  `time`  timestamp NULL DEFAULT NULL COMMENT '付款时间',  
+  `account`varchar(50)  NULL DEFAULT '0' COMMENT '付款账号后4位',  
+  `notes` VARCHAR(500)   NULL DEFAULT '' COMMENT '付款备注',
+  `examine`  int(11)  NULL DEFAULT 0 COMMENT '付款到账审核1:到账后手动添加余额',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '支付时间',
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付payment';
+
+-- 支付方式
+DROP TABLE IF EXISTS `paymethod`;
+CREATE TABLE `paymethod` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键paymethod id',
+  `name` varchar(50) NOT NULL DEFAULT '0' COMMENT '支付方式名，支付方式1:支付宝,2:微信支付,3:微信支付官方,4:QQ钱包支付,5:QQ钱包支付官方',
+  `code` varchar(50)   NULL  COMMENT '支付方式英文名', 
+  `icon_path` VARCHAR(500)   NULL DEFAULT '' COMMENT '支付方式图标路径',
+  `notes` VARCHAR(500) NOT  NULL DEFAULT '' COMMENT '支付方式备注', 
+  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:禁用 1:启用', 
+  `sortId` int(11) NOT NULL COMMENT '排序', 
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名paymethod';
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('支付宝','alipay','Ali_QrCode.png','1');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信','Weixin','Weixin_QrCode.png','2');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信官方','Weixin_gf','Weixin_QrCode_gf.png','3');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包','QQwallet','QQwallet_QrCode.png','4');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','QQwallet_gf_QrCode.png','5');
+
+
+-- 支付金额设置
+DROP TABLE IF EXISTS `payamount`;
+CREATE TABLE `payamount` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键payamount id',
+  `amount_val` int(11)  NULL DEFAULT '0' COMMENT '金额预设值',
+  `sortId` int(11) NOT NULL COMMENT '排序', 
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名payamount';
+INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (50,1);
+INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (100,2);
+INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (150,3);
+INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (200,4);
+INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (500,5);
 
 --  ================
 -- IP白名单white_list
@@ -169,11 +220,12 @@ INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyea
 -- 视图
 DROP VIEW IF EXISTS `view_auth_token_api` ;
 CREATE VIEW `view_auth_token_api` AS 
- select r.token_id,r.amount,r.purchase_month, r.code,
+ select r.token_id,r.amount,r.purchase_month, r.code,l.name,
   r.balance, r.examine,r.created_at,r.udated_time, 
   r.expire_at, a.token ,a.opened
- from recharge r left join access_token a on a.Id = r.token_id
- where a.pened = 1 && unix_timestamp(NOW()) < unix_timestamp(`r.expire_at`) 
+ from recharge r left join access_token a  on a.Id = r.token_id  
+ left join lottery l on r.code= l.code
+ -- where a.pened = 1 && unix_timestamp(NOW()) < unix_timestamp(`r.expire_at`) 
 
 
 

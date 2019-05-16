@@ -1,9 +1,10 @@
 
 # RESTfull method
-list   get : /lottery/index.php/Lottery 
-show   get : /lottery/index.php/Lottery?id=XX
-add    post: /lottery/index.php/Lottery/Add 
-update post: /lottery/index.php/Lottery/Update 
-del    post: /lottery/index.php/Lottery/Del 
-FreeApi    post: /lottery/index.php/Lottery/FreeApi
+list   get : /whitelist/index.php/Whitelist 
+show   get : /whitelist/index.php/Whitelist?id=XX
+add    post: /whitelist/index.php/Whitelist/Add 
+update post: /whitelist/index.php/Whitelist/Update 
+del    post: /whitelist/index.php/Whitelist/Del 
+del    post: /whitelist/index.php/Whitelist/DelAll
+
 

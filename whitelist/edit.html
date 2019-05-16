@@ -14,17 +14,16 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-      <div id="darkbannerwrap">编辑彩票</div>
+      <div id="darkbannerwrap">编辑ip白名单</div>
         
-        <form method="post" id="editForm" action="/lottery/index.php/Lottery/Update" >
+        <form method="post" id="editForm" action="/whitelist/index.php/Whitelist/Update" >
         
-        <input type="text"  name="id" placeholder="彩票ID"  />
          <hr class="hr15">
-            <input type="text" name="name" placeholder="彩票名"/>
+             <input type="text" name="id" placeholder="白名单id"/>
+           
+         
             <hr class="hr15">
-             <input type="text" name="code" placeholder="彩票编码"/>
-            <hr class="hr15">
-             <input type="text" name="remarks" placeholder="彩票备注"/>
+             <input type="text" name="ip" placeholder="ip"/>
            
             
             <input value="保存" lay-submit lay-filter="login" style="width:100%;" type="submit">

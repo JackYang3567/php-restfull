@@ -47,7 +47,22 @@ class DB_Api
          
     }
 
-   
+   function authToken($t,$limit,$token,$date){
+        $sql  = "SELECT * FROM `view_auth_token_api`";
+        $sql .= " where `token`='{$token}' && `code`='{$t}'";
+        $sql .=" ORDER BY `expire_at` ";
+        $stmt = $this->pdo->query($sql);
+        if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+                return  $row[0] ;
+            }
+            else{
+                return false;
+            }
+        }
+   }
 
     private function init ()
     {

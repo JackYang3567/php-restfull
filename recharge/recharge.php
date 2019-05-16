@@ -45,53 +45,44 @@ class Recharge {
 	}
 
 	
-	function postGetApi($code=NULL,$captcha=NULL){
-		session_start();
-		if(strtoupper($captcha)===strtoupper($_SESSION['FREE-CAPTCHA']))
+	function postGetApi($request_data=NULL){
+		echo "<pre>===111";
+        var_dump($request_data);
+		echo "</pre>";
+		$apiItem = $this->dp->getTokenId_Code($request_data);
+		echo "<pre>===111";
+        var_dump($apiItem->token);
+		echo "</pre>";
+		
+		if($apiItem )
 		{
-			$uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'Gk.com');
-			$_uuid = strtoupper(str_replace('-','',$uuid5->toString()));
-			$t = $code;
+			$t = $apiItem->code;
 			$limit = 20;
-			$token = $_uuid;
+			$token = $apiItem->token;
 			$date = date("Ymd");
 
 			$stop_time = date("Y-m-d G:H:s",strtotime('now'))."===". date("Y-m-d G:H:s",strtotime("+2 hours"));
 			//  /json.php/api/$t/$limit/$token/$date
 			$ret = array(
-				"temporary_account" => array( 
-					"res"=>"临时帐号",
-					"val"=>$token),
-				"stop_time"=> array(
-					"res"=> "终止时间",
-					"val"=> "$stop_time(共计120分钟)"),      
-					"latest_query_json"=>  array(
-					"res"=> "按最新查询JSON采集地址",
-					"val"=> "/json.php/api/$t/$limit/$token"),
-					"query_json_by_date"=> array(
-					"res"=> "按日期查询JSON采集地址",
-					"val"=> "/json.php/api/$t/$limit/$token/$date"),
-					"latest_query_xml"=> array(
-					"res"=> "按最新查询XML采集地址",
-					"val"=> "/xml.php/api/$t/$limit/$token"),
-					"query_xml_by_date"=>  array(
-					"res"=> "按日期查询XML采集地址",
-					"val"=> "/xml.php/api/$t/$limit/$token/$date")
+					"latest"=>  array(
+						"res" => "按最新查询",
+						"json"=>  "/json.php/api/$t/$limit/$token",
+						"xml"=> "/xml.php/api/$t/$limit/$token"
+				     ),
+					"bydate"=> array(
+						"res" => "按日期查询:",
+						"json"=>  "/json.php/api/$t/$limit/$token/$date",
+						"xml"=> "/xml.php/api/$t/$limit/$token/$date"
+					)
 			 );
-			
-			$freekey = "free:api:".$_uuid;
-			$this->redis->set($freekey,1);
-			$this->redis->expire($freekey,7200);
 	        return $ret;
 		}else{
-			return array(  "success"=> false,  "code"=>1, "error_message"=>VERIFICATION_CODE_IS_INCORRECT,"data"=>'' );
+			return array(  "success"=> false,  "code"=>1, "error_message"=>"获取API错误","data"=>'' );
 		}
 			
 	}
 	//function put($id=NULL, $request_data=NULL) {
 	function postUpdate($id=NULL, $request_data=NULL) {
-	
-		//return $request_data;
 		
 		return $this->dp->update($id, $this->_validate($request_data));
 	}
@@ -99,10 +90,13 @@ class Recharge {
 	
 		return $this->dp->delete($id);
 	}
+
+	
+	
 	
 	private function _validate($data){
 		$accesstoken=array();
-		foreach (Lottery::$FIELDS as $field) {
+		foreach (Recharge::$FIELDS as $field) {
 //you may also vaildate the data here
 			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
 			$accesstoken[$field]=$data[$field];

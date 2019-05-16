@@ -7,5 +7,5 @@
     require_once 'recharge.php';
     $r = new Restler();
     $r->setSupportedFormats('JsonFormat');
-    $r->addAPIClass('AccessToken');
+    $r->addAPIClass('Recharge');
     $r->handle();

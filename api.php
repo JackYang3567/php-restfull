@@ -23,6 +23,10 @@
                     return  $this->dp->getAll($t,$limit,$token,$date);
                 }
                 else{
+                  $authToken =  $this->dp->authToken($t,$limit,$token,$date);
+                  if($authToken){
+                     return  $this->dp->getAll($t,$limit,$token,$date);
+                  }
                   return array(  "success"=> false,  "code"=>1, "error_message"=>TOKEN_ERROR,"data"=>'' );
                 }
                

@@ -14,16 +14,23 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-        <div id="darkbannerwrap"></div>
+        <div id="darkbannerwrap">购买 续费</div>
         
-        <form method="post" id="editForm" action="/accesstoken/index.php/AccessToken/Update" >
-         <input type="hidden"  name="type_id" placeholder="彩票ID" value='3' />
-        <input type="hidden"  name="id" placeholder="彩票ID" value='9' />
-            <input type="text" name="name" placeholder="彩票名"/>
+        <form method="post" id="editForm" action="/recharge/index.php/Recharge/Update" >
+          接口账号  ：&nbsp; &nbsp;<br>  <input type="text" name="token_id" checked  placeholder="token_id"/>
+            
             <hr class="hr15">
-             <input type="text" name="code" placeholder="彩票编码"/>
+              接口账号  ：&nbsp; &nbsp;<br>  <input type="text" name="code" checked  placeholder="彩票code"/>
+              
+            
             <hr class="hr15">
-             <input type="text" name="remarks" placeholder="彩票备注"/>
+          授权期限  ：&nbsp; &nbsp;<br>  月付<input type="radio" name="purchase_month" checked value='1' placeholder="member_id"/> &nbsp; &nbsp;<br> 
+          季付<input type="radio" name="purchase_month" value="2" placeholder="member_id"/>&nbsp; &nbsp;<br> 
+              年付<input type="radio" name="purchase_month" value="12" placeholder="member_id"/>
+ <hr class="hr15">
+ 所需费用：<input type="text" name="amount" value="20" placeholder="member_id"/>
+
+           
            
             
             <input value="保存" lay-submit lay-filter="login" style="width:100%;" type="submit">

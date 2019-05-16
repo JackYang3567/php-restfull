@@ -14,29 +14,14 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-        <div id="darkbannerwrap">添加彩票种类</div>
+        <div id="darkbannerwrap">添加ip到白名单</div>
         
-        <form method="post" action="/lottery/index.php/Lottery/Add" >
-            <select name="type_id" id="cls" lay-verify="required" lay-filter="myselect">
-                    <option value="">请选择彩种类型</option>
-                                        <option value="1">高频彩种</option>
-                                        <option value="2">低频彩种</option>
-                                        <option value="3">十一选五</option>
-                                        <option value="4">快三</option>
-                                        <option value="5">快乐十分/农场类</option>
-                                        <option value="6">六合彩类</option>
-                                        <option value="7">28类</option>
-                                        <option value="8">极速彩种</option>
-                                        <option value="9">时时彩类</option>
-                                        <option value="10">境外彩种</option>
-                                        <option value="11">其他类</option>
-                                    </select>
+        <form method="post" action="/whitelist/index.php/Whitelist/Add" >
+           
+            <input type="text" name="token_id" placeholder="token_id"/>
+         
             <hr class="hr15">
-            <input type="text" name="name" placeholder="彩票名"/>
-            <hr class="hr15">
-             <input type="text" name="code" placeholder="彩票编码"/>
-            <hr class="hr15">
-             <input type="text" name="remarks" placeholder="彩票备注"/>
+             <input type="text" name="ip" placeholder="ip"/>
            
             
             <input value="保存" lay-submit lay-filter="login" style="width:100%;" type="submit">

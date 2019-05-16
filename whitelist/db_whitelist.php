@@ -4,7 +4,7 @@
  */
 
 
-class DB_Lottery
+class DB_Whitelist
 {
     public $pdo;
    
@@ -27,7 +27,7 @@ class DB_Lottery
     private function find ($id)
     {
       
-        $sql  = "SELECT * FROM `lottery` where Id=".$id;
+        $sql  = "SELECT * FROM `white_list` where Id=".$id;
         $sql .=" ORDER BY id ";
          
          $stmt = $this->pdo->query($sql);
@@ -54,7 +54,7 @@ class DB_Lottery
     function getAll ()
     {
 
-        $sql  = "SELECT * FROM `lottery`";
+        $sql  = "SELECT * FROM `white_list`";
         $sql .=" ORDER BY id ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
@@ -71,8 +71,8 @@ class DB_Lottery
 
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `lottery` (`type_id`,`name`,`code`,`remarks`) ";
-       $sql .=" VALUES ('{$rec['type_id']}','{$rec['name']}','{$rec['code']}','{$rec['remarks']}')";
+       $sql  = "INSERT INTO  `white_list` (`token_id`,`member_id`,`ip`) ";
+       $sql .=" VALUES ('{$rec['token_id']}','{$rec['member_id']}','{$rec['ip']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -89,7 +89,7 @@ class DB_Lottery
     {
        $_id = (int)$id;
 
-       $sql  = "update `lottery` set `name`='{$rec['name']}' ,`code`='{$rec['code']}',`remarks`='{$rec['remarks']}'";
+       $sql  = "update `white_list` set `ip`='{$rec['ip']}'";
        $sql .=" where Id={$_id}";
       
        $stmt=$this->pdo->query($sql);
@@ -115,7 +115,7 @@ class DB_Lottery
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `lottery` where Id in ($sid)";
+        $sql  = "delete from `white_list` where Id in ($sid)";
    
         $stmt=$this->pdo->query($sql);
 
@@ -129,6 +129,18 @@ class DB_Lottery
             return array(  "success"=> false,  "code"=>1,"data"=>$stmt->rowCount() );
         }
        
+    }
+
+    function deleteAll($member_id) {
+        $sql  = "delete from `white_list` where `member_id` = $member_id ";
+        $stmt=$this->pdo->query($sql);
+        if($stmt->rowCount())
+        {           
+           return  array( "success"=>true,  "code"=>0, "data"=>$stmt->rowCount() );
+        }
+        else{         
+            return array(  "success"=> false,  "code"=>1,"data"=>$stmt->rowCount() );
+        }       
     }
 
     private function init ()

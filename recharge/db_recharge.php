@@ -51,8 +51,8 @@ class DB_Recharge
 
     function getAll ()
     {
-        $sql  = "SELECT * FROM `recharge`";
-        $sql .=" ORDER BY id ";
+        $sql  = "SELECT * FROM `view_auth_token_api`";
+        $sql .=" ORDER BY `expire_at` ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -66,25 +66,35 @@ class DB_Recharge
          }
     }
 
+    function getTokenId_Code($rec){
+        $sql  = "SELECT * FROM `view_auth_token_api`";
+        $sql .= " where `token_id`={$rec['token_id']} && `code`='{$rec['code']}'";
+        $sql .=" ORDER BY `expire_at` ";
+        $stmt = $this->pdo->query($sql);
+         if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+                return  $row[0] ;
+            }
+            else{
+                return false;
+            }
+         }
+    }
+
     function insert ($rec)
     {
-        /*
-        echo "<pre> =====111====";
-        var_dump($rec);
-        echo "</pre>";
-       */
+      
        $month = (int)$rec['purchase_month'];
        $_month = date("Y-m-d G:H:s",strtotime("+ $month month"));
-       echo "<pre> =====111====";
-       var_dump( $_month);
-       echo "</pre>";
+      
        $sql  = "INSERT INTO  `recharge` (`amount`,`token_id`,`purchase_month`,`code`,`expire_at`) ";
        $sql .=" VALUES ('{$rec['amount']}','{$rec['token_id']}','{$rec['purchase_month']}','{$rec['code']}','$_month')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
         {
-           // $rec['Id']=$this->pdo->lastInsertId();
             return  array( "success"=>true,  "code"=>0, "data"=>$this->pdo->lastInsertId() );
         }
         else{
@@ -96,10 +106,13 @@ class DB_Recharge
     function update ($id, $rec)
     {
        $_id = (int)$id;
+       $month = (int)$rec['purchase_month'];
+      // $_month = date("Y-m-d G:H:s",strtotime("+ $month month"));
 
-       $sql  = "update `recharge` set `type_id`=". (int)$rec['type_id'].",`name`='{$rec['name']}' ,`code`='{$rec['code']}',`remarks`='{$rec['remarks']}'";
-       $sql .=" where Id={$_id}";
-      
+       $sql  = "update `recharge` set `amount`= (`amount` + ". $rec['amount'].")";
+       $sql .=", `expire_at`=DATE_ADD(`expire_at`,INTERVAL $month MONTH)";
+       $sql .=" where `token_id`='{$rec['token_id']}' && `code`='{$rec['code']}'";
+      echo $sql;
        $stmt=$this->pdo->query($sql);
 
        if($stmt->rowCount())
@@ -123,21 +136,18 @@ class DB_Recharge
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `recharge` where Id in ($sid)";
-   
+        $sql  = "delete from `recharge` where Id in ($sid) ";
         $stmt=$this->pdo->query($sql);
-
         if($stmt->rowCount())
-        {
-           
+        {           
            return  array( "success"=>true,  "code"=>0, "data"=>$stmt->rowCount() );
         }
-        else{
-         
+        else{         
             return array(  "success"=> false,  "code"=>1,"data"=>$stmt->rowCount() );
-        }
-       
+        }       
     }
+
+   
 
     private function init ()
     {

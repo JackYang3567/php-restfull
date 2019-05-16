@@ -14,13 +14,17 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-       <div id="darkbannerwrap">删除彩票</div>
+       <div id="darkbannerwrap">删除白名单</div>
         
-        <form method="post" action="/lottery/index.php/Lottery/Del" >
-        
-             <input type="text"  name="id" placeholder="彩票ID"  />
-            
+        <form method="post" action="/whitelist/index.php/Whitelist/Del" >
+             <input type="text"  name="id" placeholder="白名单ID"  />
             <input value="删除" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
+        </form>
+ <hr class="hr20" >
+          <form method="post" action="/whitelist/index.php/Whitelist/DelAll" >
+  
+            <input value="清除所有IP" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >
         </form>
        
