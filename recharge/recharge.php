@@ -6,27 +6,46 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 
-class Lottery {
+class Recharge {
 	
 	public $redis;
 	public $dp;
-	static $FIELDS = array('name', 'code','remarks');
+	
+	static $FIELDS = array('token_id','amount', 'purchase_month','code');
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
 		* $this->dp = new DB_PDO_MySQL();
 		* $this->dp = new DB_Serialized_File();
 		*/
-		$this->dp = new DB_Lottery();
+		session_start();
+		$this->dp = new DB_Recharge();
+		
 		$this->redis = new Redis();
         $this->redis->connect('127.0.0.1', 6379);
 	}
 
 	function get($id=NULL) {
+		//echo "uuid=====".$this->dp->getUuid()."\n";
 		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
 	}
 
-	function postFreeApi($code=NULL,$captcha=NULL){
+	
+	
+
+	function postAdd($request_data=NULL) {
+		
+		//$uuid = Uuid::uuid4();
+		//$_uuid = strtoupper(str_replace('-','',$uuid->toString()));
+
+		$request_data['member_id'] = $_SESSION['member_id'];
+		//$request_data['token'] = $_uuid;
+		
+		return $this->dp->insert($request_data);
+	}
+
+	
+	function postGetApi($code=NULL,$captcha=NULL){
 		session_start();
 		if(strtoupper($captcha)===strtoupper($_SESSION['FREE-CAPTCHA']))
 		{
@@ -69,28 +88,25 @@ class Lottery {
 		}
 			
 	}
-
-	function postAdd($request_data=NULL) {
-
-		return $this->dp->insert($this->_validate($request_data));
-	}
 	//function put($id=NULL, $request_data=NULL) {
 	function postUpdate($id=NULL, $request_data=NULL) {
+	
+		//return $request_data;
 		
 		return $this->dp->update($id, $this->_validate($request_data));
 	}
 	function postDel($id=NULL) {
-		
+	
 		return $this->dp->delete($id);
 	}
 	
 	private function _validate($data){
-		$lottery=array();
+		$accesstoken=array();
 		foreach (Lottery::$FIELDS as $field) {
 //you may also vaildate the data here
 			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
-			$lottery[$field]=$data[$field];
+			$accesstoken[$field]=$data[$field];
 		}
-		return $lottery;
+		return $accesstoken;
 	}
 }

@@ -4,10 +4,9 @@
  */
 
 
-class DB_Lotterytype
+class DB_Recharge
 {
-    public $pdo;
-
+    public $pdo;   
     public $params = [
         'host' => 'localhost',
         'user' => 'root',
@@ -21,18 +20,15 @@ class DB_Lotterytype
     function __construct ()
     {
        $this->init();
-    }
-    
+    }    
 
     private function find ($id)
     {
       
-        $sql  = "SELECT * FROM `lottery_type` where Id=".$id;
-        $sql .=" ORDER BY id ";
-         
-         $stmt = $this->pdo->query($sql);
-         
-         if(is_object($stmt)){
+        $sql  = "SELECT * FROM `recharge` where Id=".$id;
+        $sql .=" ORDER BY id ";         
+        $stmt = $this->pdo->query($sql);         
+        if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
@@ -41,7 +37,8 @@ class DB_Lotterytype
             else{
                 return  FALSE;
             }
-         }
+        }
+      
     }
 
     
@@ -50,10 +47,11 @@ class DB_Lotterytype
         return $this->find($id);
     }
 
+    
+
     function getAll ()
     {
-
-        $sql  = "SELECT * FROM `lottery_type` ";
+        $sql  = "SELECT * FROM `recharge`";
         $sql .=" ORDER BY id ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
@@ -70,26 +68,38 @@ class DB_Lotterytype
 
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) ";
-       $sql .=" VALUES ('{$rec['type_name']}','{$rec['type_code']}','{$rec['remarks']}')";
+        /*
+        echo "<pre> =====111====";
+        var_dump($rec);
+        echo "</pre>";
+       */
+       $month = (int)$rec['purchase_month'];
+       $_month = date("Y-m-d G:H:s",strtotime("+ $month month"));
+       echo "<pre> =====111====";
+       var_dump( $_month);
+       echo "</pre>";
+       $sql  = "INSERT INTO  `recharge` (`amount`,`token_id`,`purchase_month`,`code`,`expire_at`) ";
+       $sql .=" VALUES ('{$rec['amount']}','{$rec['token_id']}','{$rec['purchase_month']}','{$rec['code']}','$_month')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
         {
-            $rec['Id']=$this->pdo->lastInsertId();
-            return  array( "success"=>true,  "code"=>0, "data"=>$rec );
+           // $rec['Id']=$this->pdo->lastInsertId();
+            return  array( "success"=>true,  "code"=>0, "data"=>$this->pdo->lastInsertId() );
         }
         else{
-            return array(  "success"=> false,  "code"=>1,"data"=>$rec );
-        }      
+            return array(  "success"=> false,  "code"=>1,"data"=>0 );
+        } 
+      
     }
 
     function update ($id, $rec)
     {
        $_id = (int)$id;
-       $sql  = "update `lottery_type` set `type_name`='{$rec['type_name']}' ,`type_code`='{$rec['type_code']}',`remarks`='{$rec['remarks']}'";
+
+       $sql  = "update `recharge` set `type_id`=". (int)$rec['type_id'].",`name`='{$rec['name']}' ,`code`='{$rec['code']}',`remarks`='{$rec['remarks']}'";
        $sql .=" where Id={$_id}";
-      // echo $sql;
+      
        $stmt=$this->pdo->query($sql);
 
        if($stmt->rowCount())
@@ -100,6 +110,7 @@ class DB_Lotterytype
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
         }
+       
     }
 
     function delete ($id)
@@ -112,7 +123,7 @@ class DB_Lotterytype
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `lottery_type` where Id in ($sid)";
+        $sql  = "delete from `recharge` where Id in ($sid)";
    
         $stmt=$this->pdo->query($sql);
 

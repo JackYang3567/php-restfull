@@ -14,13 +14,16 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-       <div id="darkbannerwrap">删除彩票</div>
+        <div id="darkbannerwrap">创建TOKEN账号  </div>
         
-        <form method="post" action="/lottery/index.php/Lottery/Del" >
-        
-             <input type="text"  name="id" placeholder="彩票ID"  />
+        <form method="post" action="/accesstoken/index.php/AccessToken/Add" >
+           
+            会员登录后，直接点击 “创建TOKEN账号”
+            <input type="text" name="member_id" placeholder="member_id"/>
+           
+           
             
-            <input value="删除" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <input value="创建TOKEN账号" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >
         </form>
        

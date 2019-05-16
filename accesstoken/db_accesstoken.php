@@ -4,10 +4,9 @@
  */
 
 
-class DB_Lotterytype
+class DB_AccessToken
 {
-    public $pdo;
-
+    public $pdo;   
     public $params = [
         'host' => 'localhost',
         'user' => 'root',
@@ -21,18 +20,18 @@ class DB_Lotterytype
     function __construct ()
     {
        $this->init();
-    }
-    
+    }    
 
     private function find ($id)
     {
-      
-        $sql  = "SELECT * FROM `lottery_type` where Id=".$id;
-        $sql .=" ORDER BY id ";
-         
-         $stmt = $this->pdo->query($sql);
-         
-         if(is_object($stmt)){
+       if ($id==="ByMemberld"){
+        return $this->getByMemberld($_SESSION['member_id']);
+       }
+       else{
+        $sql  = "SELECT * FROM `access_token` where Id=".$id;
+        $sql .=" ORDER BY id ";         
+        $stmt = $this->pdo->query($sql);         
+        if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
@@ -41,7 +40,8 @@ class DB_Lotterytype
             else{
                 return  FALSE;
             }
-         }
+        }
+      }
     }
 
     
@@ -50,10 +50,27 @@ class DB_Lotterytype
         return $this->find($id);
     }
 
+    function getByMemberld($member_id){
+       
+        $sql  = "SELECT * FROM `access_token` where `member_id`=".$member_id;
+        
+        $sql .=" ORDER BY id ";         
+        $stmt = $this->pdo->query($sql);         
+        if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+            }
+            else{
+                return  FALSE;
+            }
+        }
+    }
+
     function getAll ()
     {
-
-        $sql  = "SELECT * FROM `lottery_type` ";
+        $sql  = "SELECT * FROM `access_token`";
         $sql .=" ORDER BY id ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
@@ -70,8 +87,17 @@ class DB_Lotterytype
 
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) ";
-       $sql .=" VALUES ('{$rec['type_name']}','{$rec['type_code']}','{$rec['remarks']}')";
+       $countsql = "select count(*) as counter from access_token where `member_id`='{$rec['member_id']}' &&`opened` = 0";
+       $_count = $this->pdo->query($countsql);  
+       $count = $_count->fetchAll(PDO::FETCH_CLASS); 
+      /*
+       echo "<pre>";
+       var_dump($count[0]->counter);
+       echo "</pre>";
+       */
+      if($count[0]->counter <3 ){
+       $sql  = "INSERT INTO  `access_token` (`member_id`,`token`) ";
+       $sql .=" VALUES ('{$rec['member_id']}','{$rec['token']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -81,15 +107,21 @@ class DB_Lotterytype
         }
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
-        }      
+        } 
+     }
+     else{
+       // 账号下已有多个未使用的接口账号啦 
+       return array(  "success"=> false, "error_message"=>"账号下已有多个未使用的接口账号啦", "code"=>1,"data"=>0 );
+     }   
     }
 
     function update ($id, $rec)
     {
        $_id = (int)$id;
-       $sql  = "update `lottery_type` set `type_name`='{$rec['type_name']}' ,`type_code`='{$rec['type_code']}',`remarks`='{$rec['remarks']}'";
+
+       $sql  = "update `access_token` set `type_id`=". (int)$rec['type_id'].",`name`='{$rec['name']}' ,`code`='{$rec['code']}',`remarks`='{$rec['remarks']}'";
        $sql .=" where Id={$_id}";
-      // echo $sql;
+      
        $stmt=$this->pdo->query($sql);
 
        if($stmt->rowCount())
@@ -100,6 +132,7 @@ class DB_Lotterytype
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
         }
+       
     }
 
     function delete ($id)
@@ -112,7 +145,7 @@ class DB_Lotterytype
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `lottery_type` where Id in ($sid)";
+        $sql  = "delete from `access_token` where Id in ($sid) && `is_auth`=0";
    
         $stmt=$this->pdo->query($sql);
 

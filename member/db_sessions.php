@@ -4,10 +4,10 @@
  */
 
 
-class DB_Lotterytype
+class DB_Sessions
 {
     public $pdo;
-
+   
     public $params = [
         'host' => 'localhost',
         'user' => 'root',
@@ -27,7 +27,7 @@ class DB_Lotterytype
     private function find ($id)
     {
       
-        $sql  = "SELECT * FROM `lottery_type` where Id=".$id;
+        $sql  = "SELECT * FROM `sessions` where Id=".$id;
         $sql .=" ORDER BY id ";
          
          $stmt = $this->pdo->query($sql);
@@ -47,13 +47,16 @@ class DB_Lotterytype
     
     function get ($id)
     {
-        return $this->find($id);
+        $index = $this->find($id);
+        if ($index === FALSE)
+            return FALSE;
+        return $_SESSION['rs'][$index];
     }
 
     function getAll ()
     {
 
-        $sql  = "SELECT * FROM `lottery_type` ";
+        $sql  = "SELECT * FROM `sessions`";
         $sql .=" ORDER BY id ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
@@ -68,28 +71,34 @@ class DB_Lotterytype
          }
     }
 
-    function insert ($rec)
+    function insert($rec)
     {
-       $sql  = "INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) ";
-       $sql .=" VALUES ('{$rec['type_name']}','{$rec['type_code']}','{$rec['remarks']}')";
+        
+
+       $sql  = "INSERT INTO  `sessions` (`name`,`uuid`,`email`,`member_id`) ";
+       $sql .=" VALUES ('{$rec->name}','{$rec->uuid}','{$rec->email}','{$rec->Id}')";
+      
+
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
         {
-            $rec['Id']=$this->pdo->lastInsertId();
+            $rec->Id=$this->pdo->lastInsertId();
             return  array( "success"=>true,  "code"=>0, "data"=>$rec );
         }
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
-        }      
+        }   
+         
     }
 
     function update ($id, $rec)
     {
        $_id = (int)$id;
-       $sql  = "update `lottery_type` set `type_name`='{$rec['type_name']}' ,`type_code`='{$rec['type_code']}',`remarks`='{$rec['remarks']}'";
+
+       $sql  = "update `sessions` set `type_id`=". (int)$rec['type_id'].",`name`='{$rec['name']}' ,`code`='{$rec['code']}',`remarks`='{$rec['remarks']}'";
        $sql .=" where Id={$_id}";
-      // echo $sql;
+      
        $stmt=$this->pdo->query($sql);
 
        if($stmt->rowCount())
@@ -100,8 +109,23 @@ class DB_Lotterytype
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
         }
+       
     }
+    function delByMemberId ($member_id){
+        $sql  = "delete from `sessions` where `member_id` in ($member_id)";
+   
+        $stmt=$this->pdo->query($sql);
 
+        if($stmt->rowCount())
+        {
+           
+           return  array( "success"=>true,  "code"=>0, "data"=>$stmt->rowCount() );
+        }
+        else{
+         
+            return array(  "success"=> false,  "code"=>1,"data"=>0 );
+        }
+    }
     function delete ($id)
     {
         $_id = array();
@@ -112,7 +136,7 @@ class DB_Lotterytype
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `lottery_type` where Id in ($sid)";
+        $sql  = "delete from `sessions` where Id in ($sid)";
    
         $stmt=$this->pdo->query($sql);
 

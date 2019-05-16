@@ -14,23 +14,17 @@ class LotteryType {
 	}
 
 	function get($id=NULL) {
-		//echo "uuid=====".$this->dp->getUuid()."\n";
-		echo "get=====".$id;
 		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
 	}
 	function postAdd($request_data=NULL) {
-		echo "post=====";
+
 		return $this->dp->insert($this->_validate($request_data));
 	}
 	//function put($id=NULL, $request_data=NULL) {
 	function postUpdate($id=NULL, $request_data=NULL) {
-		echo "put=====".$id;
-		//return $request_data;
-		
 		return $this->dp->update($id, $this->_validate($request_data));
 	}
 	function postDel($id=NULL) {
-		echo "delete=====".$id;
 		return $this->dp->delete($id);
 	}
 	

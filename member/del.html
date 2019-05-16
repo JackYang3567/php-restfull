@@ -16,11 +16,11 @@
         <div class="message"></div>
         <div id="darkbannerwrap"></div>
         
-        <form method="delete" action="/member/index.php/Member" >
+        <form method="post" action="/member/index.php/Member/Del" >
            
             
         
-             <input type="hidden"  name="id" placeholder="彩票种类名" value='1' />
+             <input type="text" placeholder="请输入id号码"  name="id"  value='' />
             
             <input value="删除" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >

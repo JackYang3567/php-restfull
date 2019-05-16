@@ -1,0 +1,779 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title>Api list</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="/static/css/layui.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css" media="all" /> 
+  <style type="text/css">
+        html{height:100%;}
+        body{min-height:100%;margin:0;padding:0;position:relative;}
+            .header {height: 59px;border-bottom: 1px solid #404553;background-color: #393D49;}
+            .logo {position: absolute;left: 0;top: 1px;}
+            .header .layui-nav {position: absolute;right: 0;top: 0;padding: 0;background: none;}
+            .logo img {width: 100%;height: 100%;}
+            .alone-banner {height: 120px;text-align: center;font-weight: 300;background-color: #009688;color: #fff;}
+            .alone-banner h1 {padding-top: 30px;line-height: 32px;font-size: 30px;font-weight: 300;}
+            .alone-banner p {padding-top: 20px;color: #e2e2e2;color: rgba(255,255,255,.8);}
+            .jcb-main {padding-bottom:10px; max-width: 1140px;margin: 0 auto;position: relative;}
+            .footer {background-color: #393D49;position:absolute;bottom:0;width:100%;height:auto;padding: 0px 0;line-height: 30px;text-align: center;color: #666;font-weight: 300;margin-top: 50px;}
+            .footer a {padding: 0 5px;}
+            .site-union {margin-top: 10px;color: #999;} 
+			.img-xys {display: inline-block; height: auto; max-width: 100%;}
+        </style>
+
+
+</head>
+<body >
+     <div class="container">
+
+    <div class="jcb-main alone-nav">
+        <div class="message"></div>
+        <div id="darkbannerwrap"><h1>API接口列表</h1></div>
+          <hr />
+        <h2>系统管理员</h2>
+        <ul>
+          <li><a href=""></li>
+          <li><a href=""></li>
+          <li><a href=""></li>
+          <li><a href=""></li>
+          <li><a href=""></li>
+          <li><a href=""></li>
+          <li><a href=""></li>
+        </ul>
+
+          <hr />
+        <h2>会员 (数据库表：member, 项目目录：member)</h2>
+        
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/member/index.php/Member">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/index.php/Member?id=1">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/add.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">会员注册</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Signup</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/signup.html">试用</a>  
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">会员登录</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Signin</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/signin.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+            
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">退出登录</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Signout</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/signout.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/edit.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/member/index.php/Member/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/member/del.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            
+            </tbody>
+            </table>
+        <hr />
+        <h2>彩票种类 (数据库表：lottery_type, 项目目录：lotterytype)</h2>
+        
+          <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lotterytype/index.php/LotteryType</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/lotterytype/index.php/LotteryType">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lotterytype/index.php/LotteryType?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lotterytype/index.php/LotteryType?id=1">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lotterytype/index.php/LotteryType/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lotterytype/add.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lotterytype/index.php/LotteryType/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lotterytype/edit.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lotterytype/index.php/LotteryType/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lotterytype/del.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            
+            </tbody>
+            </table>
+       
+        <hr />
+        <h2>彩票 (数据库表：lottery, 项目目录：lottery)</h2>
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/lottery/index.php/Lottery">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/index.php/Lottery?id=1">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/add.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/edit.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/del.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">免费试用API</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/FreeApi</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/getfree.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        <hr />
+        <h2>Token账号 (数据库表：access_token, 项目目录：accesstoken)</h2>
+         <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/accesstoken/index.php/AccessToken">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/accesstoken/index.php/AccessToken?id=1">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+            <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示我的TOKEN详细(登录后) </div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken/ByMemberld</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/accesstoken/index.php/AccessToken/ByMemberld">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/accesstoken/add.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/accesstoken/edit.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/accesstoken/index.php/AccessToken/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/accesstoken/del.html">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            
+            </tbody>
+            </table>
+        <hr />
+        <h2>彩票API充值 (数据库表：recharge, 项目目录：recharge)</h2>
+         <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/recharge/index.php/Recharge</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/recharge/index.php/Recharge">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1"> /recharge/index.php/Recharge?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/recharge/index.php/Recharge?id=XX">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/recharge/index.php/Recharge/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/recharge/index.php/Recharge/Add">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/recharge/index.php/Recharge/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/recharge/index.php/Recharge/Update">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/recharge/index.php/Recharge/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/recharge/index.php/Recharge/Del">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            
+            </tbody>
+            </table>
+
+         <hr />
+        <h2>获取token的彩票API(数据库表： , 项目目录： )</h2>
+         <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+           <thead>
+            <tr data-index="0" class="layui-table-click">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">功能描述</div>
+                   
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">URL</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">Method</div> 
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        实例表单(form)
+                    </div>
+                </td>
+            </tr>
+            </thead>
+          <tbody>
+            <tr data-index="0" class=" ">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">列表</div>
+                    </td>
+                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery</div>
+                    </td>
+                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                    </td>
+                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                        <a href="/lottery/index.php/Lottery">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">显示详细</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery?id=XX</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">get</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/index.php/Lottery?id=1">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">添加</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Add</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/index.php/Lottery/Add">试用</a> 
+                    </div>
+                </td>
+            </tr>
+
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">更新</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Update</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/index.php/Lottery/Update">试用</a> 
+                    </div>
+                </td>
+            </tr>
+             <tr data-index="1" class="">
+                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-0">删除</div>
+                </td>
+                <td data-field="e_name" data-key="1-0-1" align="center" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-1">/lottery/index.php/Lottery/Del</div>
+                </td>
+                <td data-field="validtime" data-key="1-0-2" align="left" class="">
+                    <div class="layui-table-cell laytable-cell-1-0-2">post</div>
+                </td>
+                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
+                    <div class="layui-table-cell laytable-cell-1-0-3"> 
+                         <a href="/lottery/index.php/Lottery/Del">试用</a> 
+                    </div>
+                </td>
+            </tr>
+            
+            </tbody>
+            </table>
+    </div>
+ </div>
+</body>
+</html>

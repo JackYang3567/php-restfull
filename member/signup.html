@@ -2,7 +2,7 @@
 <html  class="x-admin-sm">
 <head>
 	<meta charset="UTF-8">
-	<title>后台登录-X-admin2.1</title>
+	<title> </title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -14,16 +14,23 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-        <div id="darkbannerwrap">添加会员</div>
+        <div id="darkbannerwrap">用户注册</div>
         
-        <form method="post" action="/member/index.php/Member/Add" >
+        <form method="post" action="/member/index.php/Member/Signup" >
            <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label> 
                 <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label> 
                   <input type="text" name="name" required="" lay-verify="required" placeholder="请输入帐号/用户名" autocomplete="off" class="layui-input" maxlength="256">
                             </div>
-                       
+                        <div class="layui-form-item">
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label> 
+                            <input type="password" name="pass" required="" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>  
+						 <div class="layui-form-item">
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label> 
+                            <input type="password" name="repass" required="" lay-verify="required" placeholder="请重复密码" autocomplete="off" class="layui-input">
+                            </div>
 						 <div class="layui-form-item">
                             <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone"></label> 
                            <input type="text" name="phone" lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
@@ -36,12 +43,16 @@
                             <label class="layadmin-user-login-icon layui-icon layui-icon-login-qq"></label> 
                            <input type="text" name="qq_number" required="" lay-verify="required" placeholder="请输入QQ号码" autocomplete="off" class="layui-input">
                             </div>
+                          <div class="layui-form-item">
+                             <input type="text" name="captcha" />
+                           <img src="/handler/session.php?type=signup" />
+                           </div>
                             <div class="layui-form-item" style="margin-bottom:20px">
                           
                             <span class="fr" style="margin-top:7px">已有帐号？ <a style="color:#029789!important" href="/member/signin.html">点击登陆</a></span>
                             </div>
                             <div class="layui-form-item" >                           
-                             <button class="layui-btn " type="submit">保存</button> 
+                             <button class="layui-btn " type="submit">立即注册</button> 
                             </div> 
 						
                     

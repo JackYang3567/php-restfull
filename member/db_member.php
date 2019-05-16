@@ -2,12 +2,12 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
+const USER_OR_PASSWORD_ERROR ='用户或密码错误';
 
-
-class DB_Lotterytype
+class DB_Member
 {
     public $pdo;
-
+   
     public $params = [
         'host' => 'localhost',
         'user' => 'root',
@@ -20,6 +20,7 @@ class DB_Lotterytype
     
     function __construct ()
     {
+      
        $this->init();
     }
     
@@ -27,7 +28,7 @@ class DB_Lotterytype
     private function find ($id)
     {
       
-        $sql  = "SELECT * FROM `lottery_type` where Id=".$id;
+        $sql  = "SELECT * FROM `member` where Id=".$id;
         $sql .=" ORDER BY id ";
          
          $stmt = $this->pdo->query($sql);
@@ -44,16 +45,59 @@ class DB_Lotterytype
          }
     }
 
+    function validate_Uniqueness($rec){
+        $sql  = "SELECT * FROM `member`";
+        $sql .=" where `name`='{$rec['name']}'";
+        $rec['email'] ? $sql .="  || `email`='{$rec['email']}'" :'';
+        $rec['phone'] ? $sql .="  || `phone`='{$rec['phone']}'" :'';
+
+        $stmt = $this->pdo->query($sql);
+
+        if(is_object($stmt)){
+           $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+           if(count($row))
+           {
+              // $_SESSION[$captchaText] = $captcha->getPhrase();
+               return true;
+           }
+           else{
+               return false;
+           }
+        }
+    }
     
+    function signin($rec){
+        $password = $rec['pass'];
+        $salt = "Member";// 只取前两个
+        $sql  = "SELECT * FROM `member`";
+        $sql .=" where `name`='{$rec['name']}' && `pass`='".crypt($password, $salt)."'";
+        $stmt = $this->pdo->query($sql);
+         if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+               // $_SESSION[$captchaText] = $captcha->getPhrase();
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
+            }
+            else{
+                return array(  "success"=> false, "error_message"=>USER_OR_PASSWORD_ERROR, "code"=>1,"data"=>$row );
+            }
+         }
+    }
+    
+   
+     
+
     function get ($id)
     {
+       
         return $this->find($id);
     }
 
     function getAll ()
     {
 
-        $sql  = "SELECT * FROM `lottery_type` ";
+        $sql  = "SELECT * FROM `member`";
         $sql .=" ORDER BY id ";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
@@ -70,8 +114,10 @@ class DB_Lotterytype
 
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `lottery_type` (`type_name`,`type_code`,`remarks`) ";
-       $sql .=" VALUES ('{$rec['type_name']}','{$rec['type_code']}','{$rec['remarks']}')";
+       $password = $rec['pass'];
+       $salt = "Member";// 只取前两个
+       $sql  = "INSERT INTO  `member` (`name`,`pass`,`email`,`phone`,`qq_number`) ";
+       $sql .=" VALUES ('{$rec['name']}','".crypt($password, $salt)."','{$rec['email']}','{$rec['phone']}','{$rec['qq_number']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -86,11 +132,14 @@ class DB_Lotterytype
 
     function update ($id, $rec)
     {
-       $_id = (int)$id;
-       $sql  = "update `lottery_type` set `type_name`='{$rec['type_name']}' ,`type_code`='{$rec['type_code']}',`remarks`='{$rec['remarks']}'";
+        $password = $rec['pass'];
+        $salt = "Member";// 只取前两个
+        $_id = (int)$id;
+
+       $sql  = "update `member` set `name`='{$rec['name']}',`pass`='".crypt($password, $salt)."',`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
        $sql .=" where Id={$_id}";
-      // echo $sql;
-       $stmt=$this->pdo->query($sql);
+       echo  $sql;
+       $stmt = $this->pdo->query($sql);
 
        if($stmt->rowCount())
         {
@@ -100,6 +149,7 @@ class DB_Lotterytype
         else{
             return array(  "success"=> false,  "code"=>1,"data"=>$rec );
         }
+       
     }
 
     function delete ($id)
@@ -112,7 +162,7 @@ class DB_Lotterytype
         }
         $sid = implode(",",$_id);
     
-        $sql  = "delete from `lottery_type` where Id in ($sid)";
+        $sql  = "delete from `member` where Id in ($sid)";
    
         $stmt=$this->pdo->query($sql);
 

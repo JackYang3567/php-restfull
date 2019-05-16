@@ -1,0 +1,50 @@
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+   
+
+</head>
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message"></div>
+        <div id="darkbannerwrap">购买续费  </div>
+        
+        <form method="post" action="/recharge/index.php/Recharge/Add" >
+            <select name="token_id" id="cls" lay-verify="required" lay-filter="myselect">
+                    <option value="">接口账号</option>
+                                        <option value="4">5B7A24AC2C124629B69362A957B52D14-默认接口账号</option>
+                                        <option value="5">0469E3B35F42465397D760A1124BB7A6-默认接口账号</option>
+                                        <option value="6">486C13DC0D284A64B061455B75C25A65-默认接口账号</option>
+                                    </select>
+            <hr class="hr15">
+               <select name="code" id="cls" lay-verify="required" lay-filter="myselect">
+            <option value="">产品</option>
+                                        <option value="jsks">[jsks]江苏快三</option>
+                                        <option value="ahks">[ahks]安徽快三</option>
+                                    </select>
+            <hr class="hr15">
+          授权期限  ：&nbsp; &nbsp;<br>  月付<input type="radio" name="purchase_month" checked value='1' placeholder="member_id"/> &nbsp; &nbsp;<br> 
+          季付<input type="radio" name="purchase_month" value="2" placeholder="member_id"/>&nbsp; &nbsp;<br> 
+              年付<input type="radio" name="purchase_month" value="12" placeholder="member_id"/>
+ <hr class="hr15">
+ 所需费用：<input type="text" name="amount" value="20" placeholder="member_id"/>
+
+            <input type="hidden" name="member_id" placeholder="member_id"/>
+           
+           
+            
+            <input value="立即提交" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
+        </form>
+       
+    </div>
+
+</body>
+</html>

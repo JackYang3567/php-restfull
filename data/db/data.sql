@@ -1,3 +1,20 @@
+-- ======== 创建数据库 ========
+DROP DATABASE IF EXISTS `work_caiji`; 
+CREATE DATABASE IF NOT EXISTS `work_caiji` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'; 
+
+-- ======== 创建数据表 ========
+-- 采集彩票数据记录表
+DROP TABLE IF EXISTS `code`;
+CREATE TABLE `code` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `expect` bigint(1) NOT NULL DEFAULT '0',
+  `code` varchar(50) NOT NULL DEFAULT '',
+  `type` varchar(10) NOT NULL DEFAULT '',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `expect` (`expect`,`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=7083 DEFAULT CHARSET=utf8 COMMENT='彩票数据表';
+
 -- 管理员admin
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
@@ -30,17 +47,33 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='会员member';
 
 --  ================
+-- IP白名单white_list
+DROP TABLE IF EXISTS `white_list`;
+CREATE TABLE `white_list` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键recharge id',
+  `member_id` int(11)  NULL  COMMENT '会员id', 
+  `token_id` int(11)  NULL  COMMENT '表access_token的Id',  
+  `ip` varchar(50)  NULL DEFAULT '0' COMMENT 'ip白名单', 
+  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未绑定 1:已绑定', 
+  `examine`  int(11)  NULL DEFAULT 0 COMMENT '充值到账审核1:到账通过', 
+   PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='白名单white_list';
+
+
 -- 充值recharge
 DROP TABLE IF EXISTS `recharge`;
 CREATE TABLE `recharge` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键recharge id',
-  `member_id` int(11)  NULL  COMMENT '会员id',  
-  `amount` decimal(8,2)  NULL DEFAULT '0' COMMENT '变动金额',  
+  `token_id` int(11)  NULL  COMMENT '表access_token的Id',  
+  `amount` decimal(8,2)  NULL DEFAULT '0' COMMENT '变动金额', 
+  `purchase_month` int(11) NOT NULL DEFAULT '0' COMMENT '购买时长,单位月',
   `code` varchar(50) NOT NULL DEFAULT '0' COMMENT '充值彩票的编码',  -- 与表lottery中字段`code`
-  `balance` decimal(8,2)  NULL DEFAULT '0' COMMENT '变动后余额',   
-  `udated_time` timestamp NULL DEFAULT NULL  COMMENT '变动时间',
+  `balance` decimal(8,2)  NULL DEFAULT '0' COMMENT '变动后余额',  
   `remarks` VARCHAR(500)   NULL DEFAULT '' COMMENT '备注',
   `examine`  int(11)  NULL DEFAULT 0 COMMENT '充值到账审核1:到账通过', -- 到账审核通过时在表access_token中生成为member_id成唯一uuid作为token(access_token表的字段)
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '充值时间',
+  `udated_time` timestamp NULL DEFAULT NULL  COMMENT '变动时间',
+  `expire_at` timestamp  NULL COMMENT '购买时长到期时间', 
   PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='充值recharge';
 
@@ -50,12 +83,10 @@ DROP TABLE IF EXISTS `access_token`;
 CREATE TABLE `access_token` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键token Id',
   `member_id` int(11)  NULL  COMMENT '会员id', 
-  `code` varchar(50) NOT NULL DEFAULT '0' COMMENT '彩票编码',  -- 与表lottery中字段`code`
   `token`  varchar(50) NOT NULL DEFAULT '' COMMENT 'token字符串', 
-  `genre` bigint(1) NOT NULL DEFAULT '0' COMMENT 'token分类0:免费试用 1:付费',  
-  `term`  int(11) NOT NULL DEFAULT 1 COMMENT '购买时长 单位月', 
+  `opened` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未开通API禁用 1:开通API可用',
+  `is_auth` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未授权接口 1:授权接口',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'token生成时间',
-  `expire_at` timestamp  NULL COMMENT 'token到期时间', 
   PRIMARY KEY (`Id`),
   UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='试用token';
@@ -134,6 +165,15 @@ CREATE TABLE `prices` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='价格表';
 INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (1,20,55,100,190,550,'江苏快三');
 INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (2,30,55,100,190,550,'安徽快三');
+
+-- 视图
+DROP VIEW IF EXISTS `view_auth_token_api` ;
+CREATE VIEW `view_auth_token_api` AS 
+ select r.token_id,r.amount,r.purchase_month, r.code,
+  r.balance, r.examine,r.created_at,r.udated_time, 
+  r.expire_at, a.token ,a.opened
+ from recharge r left join access_token a on a.Id = r.token_id
+ where a.pened = 1 && unix_timestamp(NOW()) < unix_timestamp(`r.expire_at`) 
 
 
 

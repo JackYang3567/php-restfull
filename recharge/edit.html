@@ -14,12 +14,11 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-      <div id="darkbannerwrap">编辑彩票</div>
+        <div id="darkbannerwrap"></div>
         
-        <form method="post" id="editForm" action="/lottery/index.php/Lottery/Update" >
-        
-        <input type="text"  name="id" placeholder="彩票ID"  />
-         <hr class="hr15">
+        <form method="post" id="editForm" action="/accesstoken/index.php/AccessToken/Update" >
+         <input type="hidden"  name="type_id" placeholder="彩票ID" value='3' />
+        <input type="hidden"  name="id" placeholder="彩票ID" value='9' />
             <input type="text" name="name" placeholder="彩票名"/>
             <hr class="hr15">
              <input type="text" name="code" placeholder="彩票编码"/>
@@ -32,32 +31,6 @@
         </form>
        
     </div>
-     <script>
-     function putSave() {
-        let data =  $("#editForm").serialize();
-        const url=`/lotterytype/index.php/LotteryType/Update`
-        // console.log(data)
-        alert(data)
-         $.ajax({
-            url:url,
-            type:"post",
-            dataType:"json",
-            timeout:10000,
-            data:data,
-            success:function(res){
-                  console.log("res=====",res);
-                   if(res.success){
-                      
-                    //  window.location.href = '/admin/signin'
-                    }
-                    else{
-                       
-                        console.log("errr====",res);
-                    }
-            }
-        });
-         return false;
-      }
-    </script>
+    
 </body>
 </html>
