@@ -26,8 +26,7 @@ class DB_Member
     
 
     private function find ($id)
-    {
-      
+    {      
         $sql  = "SELECT * FROM `member` where Id=".$id;
         $sql .=" ORDER BY id ";
          
@@ -50,7 +49,6 @@ class DB_Member
         $sql .=" where `name`='{$rec['name']}'";
         $rec['email'] ? $sql .="  || `email`='{$rec['email']}'" :'';
         $rec['phone'] ? $sql .="  || `phone`='{$rec['phone']}'" :'';
-
         $stmt = $this->pdo->query($sql);
 
         if(is_object($stmt)){

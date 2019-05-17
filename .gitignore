@@ -8,8 +8,16 @@ coverage/
 .idea/
 run/
 logs/
-.DS_Store
 *.sw*
 *.un~
 typings/
 .nyc_output/
+
+/.idea
+/.vscode
+/vendor
+*.log
+thinkphp
+.env
+.DS_Store
+

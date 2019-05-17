@@ -12,6 +12,7 @@ $captchaText = isset($_GET['type'] )? strtoupper($_GET['type']."-captcha") : str
 
 //$_SESSION['CAPTCHA']
 //$_SESSION['FREE-CAPTCHA']
+//$_SESSION['ADMIN-CAPTCHA']
 
 $_SESSION[$captchaText] = $captcha->getPhrase();
 // Setting the header to image jpeg because we here render an image

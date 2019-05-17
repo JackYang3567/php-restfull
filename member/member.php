@@ -21,7 +21,14 @@ class Member {
 		$this->sesinoDB = new DB_Sessions();
 	}
 	function get($id=NULL) {
-			return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+		if( isset($_SESSION['admin_session_id']))
+{
+   echo "true";
+}
+else{
+    echo "false";
+}
+		//	return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
 	}
 
 	
