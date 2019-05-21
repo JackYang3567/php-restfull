@@ -27,6 +27,7 @@
             <th>支付方式名</th>
             <th>支付方式编码</th>
             <th>支付方式图标名</th>
+            <th>支付二维码图标路径</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -137,7 +138,8 @@
             <td>`+data[k].name  +`</td>
             
             <td>`+data[k].code  +`</td>
-            <td>`+data[k].icon_path  +`</td>
+            <td><img src='`+data[k].icon_path  +`' /></td>
+            <td>`+data[k].qrcode_path  +`</td>
             <td class="td-manage">
            `  
            

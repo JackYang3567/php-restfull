@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 11:05:55
+/* Smarty version 3.1.33, created on 2019-05-21 11:20:46
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\paymethod\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce36b1367d243_51023413',
+  'unifunc' => 'content_5ce36e8e8430a1_73458018',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0eec59196f7bd6d30fb8b541bf5b7c29a59c1201' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\paymethod\\list.tpl',
-      1 => 1558407941,
+      1 => 1558408818,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce36b1367d243_51023413 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce36e8e8430a1_73458018 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -55,6 +55,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             <th>支付方式名</th>
             <th>支付方式编码</th>
             <th>支付方式图标名</th>
+            <th>支付二维码图标路径</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -166,7 +167,8 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             <td>`+data[k].name  +`</td>
             
             <td>`+data[k].code  +`</td>
-            <td>`+data[k].icon_path  +`</td>
+            <td><img src='`+data[k].icon_path  +`' /></td>
+            <td>`+data[k].qrcode_path  +`</td>
             <td class="td-manage">
            `  
            

@@ -106,16 +106,17 @@ CREATE TABLE `paymethod` (
   `name` varchar(50) NOT NULL DEFAULT '0' COMMENT '支付方式名，支付方式1:支付宝,2:微信支付,3:微信支付官方,4:QQ钱包支付,5:QQ钱包支付官方',
   `code` varchar(50)   NULL  COMMENT '支付方式英文名', 
   `icon_path` VARCHAR(500)   NULL DEFAULT '' COMMENT '支付方式图标路径',
+  `qrcode_path` VARCHAR(500)   NULL DEFAULT '' COMMENT '支付二维码图标路径',
   `notes` VARCHAR(500) NOT  NULL DEFAULT '' COMMENT '支付方式备注', 
   `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:禁用 1:启用', 
   `sortId` int(11) NOT NULL COMMENT '排序', 
   PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名paymethod';
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('支付宝','alipay','Ali_QrCode.png','1');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信','Weixin','Weixin_QrCode.png','2');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信官方','Weixin_gf','Weixin_QrCode_gf.png','3');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包','QQwallet','QQwallet_QrCode.png','4');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','QQwallet_gf_QrCode.png','5');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('支付宝','alipay','/static/img/method-ali.png','Ali_QrCode.png','1');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信','Weixin','/static/img/method-wx.png','Weixin_QrCode.png','2');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信官方','Weixin_gf','/static/img/method-wx.png','Weixin_QrCode_gf.png','3');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包','QQwallet','/static/img/method-qq.png','QQwallet_QrCode.png','4');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','/static/img/method-qq.png','QQwallet_gf_QrCode.png','5');
 
 -- 支付金额设置
 DROP TABLE IF EXISTS `payamount`;
