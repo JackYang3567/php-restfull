@@ -24,7 +24,7 @@ CREATE TABLE `admin` (
   `email` varchar(50) NULL COMMENT '管理邮箱',  
   `phone` varchar(15)  NULL DEFAULT '0' COMMENT '管理手机号',  
   `qq_number` varchar(20) NOT NULL DEFAULT '' COMMENT '管理QQ号',
-  `pass` varchar(20) NOT NULL DEFAULT '' COMMENT '管理登录密码', 
+  `pass` varchar(32) NOT NULL DEFAULT '' COMMENT '管理登录密码', 
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理注册时间', 
   PRIMARY KEY (`Id`),
   UNIQUE KEY `name` (`name`,`email`,`phone`)
@@ -37,7 +37,8 @@ INSERT INTO  `admin` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('admin'
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `Id`INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键会员id',
-  `name` VARCHAR(100) NOT  NULL DEFAULT '' COMMENT '会员名称',  
+  `name` VARCHAR(100) NOT  NULL DEFAULT '' COMMENT '会员名称', 
+  `gender` bigint(1)  NOT NULL DEFAULT 0  COMMENT '性别0:女，1:男',
   `email` varchar(50) NULL COMMENT '会员邮箱',  
   `phone` varchar(15)  NULL DEFAULT '0' COMMENT '会员手机号',  
   `qq_number` varchar(20) NOT NULL DEFAULT '' COMMENT '会员QQ号',
@@ -46,7 +47,41 @@ CREATE TABLE `member` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `name` (`name`,`email`,`phone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='会员member';
-
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('jack123','jack123@163.com','13908013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tomson123','tomson123@163.com','13908013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('jonhand','jonhand@163.com','13708013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('test123','test123@163.com','13608013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('janaili','janaili@163.com','13508013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('pierson','pierson@163.com','13408013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('jonjianc','jonjianc@163.com','13308013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('obamatee','obamatee@163.com','13008013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('milkjosn','milkjosn@163.com','13908013561','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('geenton','geenton@163.com','13908013562','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('beyoungeen','beyoungeen@163.com','13908013563','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('misherkate','misherkate@163.com','13908013564','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('mikeytomin','mikeytomin@163.com','13908013565','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('niketong','niketong@163.com','13908013566','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('fradehan','fradehan@163.com','13908013567','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('babalaha','babalaha@163.com','13508013518','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('lamierha','lamierha@163.com','13908013528','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('aisonhau','aisonhau@163.com','13508013538','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('amajson','amajson@163.com','13508013548','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('ajaxbill','ajaxbill@163.com','13508013558','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('billtont','billtont@163.com','13508013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('bottent','bottent@163.com','13908013578','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('shootbang','shootbang@163.com','13908013588','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('shehandle','shehandle@163.com','13508013598','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('larlli','larlli@163.com','13908013508','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tccwong','tccwong@163.com','13908013968','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('itoyokado','itoyokado@163.com','13908013668','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tjaxbill','tjaxbill@163.com','13508013558','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('willtont','willtont@163.com','13508013568','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('xottent','xottent@163.com','13908013578','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('zhootbang','zhootbang@163.com','13908013588','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('vhehandle','vhehandle@163.com','13508013598','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('marlli','marlli@163.com','13908013508','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tncwong','tncwong@163.com','13908013968','234124124','MerDkA.pv1Bvk');
+INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('ritoyokado','ritoyokado@163.com','13908013668','234124124','MerDkA.pv1Bvk');
 
 -- 支付payment
 DROP TABLE IF EXISTS `payment`;
@@ -81,7 +116,6 @@ INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信','
 INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('微信官方','Weixin_gf','Weixin_QrCode_gf.png','3');
 INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包','QQwallet','QQwallet_QrCode.png','4');
 INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','QQwallet_gf_QrCode.png','5');
-
 
 -- 支付金额设置
 DROP TABLE IF EXISTS `payamount`;

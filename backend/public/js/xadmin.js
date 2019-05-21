@@ -78,9 +78,9 @@ $(function () {
     tableCheck = {
        
         init:function  () {
-            console.log('tableCheck---init')
+            console.log("event===1111");
             $(".x-admin .layui-form-checkbox").click(function(event) {
-                alert(event)
+               
                 if($(this).hasClass('layui-form-checked')){
                     $(this).removeClass('layui-form-checked');
                     if($(this).hasClass('header')){

@@ -1,5 +1,7 @@
 <?php
+require '../handler/auth_session.php';
 require '../vendor/autoload.php';
+
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 const USERNAME_EMAIL_PHONE_EXISTS = '用户名或Email或电话号码已存在';
 
@@ -10,28 +12,49 @@ class Member {
 	public $dp;
 	public $sesinoDB;
 	static $FIELDS = array('name', 'email', 'pass','phone','qq_number');
+
+	// determine login status
+	public $loggedIn ;
+	public $loggedUser;
+	// session thumbprint
+	public $thumbPrint ;
+	public $storedPrint ;
+
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
 		* $this->dp = new DB_PDO_MySQL();
 		* $this->dp = new DB_Serialized_File();
 		*/
-		session_start();
+		$this->auth = new AuthSession();
 		$this->dp = new DB_Member();
 		$this->sesinoDB = new DB_Sessions();
 	}
-	function get($id=NULL) {
-		if( isset($_SESSION['admin_session_id']))
-{
-   echo "true";
-}
-else{
-    echo "false";
-}
-		//	return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
-	}
+	function get($id=NULL, $page=1,$split=10) {
+		if ( !$this->auth->loggedIn && $this->auth->thumbPrint !==  $this->auth->storedPrint) {
+			//$info = 'SESSION INVALID!!!';
+			//error_log('Session Invalid: ' . date('Y-m-d H:i:s'), 0);
+			header('Location: /backend/signin.php');
+			exit();
+			// take appropriate action
+		}     
+		//$data = $this->dp->getAll();        
+    //  $this->render('admin/index.tpl', $data);
+        $_startTime = strtotime('now');
+				return is_null($id) ? $this->dp->getAll($page,$split) : $this->dp->get($id);
+				/*
+				$_data =	is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+				$_endTime = strtotime('now');
+        $_end = $_endTime - $_startTime;
+				echo "<pre>";
+				var_dump($_startTime);
+				var_dump(	$_data );
+				var_dump($_end);
+				echo "</pre>";
+				*/
+		}
 
-	
+		
 
 	function postSignin($request_data=NULL) {
 		

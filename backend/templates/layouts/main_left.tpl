@@ -2,7 +2,7 @@
         <div id="side-nav">
           <ul id="nav">
               <li>
-                  <a href="javascript:;">
+                  <a _href="/backend/index.php/Admin/MemberList?page=1&split=10">
                       <i class="iconfont">&#xe6b8;</i>
                       <cite>会员管理</cite>
                       <i class="iconfont nav_right">&#xe697;</i>
@@ -10,7 +10,7 @@
                  
               </li>
               <li>
-                  <a href="javascript:;">
+                  <a _href="/backend/public/member-list.html">
                       <i class="iconfont">&#xe723;</i>
                       <cite>订单管理</cite>
                       <i class="iconfont nav_right">&#xe697;</i>
@@ -18,7 +18,7 @@
                  
               </li>
               <li>
-                  <a href="javascript:;">
+                  <a _href="/backend/index.php/Admin/LotteryTypeList?page=1&split=10">
                       <i class="iconfont">&#xe723;</i>
                       <cite>彩票分类管理</cite>
                       <i class="iconfont nav_right">&#xe697;</i>
@@ -26,13 +26,21 @@
                  
               </li>
               <li>
-                  <a href="javascript:;">
+                  <a _href="/backend/index.php/Admin/LotteryList?page=1&split=10">
                       <i class="iconfont">&#xe723;</i>
                       <cite>彩票管理</cite>
                       <i class="iconfont nav_right">&#xe697;</i>
                   </a>
                   
               </li>
+              <li>
+                    <a _href="/backend/index.php/Admin/WhiteList?page=1&split=10">
+                        <i class="iconfont">&#xe723;</i>
+                        <cite>白名单管理</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    
+                </li>
               <li>
                   <a href="javascript:;">
                       <i class="iconfont">&#xe726;</i>
@@ -41,13 +49,13 @@
                   </a>
                   <ul class="sub-menu">
                       <li>
-                          <a _href="admin-list.html">
+                          <a _href="/backend/index.php/Admin/PaymethodList?page=1&split=10">
                               <i class="iconfont">&#xe6a7;</i>
                               <cite>支付方式管理</cite>
                           </a>
                       </li >
                       <li>
-                          <a _href="admin-role.html">
+                          <a _href="/backend/index.php/Admin/PayamountList?page=1&split=10">
                               <i class="iconfont">&#xe6a7;</i>
                               <cite>充值金额预设</cite>
                           </a>
@@ -113,7 +121,7 @@
                   </ul>
               </li>
               <li>
-                  <a href="javascript:;">
+                <a _href="/backend/index.php/Lottery">
                       <i class="iconfont">&#xe6b4;</i>
                       <cite>充值管理</cite>
                       <i class="iconfont nav_right">&#xe697;</i>

@@ -1,28 +1,28 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-17 18:07:34
+/* Smarty version 3.1.33, created on 2019-05-20 08:51:36
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\signin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cde87e6c34832_36642914',
+  'unifunc' => 'content_5ce1fa18ee7664_50198906',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b3710756f4e54a968dcd1185da98d0907d45bd78' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\signin.tpl',
-      1 => 1558087647,
+      1 => 1558313493,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:header.tpl' => 1,
+    'file:./layouts/header.tpl' => 1,
   ),
 ),false)) {
-function content_5cde87e6c34832_36642914 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->compiled->nocache_hash = '8778612895cde87e6c091b1_64394464';
+function content_5ce1fa18ee7664_50198906 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->compiled->nocache_hash = '16213938105ce1fa18e7de54_04399529';
 ?>
 
 
@@ -30,7 +30,7 @@ $_smarty_tpl->compiled->nocache_hash = '8778612895cde87e6c091b1_64394464';
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
-<?php $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
+<?php $_smarty_tpl->_subTemplateRender("file:./layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
 ?>
 <body class="login-bg">
     

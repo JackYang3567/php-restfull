@@ -1,10 +1,10 @@
-<BODY>
+
 <!-- 顶部开始 -->
-{include file="main_top.tpl"}
+{include file="../layouts/main_top.tpl"}
 <!-- 顶部结束 -->
 <!-- 中部开始 -->
    <!-- 左侧菜单开始 -->
-   {include file="main_left.tpl"}
+   {include file="../layouts/main_left.tpl"}
    <!-- 左侧菜单结束 -->
  <!-- 右侧主体开始 -->
  <div class="page-content">
@@ -21,3 +21,6 @@
     </div>
 <div class="page-content-bg"></div>
 <!-- 右侧主体结束 -->
+<!-- 底部开始 -->
+{include file="../layouts/frame_footer.tpl"}
+<!-- 底部结束 

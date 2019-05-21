@@ -13,8 +13,8 @@ class LotteryType {
 		$this->dp = new DB_Lotterytype();
 	}
 
-	function get($id=NULL) {
-		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+	function get($id=NULL, $page=NULL,$split=NULL) {
+		return is_null($id) ? $this->dp->getAll( $page,$split) : $this->dp->get($id);
 	}
 	function postAdd($request_data=NULL) {
 

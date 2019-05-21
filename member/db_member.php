@@ -2,6 +2,7 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
+
 const USER_OR_PASSWORD_ERROR ='用户或密码错误';
 
 class DB_Member
@@ -22,6 +23,7 @@ class DB_Member
     {
       
        $this->init();
+       
     }
     
 
@@ -92,17 +94,26 @@ class DB_Member
         return $this->find($id);
     }
 
-    function getAll ()
+    function getAll ($page,$split)
     {
+        $Count_sql  = "SELECT * FROM `member`";
+        $Count_sql .=" ORDER BY id ";
+        $count_stmt = $this->pdo->query($Count_sql);
+        $count =  $count_stmt->rowCount();
 
+        $offset = (int)( ($page - 1)* $split);  
+        $limit = (int)$split;  
         $sql  = "SELECT * FROM `member`";
         $sql .=" ORDER BY id ";
+        $sql .=" limit $offset,$limit ";
+       
          $stmt = $this->pdo->query($sql);
+        
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0,  "data"=>array("count"=>  $count,"rows"=>$row ));
             }
             else{
                 return array(  "success"=> false,  "code"=>1,"data"=>$row );

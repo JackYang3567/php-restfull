@@ -14,17 +14,19 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-        <div id="darkbannerwrap"></div>
+        <div id="darkbannerwrap">添加支付方式</div>
         
-        <form method="post" action="/backend/index.php/Admin/Signin/" >
-            <input type="text" name="name" />
+        <form method="post" action="/paymethod/index.php/Paymethod/Add" >
+           
+            <input type="text" name="name" placeholder="支付名"/>
             <hr class="hr15">
-             <input type="text" name="pass" />
+             <input type="text" name="code" placeholder="支付方式英文名"/>
             <hr class="hr15">
-             <input type="text" name="captcha" />
-             <img src="/handler/session.php" />
+             <input type="text" name="icon_path" placeholder="支付方式图标"/>
+           <hr class="hr15">
+             <input type="text" name="sortId" placeholder="排序号"/>
             
-            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <input value="保存" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >
         </form>
        

@@ -51,17 +51,25 @@ class DB_Lottery
         return $this->find($id);
     }
 
-    function getAll ()
+    function getAll ($page,$split)
     {
+        $Count_sql  = "SELECT * FROM `lottery`";
+        $Count_sql .=" ORDER BY Id ";
+        $count_stmt = $this->pdo->query($Count_sql);
+        $count =  $count_stmt->rowCount();
 
+        $offset = (int)( ($page - 1)* $split);  
+        $limit = (int)$split;  
         $sql  = "SELECT * FROM `lottery`";
-        $sql .=" ORDER BY id ";
+        $sql .=" ORDER BY Id ";
+        $sql .=" limit $offset,$limit ";
+        
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>array("count"=>  $count,"rows"=>$row ) );
             }
             else{
                 return array(  "success"=> false,  "code"=>1,"data"=>$row );

@@ -1,12 +1,16 @@
 <?php
- require '../libs/Smarty.class.php';
+ //require '../libs/Smarty.class.php';
 
+ require '../handler/auth_session.php';
  //session_start();
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 class Admin {
+
     public $pdo;
     public $smarty;
+    public $auth;
     static $FIELDS = array('name', 'pass','captcha');
+
     public $params = [
         'host' => 'localhost',
         'user' => 'root',
@@ -20,33 +24,97 @@ class Admin {
 		* $this->dp = new DB_Serialized_File();
 		*/
         //$this->pdo = new Conn();
-        session_start();
-        $this->smarty = new Smarty;
+       
+        $this->auth = new AuthSession();
     }
-     public function render($tpl='index.tpl')
-    {
-         //$smarty->force_compile = true;
-            $this->smarty->debugging = true;
-            $this->smarty->caching = true;
-            $this->smarty->cache_lifetime = 120;
-            $this->smarty->assign("Name", "GK数据API", true);
-            $this->smarty->display($tpl);
-    }
+
+    
+    
 	function get() {
-        //return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
-            if (!$_SESSION['admin_session_id']){
-                header('Location: /backend/signin.php');
-                exit();
-            }
-            $this->render('index.tpl');
+        $this->_isAuth();
+        $data = array();        
+      //  $this->render('admin/index.tpl', $data);
+      $this->auth->render('admin/index.tpl', $data);
     }
+
+    function getMemberList() {
+        $this->_isAuth(); 
+        $data = array();  
+        $this->auth->render('members/list.tpl', $data);
+    }
+
+    function getNewMember() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('members/new.tpl', $data);
+    }
+
+
+    function getLotteryTypeList() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('lotterytype/list.tpl', $data);
+    }
+
+    function getNewLotteryType() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('lotterytype/new.tpl', $data);
+    }
+
+    function getLotteryList() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('lottery/list.tpl', $data);
+    }
+    function getNewLottery() {
+        $this->_isAuth(); 
+        $data = array();  
+        $this->auth->render('lottery/new.tpl', $data);
+    }
+
+    function getWhiteList() {
+        $this->_isAuth(); 
+        $data = array();  
+        $this->auth->render('whitelist/list.tpl', $data);
+    }
+
+
+    function getPaymethodList() {
+        $this->_isAuth(); 
+        $data = array();  
+        $this->auth->render('paymethod/list.tpl', $data);
+    }
+
+    function getPayamountList() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('payamount/list.tpl', $data);
+    }
+
+    
     function getSignout(){
-        unset($_SESSION['admin_session_id']);
+      
+        // 清除会话数据wipe out session data
+        session_unset();
+        // 销毁会话destroy session
+        session_destroy();
+        // 会话cookie过期 expire session cookie
+        setcookie('PHPSESSID', 0, time() - 3600);
+        // force a new request cycle
+        //header('Location: ' . $_SERVER['REQUEST_URI'] );
         header('Location: /backend/signin.php');
         exit();
     }
     function getWelcome(){
-       echo "Welcome";
+        if ( !$this->auth->loggedIn && $this->auth->thumbPrint !==  $this->auth->storedPrint) {
+            header('Location: /backend/signin.php');
+            exit();
+            // take appropriate action
+        }  
+        $data = array( $_SESSION['admin'],date("Y-m-d H:i:s"));      
+       // $this->render('admin/welcome.tpl', $data);
+        $this->auth->render('admin/welcome.tpl', $data);
     }
 	function postSignin($request_data=NULL) {
       
@@ -72,8 +140,12 @@ class Admin {
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-               // echo  $row[0]->pass;
-                $_SESSION['admin_session_id'] = $row[0]->pass ;
+               
+                $this->auth->loggedIn = TRUE;
+                $_SESSION['admin'] = strip_tags($row[0]->name);
+                $_SESSION['isLoggedIn'] = TRUE;
+                    // store thumbprint
+                $_SESSION['thumbprint'] =  $this->auth->thumbPrint;
               
                 return array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
@@ -91,7 +163,14 @@ class Admin {
 	function delete($id=NULL) {
 		return $this->dp->delete($id);
 	}
-	
+    
+    private function _isAuth(){
+        if ( !$this->auth->loggedIn && $this->auth->thumbPrint !==  $this->auth->storedPrint) {
+            header('Location: /backend/signin.php');
+            exit();
+        }       
+    }
+
 	private function _validate($data){
 		$admin=array();
 		foreach (Admin::$FIELDS as $field) {

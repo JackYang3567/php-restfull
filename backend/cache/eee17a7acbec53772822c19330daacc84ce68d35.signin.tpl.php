@@ -1,30 +1,30 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-17 18:07:34
+/* Smarty version 3.1.33, created on 2019-05-21 07:50:38
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\signin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5cde87e6c3f221_38867653',
+  'unifunc' => 'content_5ce33d4e585495_91959001',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'b3710756f4e54a968dcd1185da98d0907d45bd78' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\signin.tpl',
-      1 => 1558087647,
+      1 => 1558313493,
       2 => 'file',
     ),
-    '02880a74dc2c65f5e9c55689e5d1a03558cd7a0a' => 
+    'bb5432901cd78217ae80477be6fdda468253f971' => 
     array (
-      0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\header.tpl',
-      1 => 1558079266,
+      0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\layouts\\header.tpl',
+      1 => 1558331771,
       2 => 'file',
     ),
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_5cde87e6c3f221_38867653 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce33d4e585495_91959001 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 
@@ -40,14 +40,15 @@ function content_5cde87e6c3f221_38867653 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="stylesheet" href="/backend/public/css/font.css">
-	<link rel="stylesheet" href="/backend/public/css/xadmin.css">
+    <link rel="stylesheet" href="/backend/public/css/xadmin.css">
+    <link rel="stylesheet" href="/backend/public/css/paging.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="/backend/public/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/backend/public/js/xadmin.js"></script>
     <script type="text/javascript" src="/backend/public/js/cookie.js"></script>
-
+    <script src="/backend/public/js/paging.js"></script>
 </HEAD>
-<body class="login-bg">
+<BODY><body class="login-bg">
     
         <div class="login layui-anim layui-anim-up">
             <div class="message">管理登录</div>

@@ -1,7 +1,7 @@
 
 
 {config_load file="test.conf" section="setup"}
-{include file="header.tpl" title='GK数据API'}
+{include file="./layouts/header.tpl" title='GK数据API'}
 <body class="login-bg">
     
         <div class="login layui-anim layui-anim-up">

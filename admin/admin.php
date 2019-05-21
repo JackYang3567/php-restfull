@@ -1,5 +1,5 @@
 <?php
- 
+ require '../handler/connection_db.php';
 
 class Admin {
 	public $pdo;
@@ -16,7 +16,7 @@ class Admin {
 		* $this->dp = new DB_PDO_MySQL();
 		* $this->dp = new DB_Serialized_File();
 		*/
-        //$this->pdo = new Conn();
+       // $this->pdo = new Conn();
        // session_start();
 	}
 	function get($id=NULL) {
@@ -31,7 +31,7 @@ class Admin {
         $salt = "admin";// 只取前两个            
         $sql  = "SELECT `name`,`email`,`phone`,`qq_number`,`pass` FROM `admin` ";
         $sql .=" where `name`='{$request_data['name']}' && `pass`='".crypt($password, $salt);
-        $sql .="'  ORDER BY id ";
+        $sql .="'  ORDER BY Id ";
 
         // echo $sql;
          

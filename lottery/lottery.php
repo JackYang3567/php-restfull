@@ -22,8 +22,8 @@ class Lottery {
         $this->redis->connect('127.0.0.1', 6379);
 	}
 
-	function get($id=NULL) {
-		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+	function get($id=NULL, $page=1,$split=10) {
+		return is_null($id) ? $this->dp->getAll( $page,$split) : $this->dp->get($id);
 	}
 
 	function postFreeApi($code=NULL,$captcha=NULL){
