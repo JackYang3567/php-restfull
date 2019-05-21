@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 08:10:05
+/* Smarty version 3.1.33, created on 2019-05-21 11:03:18
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\whitelist\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce341dd2c61e3_47654536',
+  'unifunc' => 'content_5ce36a763b18a9_53416589',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f282347b315379744dc56e804ad87f5dbae58a0' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\whitelist\\list.tpl',
-      1 => 1558397382,
+      1 => 1558407791,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce341dd2c61e3_47654536 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce36a763b18a9_53416589 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -36,13 +36,13 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
           <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入彩票类型名" autocomplete="off" class="layui-input">
+          <input type="text" name="username"  placeholder="请输入IP白名单名" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加彩票类型','/backend/index.php/Admin/NewLotteryType',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加IP白名单','/backend/index.php/Admin/NewWhiteList',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
       <table class="layui-table x-admin">
@@ -52,9 +52,9 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>彩票类型名</th>
-            <th>类型编码</th>
-            <th>描述</th>
+            <th>会员ID</th>
+            <th>TokenID</th>
+            <th>IP</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -70,7 +70,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount">
           <input type="hidden" id="searchStr">
-          <input type="hidden" id="api" value="/lotterytype/index.php/LotteryType">
+          <input type="hidden" id="api" value="/whitelist/index.php/Whitelist">
       </div>
 
     </div>
@@ -86,7 +86,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       var reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       $(function(){
-          getLotteryTypelist(reloadUrl,'doc ready');
+          getWhiteListlist(reloadUrl,'doc ready');
          // setTimeout(function() {
           pagein(api)
         //  }, 500); 
@@ -95,7 +95,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
     
     //load info
-     function getLotteryTypelist(reloadUrl,step=''){
+     function getWhiteListlist(reloadUrl,step=''){
         $.ajax({
             url:reloadUrl,
             type:"GET",
@@ -137,7 +137,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             callback: function(page) { // 回调函数 split当前页码
                  $("#page").val(page)
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getUserlist(reloadUrl,'pagein');
+                 getWhiteListlist(reloadUrl,'pagein');
                  $("#totalCount").html(setTotalCount)
             }
          })
@@ -163,10 +163,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               
             </td>
             <td>`+data[k].Id +`</td>
-            <td>`+data[k].type_name  +`</td>
+            <td>`+data[k].member_id  +`</td>
             
-            <td>`+data[k].type_code  +`</td>
-            <td>`+data[k].remarks  +`</td>
+            <td>`+data[k].token_id  +`</td>
+            <td>`+data[k].ip  +`</td>
             <td class="td-manage">
            `  
            
@@ -175,7 +175,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
-              <a title="删除" onclick="lotterytype_del(this,'`+data[k].Id +`')" href="javascript:;">
+              <a title="删除" onclick="whitelist_del(this,'`+data[k].Id +`')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -215,10 +215,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
       
      /*删除*/
-     function lotterytype_del(obj,id){
+     function whitelist_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-              delLotteryType(id);              
+              delWhiteList(id);              
                let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -235,7 +235,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         var data = tableCheck.getData();
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-            delLotteryType(data);       
+            delWhiteList(data);       
             let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -246,7 +246,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       }
 
        //删除
-       function delLotteryType(id) {
+       function delWhiteList(id) {
        
         let api = $("#api").val()
         let data = 'id='+id;

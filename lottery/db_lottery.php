@@ -47,8 +47,37 @@ class DB_Lottery
     
     function get ($id)
     {
+       return $this->find($id);
+    }
+
+    function getByTypeId($rec){
+     
+        $type_id = (int)$rec["type_id"];
+    
+        $Count_sql  = "SELECT * FROM `lottery`";
+        $Count_sql .="  where `type_id` =".$type_id;
+        $Count_sql .=" ORDER BY Id ";
+        $count_stmt = $this->pdo->query($Count_sql);
+        $count =  $count_stmt->rowCount();
+
        
-        return $this->find($id);
+        $sql  = "SELECT * FROM `lottery`";
+        $sql  .="  where `type_id` =".$type_id;
+        $sql .=" ORDER BY Id ";
+       
+    
+
+         $stmt = $this->pdo->query($sql);
+         if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+                return  array( "success"=>true,  "code"=>0, "data"=>array("count"=>  $count,"rows"=>$row ) );
+            }
+            else{
+                return array(  "success"=> false,  "code"=>1,"data"=>$row );
+            }
+         }
     }
 
     function getAll ($page,$split)

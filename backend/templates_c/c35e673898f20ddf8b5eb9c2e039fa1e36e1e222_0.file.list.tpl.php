@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 08:02:02
+/* Smarty version 3.1.33, created on 2019-05-21 11:06:34
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\lotterytype\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce33ffa61e563_49821645',
+  'unifunc' => 'content_5ce36b3ade0785_46359739',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c35e673898f20ddf8b5eb9c2e039fa1e36e1e222' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\lotterytype\\list.tpl',
-      1 => 1558343051,
+      1 => 1558407980,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce33ffa61e563_49821645 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce36b3ade0785_46359739 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -30,16 +30,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 ?>
   
   <body>
-    <div class="x-nav">
-      <span class="layui-breadcrumb">
-        <a href="">首页</a>
-        <a href="">演示</a>
-        <a>
-          <cite>导航元素</cite></a>
-      </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
+   
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
@@ -146,7 +137,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             callback: function(page) { // 回调函数 split当前页码
                  $("#page").val(page)
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getUserlist(reloadUrl,'pagein');
+                 getLotteryTypelist(reloadUrl,'pagein');
                  $("#totalCount").html(setTotalCount)
             }
          })
@@ -268,7 +259,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                    getLotteryTypelist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)

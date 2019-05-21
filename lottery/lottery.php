@@ -26,6 +26,12 @@ class Lottery {
 		return is_null($id) ? $this->dp->getAll( $page,$split) : $this->dp->get($id);
 	}
 
+	function postByTypeId($request_data=NULL) {
+		//var_dump($request_data);
+		return  $this->dp->getByTypeId($request_data);
+	}
+
+
 	function postFreeApi($code=NULL,$captcha=NULL){
 		session_start();
 		if(strtoupper($captcha)===strtoupper($_SESSION['FREE-CAPTCHA']))

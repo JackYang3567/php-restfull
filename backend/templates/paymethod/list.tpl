@@ -2,16 +2,7 @@
 {include file="../layouts/header.tpl" title='GK数据API'}
   
   <body>
-    <div class="x-nav">
-      <span class="layui-breadcrumb">
-        <a href="">首页</a>
-        <a href="">演示</a>
-        <a>
-          <cite>导航元素</cite></a>
-      </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
+    
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
@@ -57,7 +48,7 @@
     </div>
     <script>
 
-      var api = $("#api").val()
+      var api = $("#api").val();
       var page = getQueryString("page") || parseInt($("#page").val());// 初始页码
       var split  = parseInt($("#split").val()); //每页最大记录数       
       var setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
@@ -117,7 +108,7 @@
             callback: function(page) { // 回调函数 split当前页码
                  $("#page").val(page)
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getUserlist(reloadUrl,'pagein');
+                 getPaymethodlist(reloadUrl,'pagein');
                  $("#totalCount").html(setTotalCount)
             }
          })
@@ -239,7 +230,7 @@
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                    getPaymethodlist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)

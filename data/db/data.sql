@@ -139,7 +139,7 @@ CREATE TABLE `white_list` (
   `member_id` int(11)  NULL  COMMENT '会员id', 
   `token_id` int(11)  NULL  COMMENT '表access_token的Id',  
   `ip` varchar(50)  NULL DEFAULT '0' COMMENT 'ip白名单', 
-  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未绑定 1:已绑定', 
+  `status` bigint(1) NOT NULL DEFAULT 0 COMMENT '0:未绑定 1:已绑定', 
   `examine`  int(11)  NULL DEFAULT 0 COMMENT '充值到账审核1:到账通过', 
    PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='白名单white_list';

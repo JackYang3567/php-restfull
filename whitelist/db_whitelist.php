@@ -51,17 +51,32 @@ class DB_Whitelist
         return $this->find($id);
     }
 
-    function getAll ()
+    function getAll ($page,$split)
     {
 
-        $sql  = "SELECT * FROM `white_list`";
-        $sql .=" ORDER BY id ";
-         $stmt = $this->pdo->query($sql);
+        $Count_sql  = "SELECT * FROM `white_list`";
+        $Count_sql .=" ORDER BY Id ";
+        $count_stmt = $this->pdo->query($Count_sql);
+        $count =  $count_stmt->rowCount();
+
+
+        if($page && $split){
+            $offset = (int)( ($page - 1)* $split);  
+            $limit = (int)$split;  
+            $sql  = "SELECT * FROM `white_list` ";
+            $sql .=" ORDER BY Id ";
+             $sql .=" limit $offset,$limit ";
+          }else{
+              $sql  = "SELECT * FROM `white_list` ";
+              $sql .=" ORDER BY Id ";
+          }
+          $stmt = $this->pdo->query($sql);
+
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0,"data"=>array("count"=>  $count,"rows"=>$row ));
             }
             else{
                 return array(  "success"=> false,  "code"=>1,"data"=>$row );

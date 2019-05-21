@@ -8,13 +8,13 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
           <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入彩票类型名" autocomplete="off" class="layui-input">
+          <input type="text" name="username"  placeholder="请输入IP白名单名" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加彩票类型','/backend/index.php/Admin/NewLotteryType',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加IP白名单','/backend/index.php/Admin/NewWhiteList',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
       <table class="layui-table x-admin">
@@ -24,9 +24,9 @@
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>彩票类型名</th>
-            <th>类型编码</th>
-            <th>描述</th>
+            <th>会员ID</th>
+            <th>TokenID</th>
+            <th>IP</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -42,7 +42,7 @@
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount">
           <input type="hidden" id="searchStr">
-          <input type="hidden" id="api" value="/lotterytype/index.php/LotteryType">
+          <input type="hidden" id="api" value="/whitelist/index.php/Whitelist">
       </div>
 
     </div>
@@ -57,7 +57,7 @@
       var reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       $(function(){
-          getLotteryTypelist(reloadUrl,'doc ready');
+          getWhiteListlist(reloadUrl,'doc ready');
          // setTimeout(function() {
           pagein(api)
         //  }, 500); 
@@ -66,7 +66,7 @@
 
     
     //load info
-     function getLotteryTypelist(reloadUrl,step=''){
+     function getWhiteListlist(reloadUrl,step=''){
         $.ajax({
             url:reloadUrl,
             type:"GET",
@@ -108,7 +108,7 @@
             callback: function(page) { // 回调函数 split当前页码
                  $("#page").val(page)
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getUserlist(reloadUrl,'pagein');
+                 getWhiteListlist(reloadUrl,'pagein');
                  $("#totalCount").html(setTotalCount)
             }
          })
@@ -134,10 +134,10 @@
               
             </td>
             <td>`+data[k].Id +`</td>
-            <td>`+data[k].type_name  +`</td>
+            <td>`+data[k].member_id  +`</td>
             
-            <td>`+data[k].type_code  +`</td>
-            <td>`+data[k].remarks  +`</td>
+            <td>`+data[k].token_id  +`</td>
+            <td>`+data[k].ip  +`</td>
             <td class="td-manage">
            `  
            
@@ -146,7 +146,7 @@
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
-              <a title="删除" onclick="lotterytype_del(this,'`+data[k].Id +`')" href="javascript:;">
+              <a title="删除" onclick="whitelist_del(this,'`+data[k].Id +`')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -186,10 +186,10 @@
 
       
      /*删除*/
-     function lotterytype_del(obj,id){
+     function whitelist_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-              delLotteryType(id);              
+              delWhiteList(id);              
                let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -206,7 +206,7 @@
         var data = tableCheck.getData();
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-            delLotteryType(data);       
+            delWhiteList(data);       
             let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -217,7 +217,7 @@
       }
 
        //删除
-       function delLotteryType(id) {
+       function delWhiteList(id) {
        
         let api = $("#api").val()
         let data = 'id='+id;
