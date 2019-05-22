@@ -326,6 +326,16 @@ function getQueryString(name) {
     return null; 
 } 
 
+function encheched(obj){
+    let _class= $(obj).attr("class");
+    let _index = _class.indexOf('layui-form-checked');
+    if(_index>=0)
+    {
+      $(obj).removeClass('layui-form-checked');
+    }else{
+      $(obj).addClass('layui-form-checked')
+    }
+}
 
 
 

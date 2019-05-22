@@ -159,7 +159,7 @@ class DB_Member
     {
        $_id = (int)$rec['id'];
        $sql  = "update `member` set ";
-       $sql .=" `name`='{$rec['name']}' ";
+       $sql .=" `name`='{$rec['name']}',`gender`='{$rec['gender']}'";
        $sql .=",`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
        $sql .=" where Id={$_id}";
       

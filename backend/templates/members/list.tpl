@@ -137,7 +137,7 @@
       
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox" onclick="encheched(this);" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
             </td>
             <td>`+data[k].Id +`</td>
             <td>`+data[k].name  +`</td>
@@ -268,11 +268,18 @@
 
       function delAll (argument) {
         var data = tableCheck.getData();
+        let opt = new Object; 
+               opt.icon = 1;
+        if(data.length<1)
+        {
+            layer.msg('请勾选要删除的记录',opt);
+            return false;
+        }
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
+
             delMember(data);       
-            let opt = new Object; 
-               opt.icon = 1;
+           
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
                   // window.location.reload();
@@ -302,7 +309,10 @@
             }
         });   
            
-     }    
+     }   
+
+    
+
     </script>
    
    {include file="../layouts/footer.tpl"}

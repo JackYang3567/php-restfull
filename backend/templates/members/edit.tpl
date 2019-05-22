@@ -46,10 +46,11 @@
         <div class="layui-form-item">
             <label class="layui-form-label"><span class="x-red">*</span>性别</label>
             <div class="layui-input-block">
+               <input type="radio" name="gender" id="gender_0" value="0" title="女" checked="">
               
-              <input type="radio" name="gender" id="gender_0" value="0" title="女" checked="checked"/>
-              <input type="radio" name="gender" id="gender_1" value="1" title="男" />
-            </div>
+               <input type="radio" name="gender" id="gender_1" value="1" title="男" checked="">
+               
+             </div>
         </div>
         <div class="layui-form-item">
             <label for="qq_number" class="layui-form-label">
@@ -242,22 +243,26 @@
            $("#email").val(info.email);
            $("#status").val(info.status);
            if(parseInt(info.gender) == 1){
-            　// $("input[type=radio][name=gender][value=1]").prop('checked', true);
-              //$("input[type=radio][name=gender][value=0]").prop('checked', false);
-              // $("#gender_1").prop("checked",true);
-              // $("#gender_0").prop("checked",false);
-             // $("#gender_1").after('<div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>男</div></div>');
-             // $("#gender_0").after('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>女</div></div>');
-
+            $("#gender_show_1").attr("class");
+              $("#gender_1").attr("checked","checked");
+              $("#gender_0").removeAttr("checked");
+              $('#gender_0 + div').removeClass("layui-form-radioed");
+              $('#gender_0 > i').removeClass("layui-anim-scaleSpring");
+              $('#gender_1 + div').addClass("layui-form-radioed");//layui-anim-scaleSpring
+              $('#gender_1 > i').addClass("layui-anim-scaleSpring");
            }
            if(parseInt(info.gender) == 0){
-              // $("#gender_1").prop('checked',false);
-              // $("#gender_0").prop("checked",true);
-             // $("input[type=radio][name=gender][value=1]").prop('checked',false );
-             // $("input[type=radio][name=gender][value=0]").prop('checked', true);
-            // $("#gender_0").after('<div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>女</div></div>');
-             // $("#gender_1").after('<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>男</div></div>');
-
+               $("#gender_0").attr("checked","checked");
+               $("#gender_1").removeAttr("checked");
+               $('#gender_1 + div').removeClass("layui-form-radioed");
+               $('#gender_1 > i').removeClass("layui-anim-scaleSpring");
+               $('#gender_0 + div').html('<i class="layui-anim layui-icon"></i><div>女</div>');
+              // $('#gender_0 > i').html("&#xe643;");
+             // "&#xe63f;"
+               $('#gender_1 + div').html( '<i class="layui-anim layui-icon"></i><div>男</div>');
+               
+              $('#gender_0 + div').addClass("layui-form-radioed");
+              $('#gender_0 > i').addClass("layui-anim-scaleSpring");
            }
        }
          

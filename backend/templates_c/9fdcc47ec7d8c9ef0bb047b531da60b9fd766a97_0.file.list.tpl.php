@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 16:21:42
+/* Smarty version 3.1.33, created on 2019-05-22 17:14:29
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce5069657b732_79154240',
+  'unifunc' => 'content_5ce512f5b01ef2_89023925',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9fdcc47ec7d8c9ef0bb047b531da60b9fd766a97' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\list.tpl',
-      1 => 1558513070,
+      1 => 1558516418,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce5069657b732_79154240 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce512f5b01ef2_89023925 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -166,7 +166,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox" onclick="encheched(this);" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
             </td>
             <td>`+data[k].Id +`</td>
             <td>`+data[k].name  +`</td>
@@ -297,11 +297,18 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
       function delAll (argument) {
         var data = tableCheck.getData();
+        let opt = new Object; 
+               opt.icon = 1;
+        if(data.length<1)
+        {
+            layer.msg('请勾选要删除的记录',opt);
+            return false;
+        }
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
+
             delMember(data);       
-            let opt = new Object; 
-               opt.icon = 1;
+           
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
                   // window.location.reload();
@@ -331,7 +338,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             }
         });   
            
-     }    
+     }   
+
+    
+
     <?php echo '</script'; ?>
 >
    
