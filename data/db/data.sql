@@ -45,7 +45,8 @@ CREATE TABLE `member` (
   `pass` varchar(32) NOT NULL DEFAULT '' COMMENT '会员登录密码', 
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '会员注册时间', 
   PRIMARY KEY (`Id`),
-  UNIQUE KEY `name` (`name`,`email`,`phone`)
+  UNIQUE KEY `name` (`name`,`email`,`phone`),
+  INDEX `idx_nep`(`name`,`email`,`phone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='会员member';
 INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('jack123','jack123@163.com','13908013568','234124124','MerDkA.pv1Bvk');
 INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tomson123','tomson123@163.com','13908013568','234124124','MerDkA.pv1Bvk');

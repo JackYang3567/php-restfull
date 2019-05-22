@@ -147,7 +147,7 @@ class DB_Member
 
        $sql  = "update `member` set `name`='{$rec['name']}',`pass`='".crypt($password, $salt)."',`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
        $sql .=" where Id={$_id}";
-       echo  $sql;
+      
        $stmt = $this->pdo->query($sql);
 
        if($stmt->rowCount())

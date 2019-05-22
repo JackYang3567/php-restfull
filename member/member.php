@@ -1,6 +1,5 @@
 <?php
 require '../handler/auth_session.php';
-require '../vendor/autoload.php';
 
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 const USERNAME_EMAIL_PHONE_EXISTS = '用户名或Email或电话号码已存在';
@@ -38,20 +37,25 @@ class Member {
 			exit();
 			// take appropriate action
 		}     
-		//$data = $this->dp->getAll();        
-    //  $this->render('admin/index.tpl', $data);
-        $_startTime = strtotime('now');
-				return is_null($id) ? $this->dp->getAll($page,$split) : $this->dp->get($id);
-				/*
-				$_data =	is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
-				$_endTime = strtotime('now');
-        $_end = $_endTime - $_startTime;
+	
+	   //	$t1 = microtime(true);
+
+
+      
+			return is_null($id) ? $this->dp->getAll($page,$split) : $this->dp->get($id);
+			
+			/*
+				$_data =	is_null($id) ? $this->dp->getAll($page,$split) : $this->dp->get($id);
+				$t2 = microtime(true);
+        $_end = '耗时'.round($t2-$t1,3).'秒<br>';
 				echo "<pre>";
-				var_dump($_startTime);
+				var_dump($t1);
+				var_dump($t2);
 				var_dump(	$_data );
+
 				var_dump($_end);
 				echo "</pre>";
-				*/
+			*/
 		}
 
 		

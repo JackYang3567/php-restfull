@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 11:06:34
+/* Smarty version 3.1.33, created on 2019-05-22 09:06:44
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\lotterytype\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce36b3ade0785_46359739',
+  'unifunc' => 'content_5ce4a0a4c2b1e3_79959413',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c35e673898f20ddf8b5eb9c2e039fa1e36e1e222' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\lotterytype\\list.tpl',
-      1 => 1558407980,
+      1 => 1558487057,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce36b3ade0785_46359739 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce4a0a4c2b1e3_79959413 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -66,7 +66,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         </div>
   
         <div style="display:none">
-          <input type="hidden" id="page" value="1">
+          <input type="hidden" id="pageStart" value="1">
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount">
           <input type="hidden" id="searchStr">
@@ -77,30 +77,26 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
     <?php echo '<script'; ?>
 >
 
-      var api = $("#api").val()
-      var page = getQueryString("page") || parseInt($("#page").val());// 初始页码
+      var api = $("#api").val();
+      var pageStart = getQueryString("page") || parseInt($("#pageStart").val());// 初始页码
       var split  = parseInt($("#split").val()); //每页最大记录数       
       var setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
       var totalPage = Math.ceil(setTotalCount / split); //总页数
       var searchStr =$("#search").serialize()
-      var reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+      var reloadUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       $(function(){
-          getLotteryTypelist(reloadUrl,'doc ready');
-         // setTimeout(function() {
-          pagein(api)
-        //  }, 500); 
+          getLotteryTypelist(reloadUrl);
+         
       })  
    
 
     
     //load info
-     function getLotteryTypelist(reloadUrl,step=''){
+     function getLotteryTypelist(reloadUrl){
         $.ajax({
             url:reloadUrl,
             type:"GET",
-            dataType:"json",
-            timeout:10000,
             data:'',
             success:function(res){    
               console.log(res);          
@@ -109,6 +105,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                    $("#setTotalCount").val(res.data.count); //总记录数
                    $("#totalCount").html(res.data.count)      
                    generatorTableTr(res.data.rows)
+                   pagein();
                 }
                 else{
                    alert(res.error_message)
@@ -119,26 +116,28 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
      }
 
 
-     function pagein(api){
+     function pagein(){
       
-        let page = getQueryString("page") || parseInt($("#page").val());// 初始页码
-        let split  = parseInt($("#split").val()); //每页最大记录数       
-        let setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
-        let totalPage = Math.ceil(setTotalCount / split); //总页数  
-       // alert("setTotalCount > split"+setTotalCount +">"+split);      
+         pageStart =  parseInt($("#pageStart").val());// 初始页码
+         split  = parseInt($("#split").val()); //每页最大记录数       
+         setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
+         totalPage = Math.ceil(setTotalCount / split); //总页数  
+        
      
          // alert("paging");
          $('#box').paging({
-            initPageNo: page, // 初始页码
+            initPageNo: pageStart, // 初始页码
             totalPages: totalPage, //总页数
             totalCount: '合计' + setTotalCount + '条数据', // 条目总数
             slideSpeed: 600, // 缓动速度。单位毫秒
             jump: true, //是否支持跳转
             callback: function(page) { // 回调函数 split当前页码
-                 $("#page").val(page)
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getLotteryTypelist(reloadUrl,'pagein');
-                 $("#totalCount").html(setTotalCount)
+                
+                 if(pageStart!==page){
+                  $("#pageStart").val(page);
+                  getLotteryTypelist(reloadUrl);
+                }
             }
          })
        
@@ -146,7 +145,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               $('#box').html('<h1 style="margin-left:80px">没有符合条件的记录</h1>')
               return
             } 
-            $('#box').html('')
+            //$('#box').html('')
        
       }
       

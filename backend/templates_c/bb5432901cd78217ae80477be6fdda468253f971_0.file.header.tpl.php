@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-21 08:02:02
+/* Smarty version 3.1.33, created on 2019-05-21 17:09:36
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\layouts\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce33ffa383295_54259110',
+  'unifunc' => 'content_5ce3c05065ef79_80403925',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bb5432901cd78217ae80477be6fdda468253f971' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\layouts\\header.tpl',
-      1 => 1558331771,
+      1 => 1558429618,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce33ffa383295_54259110 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce3c05065ef79_80403925 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
-<HTML  class="x-admin-sm">
+<HTML class="x-admin-sm">
 <HEAD>
 	<meta charset="UTF-8">
 	<TITLE><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
@@ -31,7 +31,7 @@ function content_5ce33ffa383295_54259110 (Smarty_Internal_Template $_smarty_tpl)
 </TITLE>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="stylesheet" href="/backend/public/css/font.css">
     <link rel="stylesheet" href="/backend/public/css/xadmin.css">

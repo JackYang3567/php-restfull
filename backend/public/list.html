@@ -1,34 +1,24 @@
-<?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:02:50
-  from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\list.tpl' */
 
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.33',
-  'unifunc' => 'content_5ce49fbae3ee54_39894123',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    '9fdcc47ec7d8c9ef0bb047b531da60b9fd766a97' => 
-    array (
-      0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\list.tpl',
-      1 => 1558486957,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-    'file:../layouts/header.tpl' => 1,
-    'file:../layouts/footer.tpl' => 1,
-  ),
-),false)) {
-function content_5ce49fbae3ee54_39894123 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
-?>
+<!doctype html>
+<html  class="x-admin-sm">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="./css/font.css">
+	<link rel="stylesheet" href="./css/xadmin.css">
+     <link rel="stylesheet" href="/backend/public/css/paging.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/cookie.js"></script>
+     <script src="/backend/public/js/paging.js"></script>
 
-<?php $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
-?>
- 
+</head>
+<body >
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
@@ -73,7 +63,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         </div>
   
         <div style="display:none">
-          <input type="hidden" id="pageStart" value="1">
+          <input type="hidden" id="page" value="1">
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount" value="">
           <input type="hidden" id="searchStr">
@@ -81,21 +71,40 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       </div>
 
     </div>
-    <?php echo '<script'; ?>
->
+    <script>
+      $(function  () {
+            layui.use('form', function(){
+              var form = layui.form;
+              // layer.msg('玩命卖萌中', function(){
+              //   //关闭后的操作
+              //   });
+              //监听提交
+              form.on('submit(login)', function(data){
+                // alert(888)
+                layer.msg(JSON.stringify(data.field),function(){
+                    location.href='index.html'
+                });
+                return false;
+              });
+            });
+        })
 
       var api = $("#api").val()
-      var pageStart = getQueryString("page") || parseInt($("#pageStart").val());// 初始页码
+      var page = getQueryString("page") || parseInt($("#page").val());// 初始页码
       var split  = parseInt($("#split").val()); //每页最大记录数 
       var setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
       var totalPage = Math.ceil(setTotalCount / split); //总页数
       var searchStr =$("#search").serialize()
-      var apiUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+      var apiUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       
-      $(function(){
+     
           getMemberlist(apiUrl);
-      })  
+          setTimeout(function() {
+            pagein(api)
+          }, 2000); 
+       
+      
    
 
     
@@ -110,10 +119,8 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                if(res.success){   
                    $("#setTotalCount").val(res.data.count); //总记录数
                    $("#totalCount").html(res.data.count) ;
-                  
-                    generatorTableTr(res.data.rows)
                     pagein();
-                   
+                    generatorTableTr(res.data.rows)
                 }
                 else{
                    alert(res.error_message)
@@ -125,32 +132,23 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
 
      function pagein(){
-         pageStart =  parseInt($("#pageStart").val());// 初始页码
+         page =   parseInt($("#page").val());// 初始页码
          split  = parseInt($("#split").val()); //每页最大记录数   
          setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
          totalPage = Math.ceil(setTotalCount / split) ; //总页数  
+       // alert("setTotalCount > split"+setTotalCount +">"+split);
          
          $('#box').paging({
-            initPageNo: pageStart, // 初始页码
+            initPageNo: page, // 初始页码
             totalPages: totalPage, //总页数
             totalCount: '合计' + setTotalCount + '条数据', // 条目总数
             slideSpeed: 600, // 缓动速度。单位毫秒
             jump: true, //是否支持跳转
             callback: function(page) { // 回调函数 split当前页码
-             
-                //alert(pageStart+"----"+page);
+                $("#page").val(page);
+               
                 apiUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                alert(apiUrl);
-                if(pageStart!==page){
-                  $("#pageStart").val(page);
-                  getMemberlist(apiUrl);
-                }
-              
-               
-                  //
-              
-               
-                
+               // getMemberlist(apiUrl);
             }
          })
        
@@ -304,9 +302,6 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         });   
            
      }    
-    <?php echo '</script'; ?>
->
-   
-   <?php $_smarty_tpl->_subTemplateRender("file:../layouts/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-}
-}
+    </script>
+   </body>
+   </html>

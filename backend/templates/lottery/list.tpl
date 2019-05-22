@@ -2,16 +2,7 @@
 {include file="../layouts/header.tpl" title='GK数据API'}
   
   <body>
-    <div class="x-nav">
-      <span class="layui-breadcrumb">
-        <a href="">首页</a>
-        <a href="">演示</a>
-        <a>
-          <cite>导航元素</cite></a>
-      </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
+    
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
@@ -48,7 +39,7 @@
         </div>
   
         <div style="display:none">
-          <input type="hidden" id="page" value="1">
+          <input type="hidden" id="pageStart" value="1">
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount">
           <input type="hidden" id="searchStr">
@@ -59,18 +50,16 @@
     <script>
 
       var api = $("#api").val()
-      var page = getQueryString("page") || parseInt($("#page").val());// 初始页码
+      var pageStart = getQueryString("page") || parseInt($("#pageStart").val());// 初始页码
       var split  = parseInt($("#split").val()); //每页最大记录数       
       var setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
       var totalPage = Math.ceil(setTotalCount / split); //总页数
       var searchStr =$("#search").serialize()
-      var reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+      var reloadUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       $(function(){
-          getLotterylist(reloadUrl,'doc ready');
-         // setTimeout(function() {
-          pagein(api)
-        //  }, 500); 
+          getLotterylist(reloadUrl);
+          pagein();
       })  
    
 
@@ -80,16 +69,15 @@
         $.ajax({
             url:reloadUrl,
             type:"GET",
-            dataType:"json",
-            timeout:10000,
             data:'',
             success:function(res){    
               console.log(res);          
                if(res.success){     
 
                    $("#setTotalCount").val(res.data.count); //总记录数
-                   $("#totalCount").html(res.data.count)      
-                   generatorTableTr(res.data.rows)
+                   $("#totalCount").html(res.data.count);      
+                   generatorTableTr(res.data.rows);
+                   pagein();
                 }
                 else{
                    alert(res.error_message)
@@ -100,26 +88,28 @@
      }
 
 
-     function pagein(api){
+     function pagein(){
       
-        let page = getQueryString("page") || parseInt($("#page").val());// 初始页码
-        let split  = parseInt($("#split").val()); //每页最大记录数       
-        let setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
-        let totalPage = Math.ceil(setTotalCount / split); //总页数  
+         pageStart =  parseInt($("#pageStart").val());// 初始页码
+         split  = parseInt($("#split").val()); //每页最大记录数       
+         setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
+         totalPage = Math.ceil(setTotalCount / split); //总页数  
        // alert("setTotalCount > split"+setTotalCount +">"+split);      
      
          // alert("paging");
          $('#box').paging({
-            initPageNo: page, // 初始页码
+            initPageNo: pageStart, // 初始页码
             totalPages: totalPage, //总页数
             totalCount: '合计' + setTotalCount + '条数据', // 条目总数
             slideSpeed: 600, // 缓动速度。单位毫秒
             jump: true, //是否支持跳转
             callback: function(page) { // 回调函数 split当前页码
-                 $("#page").val(page)
+               
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getLotterylist(reloadUrl,'pagein');
-                 $("#totalCount").html(setTotalCount)
+                 if(pageStart!==page){
+                   $("#pageStart").val(page);
+                   getLotterylist(reloadUrl,'pagein');
+                }
             }
          })
        
@@ -127,7 +117,7 @@
               $('#box').html('<h1 style="margin-left:80px">没有符合条件的记录</h1>')
               return
             } 
-            $('#box').html('')
+          
        
       }
       

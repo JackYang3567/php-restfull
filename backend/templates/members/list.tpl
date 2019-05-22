@@ -1,8 +1,6 @@
 {config_load file="test.conf" section="setup"}
 {include file="../layouts/header.tpl" title='GK数据API'}
-  
-  <body>
-   
+ 
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
@@ -17,7 +15,7 @@
         <button class="layui-btn" onclick="x_admin_show('添加会员','/backend/index.php/Admin/NewMember',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
-      <form class="layui-form">
+     
        
       <table  class="layui-table x-admin">
         <thead >
@@ -41,13 +39,13 @@
         </tbody>
        
         </table>
-      </form>
+    
         <div class="page">
             <div class="box" id="box"></div>
         </div>
   
         <div style="display:none">
-          <input type="hidden" id="page" value="1">
+          <input type="hidden" id="pageStart" value="1">
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount" value="">
           <input type="hidden" id="searchStr">
@@ -58,43 +56,35 @@
     <script>
 
       var api = $("#api").val()
-      var page = getQueryString("page") || parseInt($("#page").val());// 初始页码
-    
+      var pageStart = getQueryString("page") || parseInt($("#pageStart").val());// 初始页码
       var split  = parseInt($("#split").val()); //每页最大记录数 
       var setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
       var totalPage = Math.ceil(setTotalCount / split); //总页数
       var searchStr =$("#search").serialize()
-      var reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+      var apiUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
+      
       $(function(){
-          getMemberlist(reloadUrl,'doc ready');
-         // setTimeout(function() {
-          pagein(api)
-        //  }, 500); 
-
-       
+          getMemberlist(apiUrl);
       })  
    
 
     
     //load info
-     function getMemberlist(reloadUrl,step=''){
-     
+     function getMemberlist(apiUrl){
         $.ajax({
-            url:reloadUrl,
+            url:apiUrl,
             type:"GET",
-            dataType:"json",
-            timeout:10000,
             data:'',
             success:function(res){    
               console.log(res);          
-               if(res.success){     
-
+               if(res.success){   
                    $("#setTotalCount").val(res.data.count); //总记录数
-                   $("#totalCount").html(res.data.count) 
-                    setTotalCount = parseInt(res.data.count); //总记录数
-                    totalPage = Math.ceil(setTotalCount / split); //总页数     
-                   generatorTableTr(res.data.rows)
+                   $("#totalCount").html(res.data.count) ;
+                  
+                    generatorTableTr(res.data.rows)
+                    pagein();
+                   
                 }
                 else{
                    alert(res.error_message)
@@ -105,27 +95,33 @@
      }
 
 
-     function pagein(api){
-      
-         page = getQueryString("page") || parseInt($("#page").val());// 初始页码
-         split  = parseInt($("#split").val()); //每页最大记录数    
-       
+     function pagein(){
+         pageStart =  parseInt($("#pageStart").val());// 初始页码
+         split  = parseInt($("#split").val()); //每页最大记录数   
          setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
          totalPage = Math.ceil(setTotalCount / split) ; //总页数  
-       // alert("setTotalCount > split"+setTotalCount +">"+split);      
-     
-         // alert("paging");
+         
          $('#box').paging({
-            initPageNo: page, // 初始页码
+            initPageNo: pageStart, // 初始页码
             totalPages: totalPage, //总页数
             totalCount: '合计' + setTotalCount + '条数据', // 条目总数
             slideSpeed: 600, // 缓动速度。单位毫秒
             jump: true, //是否支持跳转
             callback: function(page) { // 回调函数 split当前页码
-                 $("#page").val(page)
-                 reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                 getMemberlist(reloadUrl,'pagein');
-                // $("#totalCount").html(setTotalCount)
+             
+                //alert(pageStart+"----"+page);
+                apiUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+                alert(apiUrl);
+                if(pageStart!==page){
+                  $("#pageStart").val(page);
+                  getMemberlist(apiUrl);
+                }
+              
+               
+                  //
+              
+               
+                
             }
          })
        
@@ -133,7 +129,7 @@
               $('#box').html('<h1 style="margin-left:80px">没有符合条件的记录</h1>')
               return
             } 
-            $('#box').html('')
+           // $('#box').html('')
        
       }
       
@@ -142,13 +138,11 @@
        let gender =''
        let status = ''
        let len = data.length
-      
        for(let k=0;k<len;k++){
       
        trStr +=`<tr>
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
-              
             </td>
             <td>`+data[k].Id +`</td>
             <td>`+data[k].name  +`</td>
@@ -201,33 +195,7 @@
      
      }
 
-      layui.use('laydate', function(){
-         var laydate = layui.laydate;
-
-         //执行一个laydate实例
-         laydate.render({
-           elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-           elem: '#end' //指定元素
-        });
-      });
-
-      layui.use('laydate', function(){
-        var laydate = layui.laydate;
-        
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
-      });
+     
 
        /*会员-停用*/
       function member_stop(obj,id){
@@ -262,7 +230,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                   //window.location.reload();
                }); 
                
           });
@@ -279,7 +247,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  // window.location.reload();
                }); 
         });
       }
@@ -298,7 +266,7 @@
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                    getUserlist(apiUrl);     
                 }
                 else{
                    alert(res.error_message)

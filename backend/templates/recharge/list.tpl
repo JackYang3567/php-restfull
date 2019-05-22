@@ -1,33 +1,5 @@
-<?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:19:07
-  from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\whitelist\list.tpl' */
-
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a38bde9de5_20462409',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    '1f282347b315379744dc56e804ad87f5dbae58a0' => 
-    array (
-      0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\whitelist\\list.tpl',
-      1 => 1558487904,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-    'file:../layouts/header.tpl' => 1,
-    'file:../layouts/footer.tpl' => 1,
-  ),
-),false)) {
-function content_5ce4a38bde9de5_20462409 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
-?>
-
-<?php $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
-?>
+{config_load file="test.conf" section="setup"}
+{include file="../layouts/header.tpl" title='GK数据API'}
   
   <body>
    
@@ -36,13 +8,13 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
           <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入IP白名单名" autocomplete="off" class="layui-input">
+          <input type="text" name="username"  placeholder="请输入预设金额名" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加IP白名单','/backend/index.php/Admin/NewWhiteList',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加预设金额','/backend/index.php/Admin/NewPayamount',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
       <table class="layui-table x-admin">
@@ -52,9 +24,9 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>会员ID</th>
-            <th>TokenID</th>
-            <th>IP</th>
+            <th>预设金额</th>
+            <th>排序</th>
+
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -70,12 +42,11 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
           <input type="hidden" id="split" value="10">
           <input type="hidden" id="setTotalCount">
           <input type="hidden" id="searchStr">
-          <input type="hidden" id="api" value="/whitelist/index.php/Whitelist">
+          <input type="hidden" id="api" value="/payamount/index.php/Payamount">
       </div>
 
     </div>
-    <?php echo '<script'; ?>
->
+    <script>
 
       var api = $("#api").val()
       var pageStart = getQueryString("page") || parseInt($("#pageStart").val());// 初始页码
@@ -86,14 +57,14 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       var reloadUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
     
       $(function(){
-          getWhiteListlist(reloadUrl);
+          getPayamountlist(reloadUrl);
           pagein();
       })  
    
 
     
     //load info
-     function getWhiteListlist(reloadUrl,step=''){
+     function getPayamountlist(reloadUrl,step=''){
         $.ajax({
             url:reloadUrl,
             type:"GET",
@@ -117,11 +88,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
 
      function pagein(){
-      
-         pageStart =  parseInt($("#pageStart").val());// 初始页码
-         split  = parseInt($("#split").val()); //每页最大记录数       
-         setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
-         totalPage = Math.ceil(setTotalCount / split); //总页数  
+        pageStart =  parseInt($("#pageStart").val());// 初始页码
+        split  = parseInt($("#split").val()); //每页最大记录数       
+        setTotalCount = parseInt($("#setTotalCount").val()) || parseInt($("#totalCount").html()); //总记录数
+        totalPage = Math.ceil(setTotalCount / split); //总页数  
        // alert("setTotalCount > split"+setTotalCount +">"+split);      
      
          // alert("paging");
@@ -132,12 +102,12 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             slideSpeed: 600, // 缓动速度。单位毫秒
             jump: true, //是否支持跳转
             callback: function(page) { // 回调函数 split当前页码
-             
+                
                  reloadUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
                  if(pageStart!==page){
                    $("#pageStart").val(page);
-                   getWhiteListlist(reloadUrl,'pagein');
-                 }
+                   getPayamountlist(reloadUrl,'pagein');
+                 }                
             }
          })
        
@@ -145,7 +115,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               $('#box').html('<h1 style="margin-left:80px">没有符合条件的记录</h1>')
               return
             } 
-          
+           
        
       }
       
@@ -162,10 +132,9 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               
             </td>
             <td>`+data[k].Id +`</td>
-            <td>`+data[k].member_id  +`</td>
+            <td>`+data[k].amount_val  +`</td>
             
-            <td>`+data[k].token_id  +`</td>
-            <td>`+data[k].ip  +`</td>
+            <td>`+data[k].sortId  +`</td>
             <td class="td-manage">
            `  
            
@@ -174,7 +143,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
-              <a title="删除" onclick="whitelist_del(this,'`+data[k].Id +`')" href="javascript:;">
+              <a title="删除" onclick="payamount_del(this,'`+data[k].Id +`')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -214,10 +183,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
       
      /*删除*/
-     function whitelist_del(obj,id){
+     function payamount_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-              delWhiteList(id);              
+              delPayamount(id);              
                let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -234,7 +203,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         var data = tableCheck.getData();
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-            delWhiteList(data);       
+            delPayamount(data);       
             let opt = new Object; 
                opt.icon = 1;
                opt.time = 1000;
@@ -245,7 +214,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       }
 
        //删除
-       function delWhiteList(id) {
+       function delPayamount(id) {
        
         let api = $("#api").val()
         let data = 'id='+id;
@@ -258,7 +227,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                    getPayamountlist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)
@@ -267,9 +236,6 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         });   
            
      } 
-    <?php echo '</script'; ?>
->
+    </script>
    
-   <?php $_smarty_tpl->_subTemplateRender("file:../layouts/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-}
-}
+   {include file="../layouts/footer.tpl"}
