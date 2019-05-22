@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:02:50
+/* Smarty version 3.1.33, created on 2019-05-22 16:21:42
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce49fbae3ee54_39894123',
+  'unifunc' => 'content_5ce5069657b732_79154240',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9fdcc47ec7d8c9ef0bb047b531da60b9fd766a97' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\list.tpl',
-      1 => 1558486957,
+      1 => 1558513070,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce49fbae3ee54_39894123 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce5069657b732_79154240 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -140,17 +140,12 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
              
                 //alert(pageStart+"----"+page);
                 apiUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                alert(apiUrl);
+               
                 if(pageStart!==page){
                   $("#pageStart").val(page);
                   getMemberlist(apiUrl);
                 }
               
-               
-                  //
-              
-               
-                
             }
          })
        
@@ -182,7 +177,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                   gender ='女'
              }
                    
-           trStr +=``+gender +`</td>
+           trStr += gender +`</td>
             <td>`+data[k].phone  +`</td>
             <td>`+data[k].email  +`</td>
             <td>`+data[k].qq_number  +`</td>
@@ -207,10 +202,10 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                     </a>`
              }
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑会员信息','/backend/index.php/Admin/EditMember?id=`+data[k].Id +`&page=1',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
-              <a onclick="x_admin_show('修改密码','/api/v2/user/`+data[k].Id +`/edit?page=0',600,400)" title="修改密码" href="javascript:;">
+              <a onclick="x_admin_show('重置会员密码','/backend/index.php/Admin/EditMember?id=`+data[k].Id +`&page=0',600,400)" title="重置密码" href="javascript:;">
                 <i class="layui-icon">&#xe631;</i>
               </a>
               <a title="删除" onclick="member_del(this,'`+data[k].Id +`')" href="javascript:;">
@@ -228,28 +223,61 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
 
        /*会员-停用*/
       function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
+             let _title = $(obj).attr('title');
+        layer.confirm('确认要'+_title +'吗？',function(index){
+              let opt = new Object; 
+               opt.icon = 5;
+               opt.time = 1000;
+              let props = new Object;
+                  props.id = id;
+            if($(obj).attr('title')=='停用'){
 
-              if($(obj).attr('title')=='启用'){
+              //发异步把用户状态进行更改
+                 props.status = 0;
+                 updateMember(props);
+                 $(obj).attr('title','启用')
+                 $(obj).find('i').html('&#xe601;');
 
-                //发异步把会员状态进行更改
+                 $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                 layer.msg('已停用!',opt);
+
+            }else{
+                props.status = 1;
+                opt.icon = 1;
+                opt.time = 1000;
+                updateMember(props);
                 $(obj).attr('title','停用')
                 $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-            
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
+               
 
                 $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-              
-              }
-              
-          });
+                layer.msg('已启用!',opt);
+            }
+            });
       }
 
+//更新
+     function updateMember(props) {       
+         let data = "mode=status&id="+props.id+"&status="+ props.status; // $(".layui-form").serialize()
+         let url = '/member/index.php/Member/Update';
+         
+         $.ajax({
+            url:url,
+            type:"post",
+            data:data,
+            success:function(res){
+               // console.log("------res==",res);
+                if(res.success){
+                   apiUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+                   getMemberlist(apiUrl);     
+                }
+                else{
+                   alert(res.error_message)
+              }
+            }
+        });
+        
+      }
       /*会员-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
@@ -295,7 +323,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(apiUrl);     
+                   getMemberlist(apiUrl);     
                 }
                 else{
                    alert(res.error_message)

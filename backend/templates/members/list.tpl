@@ -111,17 +111,12 @@
              
                 //alert(pageStart+"----"+page);
                 apiUrl = api+'?page='+page+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
-                alert(apiUrl);
+               
                 if(pageStart!==page){
                   $("#pageStart").val(page);
                   getMemberlist(apiUrl);
                 }
               
-               
-                  //
-              
-               
-                
             }
          })
        
@@ -153,7 +148,7 @@
                   gender ='女'
              }
                    
-           trStr +=``+gender +`</td>
+           trStr += gender +`</td>
             <td>`+data[k].phone  +`</td>
             <td>`+data[k].email  +`</td>
             <td>`+data[k].qq_number  +`</td>
@@ -178,10 +173,10 @@
                     </a>`
              }
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑会员信息','/backend/index.php/Admin/EditMember?id=`+data[k].Id +`&page=1',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
-              <a onclick="x_admin_show('修改密码','/api/v2/user/`+data[k].Id +`/edit?page=0',600,400)" title="修改密码" href="javascript:;">
+              <a onclick="x_admin_show('重置会员密码','/backend/index.php/Admin/EditMember?id=`+data[k].Id +`&page=0',600,400)" title="重置密码" href="javascript:;">
                 <i class="layui-icon">&#xe631;</i>
               </a>
               <a title="删除" onclick="member_del(this,'`+data[k].Id +`')" href="javascript:;">
@@ -199,28 +194,61 @@
 
        /*会员-停用*/
       function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
+             let _title = $(obj).attr('title');
+        layer.confirm('确认要'+_title +'吗？',function(index){
+              let opt = new Object; 
+               opt.icon = 5;
+               opt.time = 1000;
+              let props = new Object;
+                  props.id = id;
+            if($(obj).attr('title')=='停用'){
 
-              if($(obj).attr('title')=='启用'){
+              //发异步把用户状态进行更改
+                 props.status = 0;
+                 updateMember(props);
+                 $(obj).attr('title','启用')
+                 $(obj).find('i').html('&#xe601;');
 
-                //发异步把会员状态进行更改
+                 $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                 layer.msg('已停用!',opt);
+
+            }else{
+                props.status = 1;
+                opt.icon = 1;
+                opt.time = 1000;
+                updateMember(props);
                 $(obj).attr('title','停用')
                 $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-            
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
+               
 
                 $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-              
-              }
-              
-          });
+                layer.msg('已启用!',opt);
+            }
+            });
       }
 
+//更新
+     function updateMember(props) {       
+         let data = "mode=status&id="+props.id+"&status="+ props.status; // $(".layui-form").serialize()
+         let url = '/member/index.php/Member/Update';
+         
+         $.ajax({
+            url:url,
+            type:"post",
+            data:data,
+            success:function(res){
+               // console.log("------res==",res);
+                if(res.success){
+                   apiUrl = api+'?page='+pageStart+'&split='+split+'&t='+Date.parse(new Date())+Math.random(); //更新后刷新当前页
+                   getMemberlist(apiUrl);     
+                }
+                else{
+                   alert(res.error_message)
+              }
+            }
+        });
+        
+      }
       /*会员-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
@@ -266,7 +294,7 @@
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(apiUrl);     
+                   getMemberlist(apiUrl);     
                 }
                 else{
                    alert(res.error_message)

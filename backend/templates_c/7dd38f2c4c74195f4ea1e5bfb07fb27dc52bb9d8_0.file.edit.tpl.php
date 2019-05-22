@@ -1,5 +1,30 @@
-{include file="../layouts/header.tpl" title='GK数据API'}
-{if $context['page'] == 1}
+<?php
+/* Smarty version 3.1.33, created on 2019-05-22 16:24:19
+  from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\edit.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_5ce5073342f6b0_51685634',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '7dd38f2c4c74195f4ea1e5bfb07fb27dc52bb9d8' => 
+    array (
+      0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\edit.tpl',
+      1 => 1558513450,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../layouts/header.tpl' => 1,
+    'file:../layouts/footer.tpl' => 1,
+  ),
+),false)) {
+function content_5ce5073342f6b0_51685634 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
+if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
 <form class="layui-form" method="POST" action="/member/index.php/Member/Update"  id="edit_form">
         <div class="layui-form-item"></div>
         <div class="layui-form-item">
@@ -8,7 +33,8 @@
                 <span class="x-red">*</span>登录名
             </label>
             <div class="layui-input-inline">
-                 <input type="hidden" id="Id" name="id" value="{$context['id']}">
+                 <input type="hidden" id="Id" name="id" value="<?php echo $_smarty_tpl->tpl_vars['context']->value['id'];?>
+">
                 
                  <input type="hidden"  name="mode" value="info">
                  <input type="hidden" name="status" id="status" >
@@ -72,10 +98,11 @@
             </button>
         </div>
     </form>
-    {else} 
+    <?php } else { ?> 
     <form method="post"  class="layui-form" id="pass_form">
         <div class="layui-form-item"> </div>
-        <input type="hidden" id="id" name="id" value="{$context['id']}">
+        <input type="hidden" id="id" name="id" value="<?php echo $_smarty_tpl->tpl_vars['context']->value['id'];?>
+">
         <input type="hidden"  name="mode" value="resetpass">
             <div class="layui-form-item">
              <!--   <label for="L_pass" class="layui-form-label">
@@ -118,8 +145,9 @@
                 </button>
             </div>
         </form>
-    {/if} 
-    <script>
+    <?php }?> 
+    <?php echo '<script'; ?>
+>
         $(function  () {
                 getMemberById();
                 layui.use('form', function(){
@@ -267,5 +295,8 @@
             opt.time = 100;
             layer.msg(msg,opt,function(){}); 
         }
-    </script>
-{include file="../layouts/footer.tpl"}
+    <?php echo '</script'; ?>
+>
+<?php $_smarty_tpl->_subTemplateRender("file:../layouts/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

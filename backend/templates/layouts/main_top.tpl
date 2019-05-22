@@ -8,11 +8,11 @@
           <li class="layui-nav-item">
             <a href="javascript:;">+新增</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('彩票类型','/backend/index.php/Admin/NewLotteryType',600,400)"><i class="iconfont">&#xe6a2;</i>彩票类型</a></dd>
-              <dd><a onclick="x_admin_show('彩票种类','/backend/index.php/Admin/NewLottery',600,400)"><i class="iconfont">&#xe6a8;</i>彩票种类</a></dd>
-              <dd><a onclick="x_admin_show('会员','/backend/index.php/Admin/NewMember',600,400)"><i class="iconfont">&#xe6b8;</i>会员</a></dd>
-              <dd><a onclick="x_admin_show('支付方式','/backend/index.php/Admin/NewPaymethod',600,400)"><i class="iconfont">&#xe6b8;</i>支付方式</a></dd>
-              <dd><a onclick="x_admin_show('预设充值金额','/backend/index.php/Admin/NewPayamount',600,400)"><i class="iconfont">&#xe6b8;</i>预设充值金额</a></dd>
+              <dd><a onclick="x_admin_show('添加彩票类型','/backend/index.php/Admin/NewLotteryType',600,400)"><i class="iconfont">&#xe6a2;</i>彩票类型</a></dd>
+              <dd><a onclick="x_admin_show('添加彩票种类','/backend/index.php/Admin/NewLottery',600,400)"><i class="iconfont">&#xe6a8;</i>彩票种类</a></dd>
+              <dd><a onclick="x_admin_show('添加会员','/backend/index.php/Admin/NewMember',600,400)"><i class="iconfont">&#xe6b8;</i>会员</a></dd>
+              <dd><a onclick="x_admin_show('添加支付方式','/backend/index.php/Admin/NewPaymethod',600,400)"><i class="iconfont">&#xe6b8;</i>支付方式</a></dd>
+              <dd><a onclick="x_admin_show('添加预设充值金额','/backend/index.php/Admin/NewPayamount',600,400)"><i class="iconfont">&#xe6b8;</i>预设充值金额</a></dd>
             </dl>
           </li>
         </ul>

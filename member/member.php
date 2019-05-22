@@ -10,7 +10,9 @@ use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 class Member {
 	public $dp;
 	public $sesinoDB;
-	static $FIELDS = array('name', 'email', 'pass','phone','qq_number');
+	static $INSERT_FIELDS = array('name', 'email', 'gender','pass','phone','qq_number');
+	static $EDIT_FIELDS = array('mode','id','name', 'email', 'gender','phone','qq_number');
+	static $PASS_FIELDS = array('mode','id','pass','password','repassword');
 
 	// determine login status
 	public $loggedIn ;
@@ -119,7 +121,19 @@ class Member {
 	}
 
 	function postUpdate($id=NULL,$request_data=NULL) {	
+	  
+		if($request_data["mode"]==='status'){
+			
+			return $this->dp->updateStatus($request_data);
+		}
+		if($request_data["mode"]==='info'){
 		
+			return $this->dp->update($this->_validate_edit($request_data));
+		}
+		if($request_data["mode"]==='pass' || $request_data["mode"]==='resetpass'){
+			
+			return $this->dp->updatePass($this->_validate_pass($request_data));
+		}
 		if(!$this->dp->validate_Uniqueness($request_data))
 		{
 			return $this->dp->update($id, $this->_validate($request_data));
@@ -143,9 +157,30 @@ class Member {
 		return $this->dp->delete($id);
 	}
 	
+	
 	private function _validate($data){
 		$member=array();
-		foreach (Member::$FIELDS as $field) {
+		foreach (Member::$INSERT_FIELDS as $field) {
+//you may also vaildate the data here
+			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
+			$member[$field]=$data[$field];
+		}
+		return $member;
+	}
+
+	private function _validate_edit($data){
+		$member=array();
+		foreach (Member::$EDIT_FIELDS as $field) {
+//you may also vaildate the data here
+			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
+			$member[$field]=$data[$field];
+		}
+		return $member;
+	}
+
+	private function _validate_pass($data){
+		$member=array();
+		foreach (Member::$PASS_FIELDS as $field) {
 //you may also vaildate the data here
 			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
 			$member[$field]=$data[$field];

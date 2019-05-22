@@ -62,6 +62,13 @@ class Admin {
         $this->auth->render('members/new.tpl', $data);
     }
 
+    function getEditMember($request_data) {
+        $this->_isAuth();  
+        $data = $request_data;// array();//array("id"=>$id,"page"=>$page);  
+      
+        $this->auth->render('members/edit.tpl', $data);
+    }
+   
 
     function getLotteryTypeList() {
         $this->_isAuth();  
@@ -111,11 +118,8 @@ class Admin {
         $data = array();  
         $this->auth->render('recharge/list.tpl', $data);
     }
-
     
-    
-    function getSignout(){
-      
+    function getSignout(){      
         // 清除会话数据wipe out session data
         session_unset();
         // 销毁会话destroy session
@@ -131,10 +135,8 @@ class Admin {
         if ( !$this->auth->loggedIn && $this->auth->thumbPrint !==  $this->auth->storedPrint) {
             header('Location: /backend/signin.php');
             exit();
-            // take appropriate action
         }  
         $data = array( $_SESSION['admin'],date("Y-m-d H:i:s"));      
-       // $this->render('admin/welcome.tpl', $data);
         $this->auth->render('admin/welcome.tpl', $data);
     }
 	function postSignin($request_data=NULL) {

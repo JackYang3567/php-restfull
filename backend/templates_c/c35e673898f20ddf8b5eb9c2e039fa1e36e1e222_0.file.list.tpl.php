@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:06:44
+/* Smarty version 3.1.33, created on 2019-05-22 15:21:43
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\lotterytype\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a0a4c2b1e3_79959413',
+  'unifunc' => 'content_5ce4f887af6365_21655470',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c35e673898f20ddf8b5eb9c2e039fa1e36e1e222' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\lotterytype\\list.tpl',
-      1 => 1558487057,
+      1 => 1558487925,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce4a0a4c2b1e3_79959413 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce4f887af6365_21655470 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -103,8 +103,8 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                if(res.success){     
 
                    $("#setTotalCount").val(res.data.count); //总记录数
-                   $("#totalCount").html(res.data.count)      
-                   generatorTableTr(res.data.rows)
+                   $("#totalCount").html(res.data.count) ;     
+                   generatorTableTr(res.data.rows);
                    pagein();
                 }
                 else{
@@ -145,7 +145,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               $('#box').html('<h1 style="margin-left:80px">没有符合条件的记录</h1>')
               return
             } 
-            //$('#box').html('')
+          
        
       }
       

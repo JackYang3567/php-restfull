@@ -38,7 +38,7 @@ class DB_Member
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -51,6 +51,7 @@ class DB_Member
         $sql .=" where `name`='{$rec['name']}'";
         $rec['email'] ? $sql .="  || `email`='{$rec['email']}'" :'';
         $rec['phone'] ? $sql .="  || `phone`='{$rec['phone']}'" :'';
+
         $stmt = $this->pdo->query($sql);
 
         if(is_object($stmt)){
@@ -104,7 +105,7 @@ class DB_Member
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
         $sql  = "SELECT * FROM `member`";
-        $sql .=" ORDER BY id ";
+        $sql .=" ORDER BY id DESC";
         $sql .=" limit $offset,$limit ";
        
          $stmt = $this->pdo->query($sql);
@@ -125,8 +126,8 @@ class DB_Member
     {
        $password = $rec['pass'];
        $salt = "Member";// 只取前两个
-       $sql  = "INSERT INTO  `member` (`name`,`pass`,`email`,`phone`,`qq_number`) ";
-       $sql .=" VALUES ('{$rec['name']}','".crypt($password, $salt)."','{$rec['email']}','{$rec['phone']}','{$rec['qq_number']}')";
+       $sql  = "INSERT INTO  `member` (`name`,`pass`,`email`,`phone`,`qq_number`,`gender`) ";
+       $sql .=" VALUES ('{$rec['name']}','".crypt($password, $salt)."','{$rec['email']}','{$rec['phone']}','{$rec['qq_number']}','{$rec['gender']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -139,13 +140,27 @@ class DB_Member
         }      
     }
 
-    function update ($id, $rec)
-    {
-        $password = $rec['pass'];
-        $salt = "Member";// 只取前两个
-        $_id = (int)$id;
+    function updateStatus($rec){
+        $_id = (int)$rec['id'];
+        $sql  = "update `member` set `status`='{$rec['status']}'";
+        $sql .=" where Id={$_id}";
+        $stmt = $this->pdo->query($sql);
 
-       $sql  = "update `member` set `name`='{$rec['name']}',`pass`='".crypt($password, $salt)."',`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
+       if($stmt->rowCount())
+        {
+            return  array( "success"=>true,  "code"=>0 );
+        }
+        else{
+            return array(  "success"=> false,  "code"=>1 );
+        }
+    }
+
+    function update ($rec)
+    {
+       $_id = (int)$rec['id'];
+       $sql  = "update `member` set ";
+       $sql .=" `name`='{$rec['name']}' ";
+       $sql .=",`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
        $sql .=" where Id={$_id}";
       
        $stmt = $this->pdo->query($sql);
@@ -161,6 +176,33 @@ class DB_Member
        
     }
 
+    function updatePass ($rec)
+    {
+   
+        $_id = (int)$rec['id'];
+        $pss =  $rec['pass'];
+        $password = $rec['password'];
+        $salt = "Member";// 只取前两个
+
+        $sql  = "update `member` set ";           
+        $sql .=" `pass`='".crypt($password, $salt)."'";
+        $sql .=" where Id={$_id} ";
+        if( $rec['mode'] == 'pass'){
+            $sql .=" && pass='".crypt($pss, $salt)."'";
+        }
+       
+       
+       $stmt = $this->pdo->query($sql);
+
+       if($stmt->rowCount())
+        {
+            return  array( "success"=>true,  "code"=>0 );
+        }
+        else{
+            return array(  "success"=> false,  "code"=>1 );
+        }
+       
+    }
     function delete ($id)
     {
         $_id = array();

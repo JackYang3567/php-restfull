@@ -43,6 +43,7 @@ CREATE TABLE `member` (
   `phone` varchar(15)  NULL DEFAULT '0' COMMENT '会员手机号',  
   `qq_number` varchar(20) NOT NULL DEFAULT '' COMMENT '会员QQ号',
   `pass` varchar(32) NOT NULL DEFAULT '' COMMENT '会员登录密码', 
+  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:禁用 1:启用', 
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '会员注册时间', 
   PRIMARY KEY (`Id`),
   UNIQUE KEY `name` (`name`,`email`,`phone`),
