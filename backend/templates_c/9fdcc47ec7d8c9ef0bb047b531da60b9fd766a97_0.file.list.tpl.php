@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 17:14:29
+/* Smarty version 3.1.33, created on 2019-05-22 18:28:36
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce512f5b01ef2_89023925',
+  'unifunc' => 'content_5ce524543b1e87_51431203',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9fdcc47ec7d8c9ef0bb047b531da60b9fd766a97' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\list.tpl',
-      1 => 1558516418,
+      1 => 1558520910,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce512f5b01ef2_89023925 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce524543b1e87_51431203 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -106,7 +106,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             type:"GET",
             data:'',
             success:function(res){    
-              console.log(res);          
+              //console.log(res);          
                if(res.success){   
                    $("#setTotalCount").val(res.data.count); //总记录数
                    $("#totalCount").html(res.data.count) ;
@@ -306,9 +306,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
         }
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-
-            delMember(data);       
-           
+            delMember(data);                  
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
                   // window.location.reload();

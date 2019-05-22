@@ -77,7 +77,7 @@
             type:"GET",
             data:'',
             success:function(res){    
-              console.log(res);          
+              //console.log(res);          
                if(res.success){   
                    $("#setTotalCount").val(res.data.count); //总记录数
                    $("#totalCount").html(res.data.count) ;
@@ -277,9 +277,7 @@
         }
         layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-
-            delMember(data);       
-           
+            delMember(data);                  
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
                   // window.location.reload();

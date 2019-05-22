@@ -12,7 +12,7 @@ logs/
 *.un~
 typings/
 .nyc_output/
-
+backend/templates_c/
 /.idea
 /.vscode
 /vendor
