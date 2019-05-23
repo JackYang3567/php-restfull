@@ -146,7 +146,7 @@ CREATE TABLE `white_list` (
   `examine`  int(11)  NULL DEFAULT 0 COMMENT '充值到账审核1:到账通过', 
    PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='白名单white_list';
-
+INSERT INTO  `white_list` (`member_id`,`token_id`,`ip`) VALUES (1,2,'120.79.3.26');
 
 -- 充值recharge
 DROP TABLE IF EXISTS `recharge`;

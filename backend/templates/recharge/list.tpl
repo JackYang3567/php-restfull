@@ -128,7 +128,7 @@
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -139,7 +139,7 @@
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('审核充值信息','/backend/index.php/Admin/EditRecharge?id=`+data[k].Id +`',600,600)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              

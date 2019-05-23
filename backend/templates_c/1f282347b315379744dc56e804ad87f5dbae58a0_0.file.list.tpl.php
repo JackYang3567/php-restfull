@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:19:07
+/* Smarty version 3.1.33, created on 2019-05-23 13:28:38
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\whitelist\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a38bde9de5_20462409',
+  'unifunc' => 'content_5ce62f86db5580_96792756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f282347b315379744dc56e804ad87f5dbae58a0' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\whitelist\\list.tpl',
-      1 => 1558487904,
+      1 => 1558589297,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce4a38bde9de5_20462409 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce62f86db5580_96792756 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -158,7 +158,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -170,7 +170,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑IP白名单','/backend/index.php/Admin/EditWhiteList?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -222,7 +222,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -239,7 +239,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }
@@ -258,7 +258,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                getWhiteListlist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)

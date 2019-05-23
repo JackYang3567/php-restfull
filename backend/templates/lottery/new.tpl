@@ -1,24 +1,5 @@
-
-<!doctype html>
-<HTML  class="x-admin-sm">
-<HEAD>
-	<meta charset="UTF-8">
-	<TITLE>{$title} - {$Name}</TITLE>
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="/backend/public/css/font.css">
-    <link rel="stylesheet" href="/backend/public/css/xadmin.css">
-    <link rel="stylesheet" href="/backend/public/css/paging.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/backend/public/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/backend/public/js/xadmin.js"></script>
-    <script type="text/javascript" src="/backend/public/js/cookie.js"></script>
-    <script src="/backend/public/js/paging.js"></script>
-</HEAD>
-<BODY>
-<form class="layui-form">
+{include file="../layouts/header.tpl" title='GK数据API'}
+<form class="layui-form" id="add_form">
 
         
         <div class="layui-form-item"></div>
@@ -27,14 +8,16 @@
                     <span class="x-red">*</span>彩票种类名
                 </label>
                 <div class="layui-input-inline">
-                    <select type="select" id="type_id" name="type_id" required="" lay-verify="required"
-                    autocomplete="off" class="layui-select">
+                    <select type="select" id="type_id" required="" lay-verify="required"
+                    autocomplete="off" class="layui-select" >
+                    
                     </select>
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>彩票种类id
                 </div>
             </div>
+       <input type="hidden" name="type_id" id="type_id_val"  />
        <div class="layui-form-item">
            <label for="name" class="layui-form-label">
                <span class="x-red">*</span>彩票名
@@ -60,70 +43,131 @@
            </div>
        </div>
        <div class="layui-form-item">
-           <label for="L_remarks" class="layui-form-label">
-               <span class="x-red">*</span>彩票备注
+           <label for="remarks" class="layui-form-label">
+              彩票备注
            </label>
            <div class="layui-input-inline">
-               <textarea type="text" rows="8" cols="16" id="L_remarks" name="remarks" required="" lay-verify="remarks"
+               <textarea type="text" rows="8" cols="16" id="remarks" name="remarks" required="" lay-verify="remarks"
                autocomplete="off" class="layui-textarea"> </textarea>
            </div>
            <div class="layui-form-mid layui-word-aux">
-               <span class="x-red">*</span>
+              
            </div>
        </div>
        
        <div class="layui-form-item">
-           <label for="L_repass" class="layui-form-label">
+           <label  class="layui-form-label">
            </label>
-           <button  class="layui-btn" lay-filter="add" lay-submit="">
-               增加
+           <button  class="layui-btn" lay-filter="add" lay-submit type="button">
+            保存
            </button>
        </div>
    </form>
-
+  
    <script>
-        function getLotteryTypeIds(){
-             let Url = '/lotterytype/index.php/LotteryType';
-             $.ajax({
-                 url:Url,
-                 type:"GET",
-                 dataType:"json",
-                 timeout:10000,
-                 data:'',
-                 success:function(res){    
-                     if(res.success){ 
-                        generatorSelectList(res.data.count,res.data.rows)
-                      
-                     }
-                     else{
-                         alert(res.error_message)
-                     }
-                 }
-             });             
-         }
-
-         function generatorSelectList(count,data){
-            
-           let option =' <option value="">请选择彩种类型</option>';
-           
-            data.forEach(function (value) {
-                   option +='<option value="'+value.Id+'">'+ value.type_name+'</option>';
-             });
-          
-           layer.confirm('确认要停用吗？',function(option){
-                 option =' <option value="">请选择彩种类型</option>';
-                 $("#type_id").html(option);
-                 let opt = new Object;
-                 opt.icon=5;
-                 opt.time=1000
-                 layer.msg('选择彩种类型',opt);
-          });
-           // $("#type_id").html(option);
-         }
+       
 
          $(function(){
             getLotteryTypeIds();
          })
+
+        function changeSelect(obj){
+                 $("dd").each(function(){
+                     $(this).attr("class","");
+                 })
+                $(".layui-select-title > input").attr("value",$(obj).text());
+                $(obj).attr('class','layui-this');
+                $("#type_id_val").val($(obj).attr('lay-value'));
+        }
+
+         $(function  () {
+                layui.use('form', function(){
+                  var form = layui.form,
+                      layer = layui.layer;
+                  form.on('submit(add)', function(data){
+                       submitAdd();
+                  });
+                });
+            })
+
+            function getLotteryTypeIds(){
+             let Url = '/lotterytype/index.php/LotteryType';
+             $.ajax({
+                 url:Url,
+                 type:"GET",
+                 data:'',
+                 success:function(res){    
+                     if(res.success){ 
+                        generatorSelectList(res.data.count,res.data.rows);
+                     }
+                     else{
+                         alert(res.error_message);
+                     }
+                  }
+             });             
+         }
+        
+
+         function generatorSelectList(count,data){
+           let option = '';
+           let ddStr = '';
+           for(let k=0;k<data.length;k++){
+                   option +='<option value="'+data[k].Id+'">'+ data[k].type_name+'</option>';
+                   ddStr +='<dd onclick="changeSelect(this)" lay-value="'+data[k].Id+'" class="" >'+ data[k].type_name+'</dd>';
+           };
+          
+             $(".layui-select-title > input").attr("value",data[0].type_name);
+             $(".layui-select-title > input").attr("readonly"," ");
+             $("#type_id").html(option);
+             $("dl").html(ddStr);
+             $("dl").removeAttr("style");
+            
+         }
+            
+        function submitAdd(){
+           
+            if(check()){
+                let reloadUrl ='/lottery/index.php/Lottery/Add';
+                let data = $("#add_form").serialize();
+                
+                $.ajax({
+                    url:reloadUrl,
+                    type:"POST",
+                    data:data,
+                    success:function(res){  
+                        console.log('===',res)
+                       if(res.success){
+                           let opt = new Object; 
+                           opt.icon = 1;
+                            layer.alert("操作成功",opt,function () {
+                                //关闭当前frame
+                                x_admin_close();
+                                // 可以对父窗口进行刷新 
+                                x_admin_father_reload();
+                            });
+                       }
+                            
+                    }
+                });
+            }
+        }
+
+        function check(){
+           
+            let ret = true;
+            if($("#type_id").val().length==0){
+                ret = false; 
+            }
+            if($("#name").val().length==0){
+                ret = false; 
+            }
+            if($("#code").val().length==0){
+                ret = false; 
+            }
+            if( $("#remarks").val().length==0 ){   
+                ret = false;   
+             }
+           return ret;
+        }
          </script>
-</body>
-</html>
+ {include file="../layouts/footer.tpl"}

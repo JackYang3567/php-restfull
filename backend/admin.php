@@ -82,21 +82,41 @@ class Admin {
         $this->auth->render('lotterytype/new.tpl', $data);
     }
 
+    function getEditLotteryType($request_data) {
+        $this->_isAuth();  
+        $data = $request_data; 
+        $this->auth->render('lotterytype/edit.tpl', $data);
+    }
+   
+
     function getLotteryList() {
         $this->_isAuth();  
         $data = array();  
         $this->auth->render('lottery/list.tpl', $data);
     }
+
     function getNewLottery() {
         $this->_isAuth(); 
         $data = array();  
         $this->auth->render('lottery/new.tpl', $data);
     }
 
+    function getEditLottery($request_data) {
+        $this->_isAuth(); 
+        $data = $request_data;  
+        $this->auth->render('lottery/edit.tpl', $data);
+    }
+
     function getWhiteList() {
         $this->_isAuth(); 
         $data = array();  
         $this->auth->render('whitelist/list.tpl', $data);
+    }
+
+    function getEditWhiteList($request_data) {
+        $this->_isAuth(); 
+        $data = $request_data; 
+        $this->auth->render('whitelist/edit.tpl', $data);
     }
 
 
@@ -106,17 +126,51 @@ class Admin {
         $this->auth->render('paymethod/list.tpl', $data);
     }
 
+    function getNewPaymethod() {
+        $this->_isAuth(); 
+        $data = array();  
+        $this->auth->render('paymethod/new.tpl', $data);
+    }
+
+    function getEditPaymethod($request_data) {
+        $this->_isAuth(); 
+        $data = $request_data;   
+        $this->auth->render('paymethod/edit.tpl', $data);
+    }
+
     function getPayamountList() {
         $this->_isAuth();  
         $data = array();  
         $this->auth->render('payamount/list.tpl', $data);
     }
+    function getNewPayamount() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('payamount/new.tpl', $data);
+    }
 
+    function getEditPayamount($request_data) {
+        $this->_isAuth();  
+        $data = $request_data;  
+        $this->auth->render('payamount/edit.tpl', $data);
+    }
 
     function getRechargeList() {
         $this->_isAuth();  
         $data = array();  
         $this->auth->render('recharge/list.tpl', $data);
+    }
+
+    function getNewRecharge() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('recharge/new.tpl', $data);
+    }
+
+    function getEditRecharge($request_data) {
+        $this->_isAuth();  
+        $data = $request_data;  
+        $this->auth->render('recharge/edit.tpl', $data);
     }
     
     function getSignout(){      

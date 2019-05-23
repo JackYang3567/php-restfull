@@ -36,7 +36,7 @@ class DB_Whitelist
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;

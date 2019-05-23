@@ -36,7 +36,7 @@ class DB_Lottery
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -90,7 +90,7 @@ class DB_Lottery
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
         $sql  = "SELECT * FROM `lottery`";
-        $sql .=" ORDER BY Id ";
+        $sql .=" ORDER BY Id DESC";
         $sql .=" limit $offset,$limit ";
         
          $stmt = $this->pdo->query($sql);

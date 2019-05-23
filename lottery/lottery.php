@@ -10,7 +10,7 @@ class Lottery {
 	
 	public $redis;
 	public $dp;
-	static $FIELDS = array('name', 'code','remarks');
+	static $FIELDS = array('type_id','name', 'code','remarks');
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();

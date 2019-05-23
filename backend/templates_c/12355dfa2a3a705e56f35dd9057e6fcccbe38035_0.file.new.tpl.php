@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 15:46:39
+/* Smarty version 3.1.33, created on 2019-05-23 12:42:37
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\new.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4fe5f7f9267_31235966',
+  'unifunc' => 'content_5ce624bd6be4f6_48518631',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '12355dfa2a3a705e56f35dd9057e6fcccbe38035' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\new.tpl',
-      1 => 1558511045,
+      1 => 1558586523,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce4fe5f7f9267_31235966 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce624bd6be4f6_48518631 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
 ?>
 <form class="layui-form"  id="add_form">
@@ -44,11 +44,11 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                 <span class="x-red">*</span>手机
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                <input type="text" id="phone" onkeyup="value=value.replace(/[^\d]/g,'')" name="phone" required="" lay-verify="phone"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>
+                <span class="x-red">*</span>11位数字
             </div>
         </div>
         <div class="layui-form-item">
@@ -75,11 +75,11 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                 <span class="x-red">*</span>QQ号码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="qq_number" name="qq_number" required="" lay-verify="qq_number"
+                <input type="text" id="qq_number" onkeyup="value=value.replace(/[^\d]/g,'')" name="qq_number" required="" lay-verify="qq_number"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                6到16个字符
+                6到16个数字
             </div>
         </div>
       
@@ -87,7 +87,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="add" lay-submit  type="button">
-                增加
+                保存
             </button>
         </div>
     </form>

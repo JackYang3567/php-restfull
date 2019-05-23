@@ -32,7 +32,7 @@ class DB_Recharge
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -52,7 +52,7 @@ class DB_Recharge
     function getAll ()
     {
         $sql  = "SELECT * FROM `view_auth_token_api`";
-        $sql .=" ORDER BY `expire_at` ";
+        $sql .=" ORDER BY `expire_at` DESC";
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);

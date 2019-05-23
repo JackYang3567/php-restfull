@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:18:51
+/* Smarty version 3.1.33, created on 2019-05-23 11:07:00
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\lottery\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a37b601238_37510513',
+  'unifunc' => 'content_5ce60e546db8e9_34836262',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dc71854b528cdc47320b642de9441631eea228cd' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\lottery\\list.tpl',
-      1 => 1558487922,
+      1 => 1558580815,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce4a37b601238_37510513 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce60e546db8e9_34836262 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
 ?>
   
@@ -97,7 +97,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
             type:"GET",
             data:'',
             success:function(res){    
-              console.log(res);          
+            //  console.log(res);          
                if(res.success){     
 
                    $("#setTotalCount").val(res.data.count); //总记录数
@@ -156,7 +156,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -168,7 +168,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑彩票','/backend/index.php/Admin/EditLottery?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -221,7 +221,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -238,7 +238,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }
@@ -257,7 +257,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                  getLotterylist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)

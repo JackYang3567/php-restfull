@@ -129,7 +129,7 @@
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -141,7 +141,7 @@
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑IP白名单','/backend/index.php/Admin/EditWhiteList?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -193,7 +193,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -210,7 +210,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }
@@ -229,7 +229,7 @@
             data:data,
             success:function(res){
                if(res.success){                   
-                    getUserlist(reloadUrl);     
+                getWhiteListlist(reloadUrl);     
                 }
                 else{
                    alert(res.error_message)

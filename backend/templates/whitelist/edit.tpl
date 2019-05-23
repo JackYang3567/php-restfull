@@ -1,5 +1,6 @@
 {include file="../layouts/header.tpl" title='GK数据API'}
-<form class="layui-form">
+<form class="layui-form"  id="edit_form">
+        <input type="hidden" id="Id" name="id" value="{$context['id']}">
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
                 <span class="x-red">*</span>登录名
@@ -68,8 +69,8 @@
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <button  class="layui-btn" lay-filter="add" lay-submit="">
-                增加
+            <button  class="layui-btn" lay-filter="edit" lay-submit  type="button">
+                保存
             </button>
         </div>
     </form>

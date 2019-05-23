@@ -10,7 +10,7 @@ class Paymethod {
 	
 	public $redis;
 	public $dp;
-	static $FIELDS = array('name','code','icon_path','sortId');
+	static $FIELDS = array('name','code','icon_path','qrcode_path','sortId');
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();

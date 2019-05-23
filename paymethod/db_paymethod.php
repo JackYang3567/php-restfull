@@ -36,7 +36,7 @@ class DB_Paymethod
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -61,7 +61,7 @@ class DB_Paymethod
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
         $sql  = "SELECT * FROM `paymethod`";
-        $sql .=" ORDER BY Id ";
+        $sql .=" ORDER BY Id DESC";
         $sql .=" limit $offset,$limit ";
         
          $stmt = $this->pdo->query($sql);
@@ -79,8 +79,8 @@ class DB_Paymethod
 
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`sortId`) ";
-       $sql .=" VALUES ('{$rec['name']}','{$rec['code']}','{$rec['icon_path']}','{$rec['sortId']}')";
+       $sql  = "INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) ";
+       $sql .=" VALUES ('{$rec['name']}','{$rec['code']}','{$rec['icon_path']}','{$rec['qrcode_path']}','{$rec['sortId']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -98,7 +98,7 @@ class DB_Paymethod
        $_id = (int)$id;
 
        $sql  = "update `paymethod` set `name`='{$rec['name']}' ,`code`='{$rec['code']}' ,";
-       $sql .= " `icon_path`='{$rec['icon_path']}' , `sortId`='{$rec['sortId']}'";
+       $sql .= " `icon_path`='{$rec['icon_path']}' ,`qrcode_path`='{$rec['qrcode_path']}' , `sortId`='{$rec['sortId']}'";
        $sql .=" where Id={$_id}";
       
        $stmt=$this->pdo->query($sql);

@@ -36,7 +36,7 @@ class DB_Lotterytype
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -53,7 +53,7 @@ class DB_Lotterytype
     function getAll ($page,$split)
     {
         $Count_sql  = "SELECT * FROM `lottery_type`";
-        $Count_sql .=" ORDER BY Id ";
+        $Count_sql .=" ORDER BY Id DESC";
         $count_stmt = $this->pdo->query($Count_sql);
         $count =  $count_stmt->rowCount();
 
@@ -61,11 +61,11 @@ class DB_Lotterytype
           $offset = (int)( ($page - 1)* $split);  
           $limit = (int)$split;  
           $sql  = "SELECT * FROM `lottery_type` ";
-          $sql .=" ORDER BY Id ";
-           $sql .=" limit $offset,$limit ";
+          $sql .=" ORDER BY Id DESC";
+          $sql .=" limit $offset,$limit ";
         }else{
             $sql  = "SELECT * FROM `lottery_type` ";
-            $sql .=" ORDER BY Id ";
+            $sql .=" ORDER BY Id DESC";
         }
        
 

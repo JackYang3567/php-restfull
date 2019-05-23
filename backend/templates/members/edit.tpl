@@ -24,11 +24,11 @@
                 <span class="x-red">*</span>手机
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                <input type="text" id="phone" onkeyup="value=value.replace(/[^\d]/g,'')" name="phone" required="" lay-verify="phone"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>
+                <span class="x-red">*</span>11位数字
             </div>
         </div>
         <div class="layui-form-item">
@@ -57,11 +57,11 @@
                 <span class="x-red">*</span>QQ号码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="qq_number" name="qq_number" required="" lay-verify="qq_number"
+                <input type="text" id="qq_number" onkeyup="value=value.replace(/[^\d]/g,'')" name="qq_number" required="" lay-verify="qq_number"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                6到16个字符
+                6到16位数字
             </div>
         </div>
       
@@ -69,7 +69,7 @@
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="edit" lay-submit  type="button" >
-                提交 <!-- lay-submit=""-->
+                保存 <!-- lay-submit=""-->
             </button>
         </div>
     </form>
@@ -112,10 +112,10 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
+                <label  class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="pass" lay-submit  type="button">
-                    提交
+                    保存
                 </button>
             </div>
         </form>
@@ -222,7 +222,7 @@
         function getMemberById(){
               
                 let reloadUrl ='/member/index.php/Member?id='+$("#Id").val();
-                let data = $("#add_form").serialize();
+                let data ='';
                 $.ajax({
                     url:reloadUrl,
                     type:"GET",

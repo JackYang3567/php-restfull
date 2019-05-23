@@ -26,8 +26,8 @@
             <th>ID</th>
             <th>支付方式名</th>
             <th>支付方式编码</th>
-            <th>支付方式图标名</th>
-            <th>支付二维码图标路径</th>
+            <th>支付方式图标</th>
+            <th>收款二维码图</th>
             <th>操作</th></tr>
         </thead>
         <tbody id="tbody">
@@ -129,7 +129,7 @@
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -142,7 +142,7 @@
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑支付方式','/backend/index.php/Admin/EditPaymethod?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -194,7 +194,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -211,7 +211,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }

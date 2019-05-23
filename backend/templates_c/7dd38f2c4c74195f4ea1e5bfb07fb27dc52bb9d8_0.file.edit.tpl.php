@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 18:24:38
+/* Smarty version 3.1.33, created on 2019-05-23 12:42:47
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\members\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce52366e833e3_01294008',
+  'unifunc' => 'content_5ce624c7c273c9_23884267',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7dd38f2c4c74195f4ea1e5bfb07fb27dc52bb9d8' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\members\\edit.tpl',
-      1 => 1558520667,
+      1 => 1558586545,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce52366e833e3_01294008 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce624c7c273c9_23884267 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
 if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
 <form class="layui-form" method="POST" action="/member/index.php/Member/Update"  id="edit_form">
@@ -50,11 +50,11 @@ if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
                 <span class="x-red">*</span>手机
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                <input type="text" id="phone" onkeyup="value=value.replace(/[^\d]/g,'')" name="phone" required="" lay-verify="phone"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>
+                <span class="x-red">*</span>11位数字
             </div>
         </div>
         <div class="layui-form-item">
@@ -83,11 +83,11 @@ if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
                 <span class="x-red">*</span>QQ号码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="qq_number" name="qq_number" required="" lay-verify="qq_number"
+                <input type="text" id="qq_number" onkeyup="value=value.replace(/[^\d]/g,'')" name="qq_number" required="" lay-verify="qq_number"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                6到16个字符
+                6到16位数字
             </div>
         </div>
       
@@ -95,7 +95,7 @@ if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="edit" lay-submit  type="button" >
-                提交 <!-- lay-submit=""-->
+                保存 <!-- lay-submit=""-->
             </button>
         </div>
     </form>
@@ -139,10 +139,10 @@ if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
+                <label  class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="pass" lay-submit  type="button">
-                    提交
+                    保存
                 </button>
             </div>
         </form>
@@ -250,7 +250,7 @@ if ($_smarty_tpl->tpl_vars['context']->value['page'] == 1) {?>
         function getMemberById(){
               
                 let reloadUrl ='/member/index.php/Member?id='+$("#Id").val();
-                let data = $("#add_form").serialize();
+                let data ='';
                 $.ajax({
                     url:reloadUrl,
                     type:"GET",

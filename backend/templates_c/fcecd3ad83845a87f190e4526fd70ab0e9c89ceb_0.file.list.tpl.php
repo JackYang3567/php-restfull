@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:19:02
+/* Smarty version 3.1.33, created on 2019-05-23 12:31:51
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\payamount\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a386457ba2_57067433',
+  'unifunc' => 'content_5ce62237e24e33_88753546',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fcecd3ad83845a87f190e4526fd70ab0e9c89ceb' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\payamount\\list.tpl',
-      1 => 1558487918,
+      1 => 1558585907,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce4a386457ba2_57067433 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ce62237e24e33_88753546 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -53,7 +53,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             </th>
             <th>ID</th>
             <th>预设金额</th>
-            <th>排序</th>
+            <th>排序号</th>
 
             <th>操作</th></tr>
         </thead>
@@ -99,7 +99,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
             type:"GET",
             data:'',
             success:function(res){    
-              console.log(res);          
+              //console.log(res);          
                if(res.success){     
 
                    $("#setTotalCount").val(res.data.count); //总记录数
@@ -157,7 +157,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -168,7 +168,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -220,7 +220,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -237,7 +237,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }

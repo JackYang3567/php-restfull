@@ -124,27 +124,21 @@
        let trStr = ``
        let gender =''
        let status = ''
-       let len = data.length
-      
+       let len = data.length      
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
-              
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
             </td>
             <td>`+data[k].Id +`</td>
             <td>`+data[k].type_name  +`</td>
             
             <td>`+data[k].type_code  +`</td>
             <td>`+data[k].remarks  +`</td>
-            <td class="td-manage">
-           `  
-           
-                   
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+            <td class="td-manage"> `      
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑彩票分类','/backend/index.php/Admin/EditLotteryType?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
-              </a>
-             
+              </a>             
               <a title="删除" onclick="lotterytype_del(this,'`+data[k].Id +`')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
@@ -193,7 +187,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  // window.location.reload()
                }); 
                
           });
@@ -210,7 +204,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  // window.location.reload()
                }); 
         });
       }
@@ -228,7 +222,8 @@
             timeout:10000,
             data:data,
             success:function(res){
-               if(res.success){                   
+               if(res.success){   
+                                 
                     getLotteryTypelist(reloadUrl);     
                 }
                 else{

@@ -36,7 +36,7 @@ class DB_Payamount
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
             {
-                return  array( "success"=>true,  "code"=>0, "data"=>$row );
+                return  array( "success"=>true,  "code"=>0, "data"=>$row[0] );
             }
             else{
                 return  FALSE;
@@ -61,7 +61,7 @@ class DB_Payamount
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
         $sql  = "SELECT * FROM `payamount`";
-        $sql .=" ORDER BY Id ";
+        $sql .=" ORDER BY Id DESC";
         $sql .=" limit $offset,$limit ";
         
          $stmt = $this->pdo->query($sql);
@@ -99,7 +99,7 @@ class DB_Payamount
 
        $sql  = "update `payamount` set `amount_val`='{$rec['amount_val']}' ,`sortId`='{$rec['sortId']}'";
        $sql .=" where Id={$_id}";
-      var_dump( $sql); 
+     
        $stmt=$this->pdo->query($sql);
 
        if($stmt->rowCount())

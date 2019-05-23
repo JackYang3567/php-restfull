@@ -25,7 +25,7 @@
             </th>
             <th>ID</th>
             <th>预设金额</th>
-            <th>排序</th>
+            <th>排序号</th>
 
             <th>操作</th></tr>
         </thead>
@@ -70,7 +70,7 @@
             type:"GET",
             data:'',
             success:function(res){    
-              console.log(res);          
+              //console.log(res);          
                if(res.success){     
 
                    $("#setTotalCount").val(res.data.count); //总记录数
@@ -128,7 +128,7 @@
        for(let k=0;k<len;k++){
        trStr +=`<tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
+                <div class="layui-unselect layui-form-checkbox"  onclick="encheched(this);"  lay-skin="primary" data-id='`+data[k].Id+`'><i class="layui-icon">&#xe605;</i></div>
               
             </td>
             <td>`+data[k].Id +`</td>
@@ -139,7 +139,7 @@
            `  
            
                    
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑','/api/v2/user/`+data[k].Id +`/edit?page=1',600,600)" href="javascript:;">
+           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,400)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              
@@ -191,7 +191,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
                
           });
@@ -208,7 +208,7 @@
                opt.icon = 1;
                opt.time = 1000;
                layer.msg('已删除!',opt,function(){
-                   window.location.reload()
+                  
                }); 
         });
       }

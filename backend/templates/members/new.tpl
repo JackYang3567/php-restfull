@@ -18,11 +18,11 @@
                 <span class="x-red">*</span>手机
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
+                <input type="text" id="phone" onkeyup="value=value.replace(/[^\d]/g,'')" name="phone" required="" lay-verify="phone"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>
+                <span class="x-red">*</span>11位数字
             </div>
         </div>
         <div class="layui-form-item">
@@ -49,11 +49,11 @@
                 <span class="x-red">*</span>QQ号码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="qq_number" name="qq_number" required="" lay-verify="qq_number"
+                <input type="text" id="qq_number" onkeyup="value=value.replace(/[^\d]/g,'')" name="qq_number" required="" lay-verify="qq_number"
                 autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                6到16个字符
+                6到16个数字
             </div>
         </div>
       
@@ -61,7 +61,7 @@
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="add" lay-submit  type="button">
-                增加
+                保存
             </button>
         </div>
     </form>
