@@ -75,7 +75,7 @@ class Member {
 		
 
 	function postSignin($request_data=NULL) {
-		$_uuid='';
+		 $_uuid='';
 		 $signinKey = "SIGNIN-CAPTCHA:".strtoupper($request_data['captcha']);
 		 if( $this->redis->exists($signinKey) ){
 		

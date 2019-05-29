@@ -32,18 +32,18 @@ class Lottery {
 	}
 
 
-	function postFreeApi($code=NULL,$captcha=NULL){
-		session_start();
-		if(strtoupper($captcha)===strtoupper($_SESSION['FREE-CAPTCHA']))
-		{
+	function postFreeApi($request_data=NULL){
+		$code = $request_data['code'];
+		$freeKey = "FREE-CAPTCHA:".strtoupper($request_data['captcha']);
+		if( $this->redis->exists($freeKey) ){
 			$uuid5 = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'Gk.com');
 			$_uuid = strtoupper(str_replace('-','',$uuid5->toString()));
 			$t = $code;
 			$limit = 20;
 			$token = $_uuid;
 			$date = date("Ymd");
-
-			$stop_time = date("Y-m-d G:H:s",strtotime('now'))."===". date("Y-m-d G:H:s",strtotime("+2 hours"));
+            $host = 'http://'.$_SERVER['SERVER_NAME'];
+			$stop_time = date("Y-m-d G:H:s",strtotime('now'))." &nbsp;&nbsp;". date("Y-m-d G:H:s",strtotime("+2 hours"));
 			//  /json.php/api/$t/$limit/$token/$date
 			$ret = array(
 				"temporary_account" => array( 
@@ -54,24 +54,27 @@ class Lottery {
 					"val"=> "$stop_time(共计120分钟)"),      
 					"latest_query_json"=>  array(
 					"res"=> "按最新查询JSON采集地址",
-					"val"=> "/json.php/api/$t/$limit/$token"),
+					"val"=> "$host/json.php/api/$t/$limit/$token"),
 					"query_json_by_date"=> array(
 					"res"=> "按日期查询JSON采集地址",
-					"val"=> "/json.php/api/$t/$limit/$token/$date"),
+					"val"=> "$host/json.php/api/$t/$limit/$token/$date"),
 					"latest_query_xml"=> array(
 					"res"=> "按最新查询XML采集地址",
-					"val"=> "/xml.php/api/$t/$limit/$token"),
+					"val"=> "$host/xml.php/api/$t/$limit/$token"),
 					"query_xml_by_date"=>  array(
 					"res"=> "按日期查询XML采集地址",
-					"val"=> "/xml.php/api/$t/$limit/$token/$date")
+					"val"=> "$host/xml.php/api/$t/$limit/$token/$date")
 			 );
 			
 			$freekey = "free:api:".$_uuid;
 			$this->redis->set($freekey,1);
 			$this->redis->expire($freekey,7200);
-	        return $ret;
+
+			return array(  "success"=> true,  "code"=>0, "data"=> $ret );
+	        return;
 		}else{
-			return array(  "success"=> false,  "code"=>1, "error_message"=>VERIFICATION_CODE_IS_INCORRECT,"data"=>'' );
+			return array(  "success"=> false,  "code"=>1, 
+			"error_message"=>VERIFICATION_CODE_IS_INCORRECT,"data"=>'' );
 		}
 			
 	}
