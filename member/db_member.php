@@ -2,6 +2,11 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
+define('DB_CONFIG_FILE', '/../config/db.config.php');
+include __DIR__ . '/../Application/Database/Connection.php';
+
+use Application\Database\Connection;
+
 
 const USER_OR_PASSWORD_ERROR ='用户或密码错误';
 
@@ -9,24 +14,11 @@ class DB_Member
 {
     public $pdo;
    
-    public $params = [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pwd'  => 'root',
-        'db'   => 'work_caiji'
-    ];
-    
-    public $dsn ;
-    public $opts;
-    
     function __construct ()
-    {
-      
-       $this->init();
-       
+    {     
+       $this->init();       
     }
     
-
     private function find ($id)
     {      
         $sql  = "SELECT * FROM `member` where Id=".$id;
@@ -70,9 +62,10 @@ class DB_Member
     function signin($rec){
         $password = $rec['pass'];
         $salt = "Member";// 只取前两个
-        $sql  = "SELECT * FROM `member`";
+        $sql  = "SELECT `Id`,`name`,`email`,`qq_number`,`phone`,`created_at` FROM `member`";
         $sql .=" where `name`='{$rec['name']}' && `pass`='".crypt($password, $salt)."'";
         $stmt = $this->pdo->query($sql);
+        
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
             if(count($row))
@@ -86,8 +79,6 @@ class DB_Member
          }
     }
     
-   
-     
 
     function get ($id)
     {
@@ -126,8 +117,8 @@ class DB_Member
     {
        $password = $rec['pass'];
        $salt = "Member";// 只取前两个
-       $sql  = "INSERT INTO  `member` (`name`,`pass`,`email`,`phone`,`qq_number`,`gender`) ";
-       $sql .=" VALUES ('{$rec['name']}','".crypt($password, $salt)."','{$rec['email']}','{$rec['phone']}','{$rec['qq_number']}','{$rec['gender']}')";
+       $sql  = "INSERT INTO  `member` (`name`,`pass`,`email`,`phone`,`qq_number`) ";
+       $sql .=" VALUES ('{$rec['name']}','".crypt($password, $salt)."','{$rec['email']}','{$rec['phone']}','{$rec['qq_number']}')";
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -157,10 +148,18 @@ class DB_Member
 
     function update ($rec)
     {
-       $_id = (int)$rec['id'];
+        $_id = 0;
+        $uuid =$rec['uuid']; 
+        $memberId_sql  = "SELECT `member_id` FROM `sessions` where uuid='".$uuid."'";
+        $_stmt = $this->pdo->query( $memberId_sql);
+        
+        if(is_object($_stmt)){
+            $_row = $_stmt->fetchAll(PDO::FETCH_CLASS);
+            $_id=$_row[0]->member_id;
+        }
+      
        $sql  = "update `member` set ";
-       $sql .=" `name`='{$rec['name']}',`gender`='{$rec['gender']}'";
-       $sql .=",`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
+       $sql .="`email`='{$rec['email']}',`phone`='{$rec['phone']}', `qq_number`='{$rec['qq_number']}'";
        $sql .=" where Id={$_id}";
       
        $stmt = $this->pdo->query($sql);
@@ -178,21 +177,24 @@ class DB_Member
 
     function updatePass ($rec)
     {
-   
-        $_id = (int)$rec['id'];
-        $pss =  $rec['pass'];
+        $_id = 0;
+        $uuid =$rec['uuid']; 
+        $memberId_sql  = "SELECT `member_id` FROM `sessions` where uuid='".$uuid."'";
+        $_stmt = $this->pdo->query( $memberId_sql);
+        
+        if(is_object($_stmt)){
+            $_row = $_stmt->fetchAll(PDO::FETCH_CLASS);
+            $_id=$_row[0]->member_id;
+        }
+        
         $password = $rec['password'];
         $salt = "Member";// 只取前两个
 
         $sql  = "update `member` set ";           
         $sql .=" `pass`='".crypt($password, $salt)."'";
         $sql .=" where Id={$_id} ";
-        if( $rec['mode'] == 'pass'){
-            $sql .=" && pass='".crypt($pss, $salt)."'";
-        }
        
-       
-       $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->query($sql);
 
        if($stmt->rowCount())
         {
@@ -231,9 +233,7 @@ class DB_Member
 
     private function init ()
     {
-        $this->dsn  = sprintf('mysql:charset=UTF8;host=%s;dbname=%s',  $this->params['host'],  $this->params['db']);
-        $this->opts = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        $this->pdo  = new PDO($this->dsn,  $this->params['user'],  $this->params['pwd'], $this->opts);
-       
+        $conn = new Connection(include __DIR__ . DB_CONFIG_FILE);
+        $this->pdo = $conn->pdo;
     }
 }

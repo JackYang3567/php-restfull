@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>		
+		<meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+        <meta name="apple-mobile-web-app-capable" content="yes">
+		
+        <title>最新开奖接果查询,重庆时时彩开奖api,北京pk10结果走势,加拿大28api接口,开奖数据接口</title>
+		<meta name="keywords" content="腾讯分分彩,QQ时时彩,广东11选5,韩国1.5,东京快乐8,PC蛋蛋dd,幸运飞艇,加拿大28,排列35,3D,重庆快乐10分,江苏快三,api开奖结果"></meta>
+		<meta name="description" content="GK网提供最新开奖历史数据,包含:北京快乐8,重庆幸运农场,湖南快乐10分,广东11选5,广西快三,体彩排列35,福彩3D,华东15选5,双色球,大乐透,七星彩,足彩胜负,6场4场进球彩,加拿大卑诗快乐8,腾讯QQ分分彩,北京28,韩国东京台湾1.5分彩等最新开奖结果API接口。"></meta>
+<style>
+    .layui-layer{width:500px;text-align:center;}
+    .layui-table-cell {min-height: 35px;line-height: 35px;height: auto}
+    .jcb-main .layui-tab ul{text-align: center}
+    .jcb-main .layui-tab li{border:solid 1px #e2e2e2;margin-left: 5px; border-bottom: none}
+    .layui-this{background: #1E9FFF;color: #F0F0F0 !important;}
+    .yourclass{border:solid 1px #009688}
+
+    s{width: 32px;height: 32px; display: block; float: left;margin:1px;  }
+    .layui-tab-content{position: relative;}
+    #name-reload{
+        position: absolute;
+        z-index: 10;
+        right: 25px;
+        top: 25px;
+        color: #727272;
+    }
+    .layui-table .open-ball span {
+        background: #1E9FFF;
+        border-radius: 16px;
+        width: 28px;
+        line-height: 28px;
+        height: 28px;
+        color: #fff;
+        font-style: normal;
+        margin: 2px;
+        display: inline-block;
+        text-align: center;
+    }
+</style>
+<style>.layui-table,.layui-table th{text-align:center}@font-face{font-family:b1cpapi;src:url(/resource/fonts/1108f3f5691fe8ab.eot);src:url(/resource/fonts/1108f3f5691fe8ab.eot#iefix) format('embedded-opentype'),url(/resource/fonts/1108f3f5691fe8ab.woff) format('woff'),url(/resource/fonts/1108f3f5691fe8ab.ttf) format('truetype')}.my_webfont{font-family:b1cpapi!important;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}</style>
+
+		<link rel="Shortcut Icon" href="/favicon.ico">
+        <link rel="stylesheet" href="css/layui.css">
+	    <link rel="stylesheet" href="css/font-awesome.min.css" media="all" />  
+        <style type="text/css">
+        html{height:100%;}
+        body{min-height:100%;margin:0;padding:0;position:relative;}
+            .header {height: 59px;border-bottom: 1px solid #404553;background-color: #393D49;}
+            .logo {position: absolute;left: 0;top: 1px;}
+            .header .layui-nav {position: absolute;right: 0;top: 0;padding: 0;background: none;}
+            .logo img {width: 100%;height: 100%;}
+            .alone-banner {height: 120px;text-align: center;font-weight: 300;background-color: #009688;color: #fff;}
+            .alone-banner h1 {padding-top: 30px;line-height: 32px;font-size: 30px;font-weight: 300;}
+            .alone-banner p {padding-top: 20px;color: #e2e2e2;color: rgba(255,255,255,.8);}
+            .jcb-main {padding-bottom:10px; max-width: 1140px;margin: 0 auto;position: relative;}
+            .footer {background-color: #393D49;position:absolute;bottom:0;width:100%;height:auto;padding: 0px 0;line-height: 30px;text-align: center;color: #666;font-weight: 300;margin-top: 50px;}
+            .footer a {padding: 0 5px;}
+            .site-union {margin-top: 10px;color: #999;} 
+			.img-xys {display: inline-block; height: auto; max-width: 100%;}
+        </style>
+	</head> 
+    <body>
+        <div class="container">
+            <!--header begin-->            
+             <div class="header">
+                <div class="jcb-main">
+                    <a class="logo" href="/">
+                    <img src="picture/logo.png" alt="GK网API" style="position:relative; top:5px">
+                    </a>
+                    <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        <a href="/"><i class="layui-icon">&#xe68e;</i> 首 页</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/lottery.html">开奖历史</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/purchase.html">接口购买</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/lottery_type.html">免费试用</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="/index/show.html">接口说明</a>
+                    </li>   
+                    
+                        
+                        <li class="layui-nav-item">
+                            <a href="/index/login.html" ><i class="layui-icon">&#xe612;</i>登陆/注册</a>
+                        </li>
+                         					
+                    </ul>
+                </div>
+            </div>
+            <!--header end-->  
+            <!--banner begin-->  
+            <div class="alone-banner layui-bg-black">
+                <div class="jcb-main">
+                    <h1>全国彩票开奖数据API接口中心</h1>
+                    <p>GK网API开放平台是GK网面向网络媒体、彩票行业客户、第三方彩票销售或分析机构等用户提供专业权威的开奖数据</p>
+                </div>
+            </div>
+            <!--banner end-->  
+            
+<style>
+    .layui-table-cell{
+    height: auto;
+    white-space: unset;
+    }</style>
+<div class="jcb-main alone-nav">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+                        <li class="layui-this">高频彩种</li>
+                        <li class="">低频彩种</li>
+                        <li class="">十一选五</li>
+                        <li class="">快三</li>
+                        <li class="">快乐十分</li>
+                        <li class="">极速彩种</li>
+                        <li class="">境外彩种</li>
+                        <li class="">计算型彩种</li>
+                       
+        </ul>
+        <div class="layui-tab-content" style="min-height: 300px;">
+            <div id="name-reload">
+                搜索彩种：
+                <div class="layui-inline">
+                    <input class="layui-input" name="name" id="go-name" autocomplete="off" placeholder="在此输入彩种名称搜索">
+                </div>
+                <button class="layui-btn" data-type="reload">搜索</button>
+            </div>
+                        <div class="layui-tab-item layui-show">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'1'},page:true, id:'data0', limit:40}" lay-filter="data0">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'3'},page:true, id:'data1', limit:40}" lay-filter="data1">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'6'},page:true, id:'data2', limit:40}" lay-filter="data2">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'7'},page:true, id:'data3', limit:40}" lay-filter="data3">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'8'},page:true, id:'data4', limit:40}" lay-filter="data4">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'9'},page:true, id:'data5', limit:40}" lay-filter="data5">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'4'},page:true, id:'data6', limit:40}" lay-filter="data6">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                        <div class="layui-tab-item ">
+                <table class="layui-table" color="#FF0000" lay-data="{ url:'/index/data.html?font=1108f3f5691fe8ab',skin:'line', where:{'c':'5'},page:true, id:'data7', limit:40}" lay-filter="data7">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'name', width:180,align:'center', templet: '#nameTpl'}">彩种名称</th>
+                            <th lay-data="{field:'qh', width:130,align:'center'}">期 号</th>
+                            <th lay-data="{field:'opentime',width:200,align:'center'}">开奖时间</th>
+                            <th lay-data="{field:'num',align:'left',toolbar: '#numTpl'}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开奖号码</th>
+                            <th lay-data="{align:'right', toolbar: '#menu',width:220}"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>          
+                    </div>
+    </div> 
+</div>
+
+            <!--footer begin--><br><br><br><br>
+            <div class="layui-footer footer footer-index">
+                <div class="jcb-main">
+                    <p>
+                    <a href="/index/about.html"><font color="#C0C0C0">关于我们</a>
+                    <a href="/index/problem.html"><font color="#C0C0C0">常见问题</a>
+                    <a href="/index/show.html"><font color="#C0C0C0">接口概述</a>
+                    <a href="/index/lottery_type.html"><font color="#C0C0C0">免费试用</a>
+                    <a href="/index/contact.html" ><font color="#C0C0C0">联系我们</a>
+					
+                    </p>
+                    <p><font color="#C0C0C0">CopyRight © 2010-2019 GK网 <a href="http://www.miibeian.gov.cn" target="_blank"><font color="#C0C0C0">蜀ICP备17033890号</a>服务范围：本站仅提供彩票数据查询相关服务，无投注购彩业务。</p>
+                    <p class="site-union">
+                    
+                   
+                    </p>
+                </div>
+            </div>
+            <!--footer end-->            
+        </div>
+    </body> 
+    <script src="js/layui.js" charset="utf-8"></script> 
+	<script src="js/jquery.min.js" charset="utf-8"></script>
+	<script src="js/jquery.extend.js" charset="utf-8"></script>	 
+    <script type="text/javascript">
+        var table,form,laydate; 
+        layui.use(['form', 'table', 'laydate'], function(){
+            table = layui.table;form = layui.form;laydate = layui.laydate;  
+        });
+    </script>
+    
+<script type="text/html" id="nameTpl">
+    <!--a href="/history/{{d.e_name}}.html" class="layui-table-link" target="_blank">{{ d.name }}</a-->
+    <a href="/history/{{d.e_name}}.html" class="layui-table-link" >{{ d.name }}</a>
+</script>
+<script type="text/html" id="numTpl">
+    <div class="open-ball my_webfont">{{ d.num }}</div>
+</script>
+<script type="text/html" id="menu">	
+	<a class="layui-btn layui-btn-sm layui-btn-primary" lay-event="more"><i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe666;</i></a>
+	<a class="layui-btn layui-btn-sm layui-btn-normal" href="/index/lottery_type.html" >试用</a>
+	<a class="layui-btn layui-btn-sm layui-btn-normal"  href="/history/{{d.e_name}}.html"><i class="layui-icon">&#xe62c;</i>历史</a>
+</script>
+<script>
+    var font = "1108f3f5691fe8ab";
+    function buy(lotteryid,t) {
+        var data = {'lotteryid':lotteryid,'time':t};
+        $.fn.jcb.post("/index/buy.html",data,true);  
+    }
+    function showhistory(data){
+        if(data.code=='1'){
+            layer.closeAll();
+			var desc = '';
+            var tb = '<table class="layui-table"><colgroup><col width="130" style="text-align:center"><col width="180"></colgroup>'
+                    +'<thead><tr><th>期号</th><th>开奖时间</th><th>开奖数据</th></tr></thead>'
+                    +'<tbody>';
+            var lotterys = eval(data.data);
+            $(lotterys).each(function (index, obj) {
+                 tb= tb +'<tr><td>'+obj.qh+'</td><td>'+obj.opentime+'</td><td><div class="open-ball my_webfont">'+obj.num+'</div></td></tr>';
+				 obj.description ? desc = "<tr><td colspan='3' align='left'>"+obj.description+"</td></tr>" :  desc = '';
+            });    
+			if( desc.length > 0 )
+			{
+				tb = tb + desc ;
+			}
+            tb = tb  +  '</tbody></table>';
+            layer.open({
+                type: 1,area:['700px'],title: false, shade: false, closeBtn: 1,skin: 'yourclass',anim: 0,
+                content:tb
+            });
+        }
+    }
+
+    layui.use(['form','upload', 'layedit','table', 'laydate','element'], function(){
+        var form = layui.form,layer = layui.layer,layedit = layui.layedit
+        ,laydate = layui.laydate,upload = layui.upload,element = layui.element,table = layui.table;
+
+                table.on('tool(data0)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data1)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data2)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data3)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data4)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data5)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data6)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+                table.on('tool(data7)', function(obj){
+            var data = obj.data;
+            if(obj.event==='del'){
+
+                window.location = '/lottery/bill.html?cid='+data.lotteryid;
+            }else if(obj.event==='more'){
+                $.fn.jcb.post("/index/more.html",{'lotteryid':data.lotteryid,'font':'1108f3f5691fe8ab'},false,showhistory);
+            }
+        });
+        
+
+    });
+
+    var $ = layui.$, active = {
+        reload: function(){
+            var name = $('#go-name').val();
+            var length = $(".layui-tab-item").length;
+            var table_name = $(".layui-tab-item.layui-show table").attr("lay-filter");
+            for (var i = 0; i < length; i++) {
+                //执行重载
+                table.reload(table_name, {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        name: name
+                    }
+                });
+            }
+        }
+    };
+
+    $('#name-reload .layui-btn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
+    $("#name-reload input").keyup(function(){
+        if(event.keyCode == 13){
+            var type = 'reload';
+            active[type] ? active[type].call(this) : '';
+        }
+    });
+</script>
+
+<script src="js/default.js"></script>
+</html>

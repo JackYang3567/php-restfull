@@ -1,15 +1,14 @@
 <?php
- require '../handler/connection_db.php';
+define('DB_CONFIG_FILE', '/../config/db.config.php');
+include __DIR__ . '/../Application/Database/Connection.php';
+
+use Application\Database\Connection;
+//require '../handler/connection_db.php';
 
 class Admin {
-	public $pdo;
+
     static $FIELDS = array('name', 'pass','captcha');
-    public $params = [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pwd'  => 'root',
-        'db'   => 'work_caiji'
-    ];
+   
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
@@ -18,14 +17,13 @@ class Admin {
 		*/
        // $this->pdo = new Conn();
        // session_start();
+       $this->init();
 	}
 	function get($id=NULL) {
 		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
 	}
 	function postSignin($request_data=NULL) {
-        $dsn  = sprintf('mysql:charset=UTF8;host=%s;dbname=%s',  $this->params['host'],  $this->params['db']);
-		$opts = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        $pdo  = new PDO($dsn,  $this->params['user'],  $this->params['pwd'], $opts);
+      
 
         $password = $request_data['pass'];
         $salt = "admin";// 只取前两个            
@@ -67,5 +65,11 @@ class Admin {
 			$admin[$field]=$data[$field];
 		}
 		return $admin;
-	}
+    }
+    
+    private function init ()
+    {
+        $conn = new Connection(include __DIR__ . DB_CONFIG_FILE);
+        $this->pdo = $conn->pdo;
+    }
 }

@@ -14,38 +14,33 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message"></div>
-        <div id="darkbannerwrap">修改密码</div>
+        <div id="darkbannerwrap">修改个人资料</div>
         
          <form method="post" action="/member/index.php/Member/Update" >
           <div class="layui-form-item">
-                    <input type="text"  name="id"  placeholder="会员ID"  />
-                      <input type="hidden"  name="mode" value="info">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label> 
-                <div class="layui-form-item">
-                <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label> 
-                  <input type="text" name="name" required="" value="jack123" lay-verify="required" placeholder="请输入帐号/用户名" autocomplete="off" class="layui-input" maxlength="256">
-                            </div>
-  <div class="layui-form-item">
-                             <input type="radio" name="gender" id="gender_0" value="0" title="女" checked="checked"/>
-              <input type="radio" name="gender" id="gender_1" value="1" title="男" />
-</div>
+           <label class="layadmin-user-login-icon layui-icon layui-icon-username">uuid</label> 
+                    <input type="text"  name="uuid"  placeholder="session uuid"  />
+                    </div>
+              <div class="layui-form-item"> 
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username">编辑模式</label>         
+                      <input type="text"  name="mode" readonly value="info">
+             </div>
+               
+  
                        
 						 <div class="layui-form-item">
-                            <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone"></label> 
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone">phone</label> 
                            <input type="text" name="phone" value="13808013567" lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
                             </div>
 						 <div class="layui-form-item">
-                            <label class="layadmin-user-login-icon layui-icon layui-icon-form"></label> 
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-form">email</label> 
                           <input type="text" name="email" value="13808013567@163.com" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
                             </div>
 						 <div class="layui-form-item">
-                            <label class="layadmin-user-login-icon layui-icon layui-icon-login-qq"></label> 
+                            <label class="layadmin-user-login-icon layui-icon layui-icon-login-qq">QQ Number</label> 
                            <input type="text" name="qq_number" value="1380801356732" required="" lay-verify="required" placeholder="请输入QQ号码" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="layui-form-item" style="margin-bottom:20px">
-                          
-                            <span class="fr" style="margin-top:7px">已有帐号？ <a style="color:#029789!important" href="/member/signin.html">点击登陆</a></span>
-                            </div>
+                           
                             <div class="layui-form-item" >                           
                              <button class="layui-btn " type="submit">立即更新</button> 
                             </div> 

@@ -18,26 +18,20 @@
         
          <form method="post" action="/member/index.php/Member/Update" >
           <div class="layui-form-item">
-                    <input type="text"  name="id"  placeholder="会员ID"  />
+           <label class="layadmin-user-login-icon layui-icon layui-icon-password">编辑模式</label> 
+                 <input type="text" readonly  name="mode" value="pass" placeholder="">
+                  </div>
+          <div class="layui-form-item">
+                    <input type="text"  name="uuid"  placeholder="sessionuuid"  />
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username"></label> 
-                 <input type="hidden"  name="mode" value="pass">
-                  <div class="layui-form-item">
-                            <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label> 
-                            <input type="password" name="pass"   required="" lay-verify="required" placeholder="请输入旧密码" autocomplete="off" class="layui-input">
-                        </div> 
-                        <div class="layui-form-item">
-                            <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label> 
-                            <input type="password" name="password"   required="" lay-verify="required" placeholder="请输入新密码" autocomplete="off" class="layui-input">
-                        </div>  
+                
+                       
 						 <div class="layui-form-item">
                             <label class="layadmin-user-login-icon layui-icon layui-icon-password"></label> 
-                            <input type="password" name="repassword"   required="" lay-verify="required" placeholder="请重复新密码" autocomplete="off" class="layui-input">
+                            <input type="password" name="password"   required="" lay-verify="required" placeholder="请重复新密码" autocomplete="off" class="layui-input">
                             </div>
 						
-                            <div class="layui-form-item" style="margin-bottom:20px">
-                          
-                            <span class="fr" style="margin-top:7px">已有帐号？ <a style="color:#029789!important" href="/member/signin.html">点击登陆</a></span>
-                            </div>
+                           
                             <div class="layui-form-item" >                           
                              <button class="layui-btn " type="submit">立即更新</button> 
                             </div> 

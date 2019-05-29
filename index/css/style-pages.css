@@ -1,0 +1,49 @@
+﻿﻿.cont-hd { height:60px; width:980px; margin:0 auto; }
+.cont-hd .logo { margin:11px 0 0 5px; width:195px; height:42px }
+.cont-hd-nav{float:right;font-size:13px;position:relative;margin-top:16px;}
+.cont-hd-nav li{float:left; margin-right:5px;}
+.cont-hd-nav a{line-height:28px;display:block;text-align:center;padding:0 8px; position:relative;float:left;z-index:99;}
+.cont-hd-nav a:hover{text-decoration:none;color:#d93}
+.cont-hd-nav .cur a{color:#d93;}
+.cont-ft { color:#b8b8b8; background:#e7e7e7; padding:15px 0; text-align:center; line-height:20px;}
+.cont-ft a{ color:#b8b8b8 }
+.cont-home { width:980px; margin:0 auto }
+.cont-home-detail { margin-bottom: 10px; overflow: hidden; padding-bottom: 10px; width: 980px;}
+.cont-home-slides {width:980px;height:424px; margin:0px auto; overflow:visible;}
+.cont-home-paging div {float:left;width:324px;margin-right:2px;}
+.cont-home-paging div a{display:block;height:60px;padding:34px 0 0 120px;float:left;overflow:hidden;font-size:15px;color:#666;}
+.cont-home-paging div a span{display:block;font-size:11px;color:#999;font-weight:bold; font-size:16px;}
+.cont-home-paging div.cur a{color:#3a639a;}
+.cont-home-paging div.cur a span{color:#3a639a;}
+.cont-home-paging-focus {width:325px;height:17px;margin-top:-10px; margin-left:0px; display:none}
+.cont-home-pages { display:block;clear:both}
+.cont-home-pages ul { display:none }
+.cont-home-pages ul li{width:440px;height:185px;float:left;margin-right:50px;}
+.cont-home-pages ul img{float:left;margin-right:10px; width:133px;height:133px}
+.cont-home-pages ul div{overflow:hidden; *zoom:1}
+.cont-home-pages ul h3{font-size:28px;font-weight:normal;color:#3a639a;padding-bottom:10px;}
+.cont-home-pages ul p{line-height:20px;font-size:13px;color:#999;}
+.cont-box { width:980px; margin:0 auto }
+.cont-box-banner {margin:0px auto; height:150px; margin-bottom:10px; width:980px; position:relative; }
+.cont-box-banner img{ width:980px; height:150px;}
+.cont-box-detail { margin-bottom: 10px; overflow: hidden; padding-bottom: 10px; width: 100%; }
+.cont-box-detail .box high{ color:#d93; }
+.cont-box-detail .box h1 { clear:both;  background: url("../images/btmline.gif") repeat-x scroll left bottom transparent;color: #053495;font-size: 20px;padding-bottom: 10px;margin-bottom:20px; margin-top:20px;}
+.cont-box-detail .box h2 {clear:both;color: #053495;font-size:16px; margin:0px 0px 10px 5px }
+.cont-box-detail .box h3 {clear:both;color: #053495;font-size:15px; margin:0px 0px 10px 5px }
+.cont-box-detail .box p { display: inline; float: left; font-size: 14px; line-height: 25px; margin: 0px 0 10px 0px; text-indent: 2em; width: 100%; color:#88909f;}
+.cont-box-detail .box ul.download li {height:86px; width:100px; display:inline; margin-bottom: 15px;margin-right: 15px;float:left; border:0px solid #f00}
+.cont-box-detail .box ul.download li span {clear:both; margin-top:58px; display:block; text-align: center; word-wrap: break-word;}
+.cont-box-detail .box ul.download li.rar{ background:url(../images/icon_rar_48_48.png) no-repeat 22px 1px; }
+.cont-box-detail .box TABLE {border-top:#eee 1px solid; border-left:#eee 1px solid; font-size: 14px; line-height: 25px;color:#58606f;width:100%;margin:10px auto 10px auto}
+.cont-box-detail .box TABLE TD {vertical-align:middle;border-bottom:#eee 1px solid;border-right:#eee 1px solid; padding:0px 5px 0px 5px;}
+.cont-box-detail .box ul.three li{text-align:center;width:240px;color:#98A0AF;font-size:14px;line-height:23px;float:left;margin-left:70px;display:inline; margin-bottom:10px}
+.cont-box-detail .box p.one { text-align:center; margin-bottom:10px}
+.cont-box-detail .box ul.viewer { display:none; overflow:hidden;}
+.cont-box-detail .box ul.viewer li {clear:none; width:151px; text-align:center;line-height:28px; display:inline-block; margin-bottom:10px; height:112px; vertical-align:top; }
+.cont-box-detail .box ul.viewer li .index { line-height:28px; margin-bottom:0px; }
+.cont-box-detail .box ul.viewer li .index img{ width:83px; height:84px; margin:0px auto; }
+.cont-box-detail .box ul.viewer li .cover {background-color:#6A92C3; padding:0px 2px 4px 2px; height:108px; line-height:26px; margin-bottom:0px;border-radius:8px; display:none; }
+.cont-box-detail .box ul.viewer li .cover .vcode {font-size:14px;font-weight:bold;color:#fff; }
+.cont-box-detail .box ul.viewer li .cover .vname {color:#ddd;}
+.cont-box-detail .box ul.viewer li .cover img {margin:3px 3px 3px 3px;}

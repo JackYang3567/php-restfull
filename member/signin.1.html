@@ -1,0 +1,29 @@
+<!doctype html>
+<html class="x-admin-sm"><head>
+	<meta charset="UTF-8">
+	<title>GK数据API - GK数据API</title>
+	</head>
+
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message"></div>
+        <div id="darkbannerwrap">会员登录</div>
+        
+        <form method="post" action="/member/index.php/Member/Signin" id="login_form" >
+            <input type="text" name="name" placeholder="name"/>
+            <hr class="hr15">
+             <input type="text" name="pass" placeholder="pass"/>
+            <hr class="hr15">
+             <input type="text" name="captcha" />
+             <img src="/handler/session.php?type=signin" />
+            
+            <input value="登录" lay-submit lay-filter="login" lay-submit  type="submit">
+            <hr class="hr20" >
+        </form>
+       
+    </div>
+
+</body>
+
+</html>

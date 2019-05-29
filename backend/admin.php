@@ -1,22 +1,18 @@
 <?php
- //require '../libs/Smarty.class.php';
- require '../handler/auth_session.php';
- //session_start();
+define('DB_CONFIG_FILE', '/../config/db.config.php');
+include __DIR__ . '/../Application/Database/Connection.php';
+
+use Application\Database\Connection;
+require '../handler/auth_session.php';
+
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 class Admin {
-
     public $pdo;
-    public $opts;
     public $smarty;
     public $auth;
     static $FIELDS = array('Id', 'pass','password','repassword');
 
-    public $params = [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pwd'  => 'root',
-        'db'   => 'work_caiji'
-    ];
+
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
@@ -285,8 +281,7 @@ class Admin {
     
     private function init ()
     {
-        $this->dsn  = sprintf('mysql:charset=UTF8;host=%s;dbname=%s',  $this->params['host'],  $this->params['db']);
-        $this->opts = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        $this->pdo  = new PDO($this->dsn,  $this->params['user'],  $this->params['pwd'], $this->opts);
+        $conn = new Connection(include __DIR__ . DB_CONFIG_FILE);
+        $this->pdo = $conn->pdo;    
     }
 }

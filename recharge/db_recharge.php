@@ -2,21 +2,15 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
+define('DB_CONFIG_FILE', '/../config/db.config.php');
+include __DIR__ . '/../Application/Database/Connection.php';
 
+use Application\Database\Connection;
 
 class DB_Recharge
 {
     public $pdo;   
-    public $params = [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pwd'  => 'root',
-        'db'   => 'work_caiji'
-    ];
-    
-    public $dsn ;
-    public $opts;
-    
+   
     function __construct ()
     {
        $this->init();
@@ -151,9 +145,7 @@ class DB_Recharge
 
     private function init ()
     {
-        $this->dsn  = sprintf('mysql:charset=UTF8;host=%s;dbname=%s',  $this->params['host'],  $this->params['db']);
-        $this->opts = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        $this->pdo  = new PDO($this->dsn,  $this->params['user'],  $this->params['pwd'], $this->opts);
-       
+        $conn = new Connection(include __DIR__ . DB_CONFIG_FILE);
+        $this->pdo = $conn->pdo;
     }
 }

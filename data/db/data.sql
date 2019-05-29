@@ -114,11 +114,11 @@ CREATE TABLE `paymethod` (
   `sortId` int(11) NOT NULL COMMENT '排序', 
   PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名paymethod';
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('支付宝','alipay','/static/img/method-ali.png','Ali_QrCode.png','1');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信','Weixin','/static/img/method-wx.png','Weixin_QrCode.png','2');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信官方','Weixin_gf','/static/img/method-wx.png','Weixin_QrCode_gf.png','3');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包','QQwallet','/static/img/method-qq.png','QQwallet_QrCode.png','4');
-INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','/static/img/method-qq.png','QQwallet_gf_QrCode.png','5');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('支付宝','alipay','/index/images/method-ali.png','Ali_QrCode.png','1');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信','Weixin','/index/images/method-wx.png','Weixin_QrCode.png','2');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信官方','Weixin_gf','/index/images/method-wx.png','Weixin_QrCode_gf.png','3');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包','QQwallet','/index/images/method-qq.png','QQwallet_QrCode.png','4');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','/index/images/method-qq.png','QQwallet_gf_QrCode.png','5');
 
 -- 支付金额设置
 DROP TABLE IF EXISTS `payamount`;
@@ -254,6 +254,37 @@ CREATE TABLE `prices` (
 INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (1,20,55,100,190,550,'江苏快三');
 INSERT INTO  `prices` (`lottery_id`,`month`,`season`,`halfyear`,`year`,`threeyear`,`remarks`)  VALUES (2,30,55,100,190,550,'安徽快三');
 
+
+-- ========================================
+-- 文章分类表article_category
+DROP TABLE IF EXISTS `article_category`;
+CREATE TABLE `article_category` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键article_category_id',
+  `category_name` varchar(256) NOT NULL DEFAULT '' COMMENT '文章分类名',  
+  `parent_id` int(11) NOT NULL DEFAULT 0 COMMENT '文章分类父ID',
+  `sortId` int(11) NOT NULL COMMENT '排序', 
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章分类表';
+INSERT INTO  `article_category` (`category_name`,`parent_id`,`sortId`)  VALUES ('官方公告',0,1);
+INSERT INTO  `article_category` (`category_name`,`parent_id`,`sortId`)  VALUES ('新闻资讯',0,2);
+INSERT INTO  `article_category` (`category_name`,`parent_id`,`sortId`)  VALUES ('技术文档',0,3);
+
+-- 文章内容表article_content
+DROP TABLE IF EXISTS `article_content`;
+CREATE TABLE `article_content` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键article_content_id',
+  `category_id` int(11) NOT NULL DEFAULT 0 COMMENT '文章分类Id',
+  `article_title`  varchar(256) NOT NULL DEFAULT '' COMMENT '文章分类名',  
+  `contents` text NULL  COMMENT '文章分类名', 
+  `author_id` int(11) NOT NULL COMMENT 'admin Id',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布日期',
+  `udated_time` timestamp NULL DEFAULT NULL  COMMENT '更新日期',
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章内容表';
+
+
+
+-- ========================================
 -- 视图
 DROP VIEW IF EXISTS `view_auth_token_api` ;
 CREATE VIEW `view_auth_token_api` AS 

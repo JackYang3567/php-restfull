@@ -2,28 +2,15 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
-
+use Application\Database\Connection;
 
 class DB_Sessions
 {
     public $pdo;
-   
-    public $params = [
-        'host' => 'localhost',
-        'user' => 'root',
-        'pwd'  => 'root',
-        'db'   => 'work_caiji'
-    ];
-    
-    public $dsn ;
-    public $opts;
-    
     function __construct ()
     {
        $this->init();
     }
-    
-
     private function find ($id)
     {
       
@@ -37,6 +24,24 @@ class DB_Sessions
             if(count($row))
             {
                 return  array( "success"=>true,  "code"=>0, "data"=>$row );
+            }
+            else{
+                return  FALSE;
+            }
+         }
+    }
+
+    function getSessByUuid($uuid) {
+        $sql  = "SELECT * FROM `sessions` where uuid='".$uuid;
+        $sql .="' ORDER BY id ";
+      
+         $stmt = $this->pdo->query($sql);
+         
+         if(is_object($stmt)){
+            $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+            if(count($row))
+            {
+                return  $row[0];
             }
             else{
                 return  FALSE;
@@ -73,12 +78,10 @@ class DB_Sessions
 
     function insert($rec)
     {
-        
-
        $sql  = "INSERT INTO  `sessions` (`name`,`uuid`,`email`,`member_id`) ";
        $sql .=" VALUES ('{$rec->name}','{$rec->uuid}','{$rec->email}','{$rec->Id}')";
       
-
+       
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -154,9 +157,7 @@ class DB_Sessions
 
     private function init ()
     {
-        $this->dsn  = sprintf('mysql:charset=UTF8;host=%s;dbname=%s',  $this->params['host'],  $this->params['db']);
-        $this->opts = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-        $this->pdo  = new PDO($this->dsn,  $this->params['user'],  $this->params['pwd'], $this->opts);
-       
+        $conn = new Connection(include __DIR__ . DB_CONFIG_FILE);
+        $this->pdo = $conn->pdo;
     }
 }

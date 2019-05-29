@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>		
+		<meta charset="utf-8" />
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+        <meta name="apple-mobile-web-app-capable" content="yes">
+		
+        	
+		<link rel="Shortcut Icon" href="/favicon.ico">
+        <link rel="stylesheet" href="css/layui.css">
+	    <link rel="stylesheet" href="css/font-awesome.min.css" media="all" />  
+        <style type="text/css">
+        html{height:100%;}
+        body{min-height:100%;margin:0;padding:0;position:relative;}
+            .header {height: 59px;border-bottom: 1px solid #404553;background-color: #393D49;}
+            .logo {position: absolute;left: 0;top: 1px;}
+            .header .layui-nav {position: absolute;right: 0;top: 0;padding: 0;background: none;}
+            .logo img {width: 100%;height: 100%;}
+            .alone-banner {height: 120px;text-align: center;font-weight: 300;background-color: #009688;color: #fff;}
+            .alone-banner h1 {padding-top: 30px;line-height: 32px;font-size: 30px;font-weight: 300;}
+            .alone-banner p {padding-top: 20px;color: #e2e2e2;color: rgba(255,255,255,.8);}
+            .jcb-main {padding-bottom:10px; max-width: 1140px;margin: 0 auto;position: relative;}
+            .footer {background-color: #393D49;position:absolute;bottom:0;width:100%;height:auto;padding: 0px 0;line-height: 30px;text-align: center;color: #666;font-weight: 300;margin-top: 50px;}
+            .footer a {padding: 0 5px;}
+            .site-union {margin-top: 10px;color: #999;} 
+			.img-xys {display: inline-block; height: auto; max-width: 100%;}
+        </style>
+	</head> 
+    <body>
+        <div class="container">
+            <!--header begin-->            
+             <div class="header">
+                <div class="jcb-main">
+                    <a class="logo" href="/">
+                    <img src="picture/logo.png" alt="GK网API" style="position:relative; top:5px">
+                    </a>
+                    <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        <a href="/"><i class="layui-icon">&#xe68e;</i> 首 页</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/lottery.html">开奖历史</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/purchase.html">接口购买</a>
+                    </li>   
+                    <li class="layui-nav-item">
+                        <a href="/index/lottery_type.html">免费试用</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="/index/show.html">接口说明</a>
+                    </li>   
+                    
+                        
+                        <li class="layui-nav-item">
+                            <a href="/index/login.html" ><i class="layui-icon">&#xe612;</i>登陆/注册</a>
+                        </li>
+                         					
+                    </ul>
+                </div>
+            </div>
+            <!--header end-->  
+            <!--banner begin-->  
+            <div class="alone-banner layui-bg-black">
+                <div class="jcb-main">
+                    <h1>全国彩票开奖数据API接口中心</h1>
+                    <p>GK网API开放平台是GK网面向网络媒体、彩票行业客户、第三方彩票销售或分析机构等用户提供专业权威的开奖数据</p>
+                </div>
+            </div>
+            <!--banner end-->  
+            <title>GK网开奖API系统使用说明,GK网彩票接口使用教程,时时彩采集接口调用文档,彩票api购买与试用说明,彩票开奖采集器演示下载,免费彩票数据接口说明</title>
+		<meta name="keywords" content="GK网,彩票接口调用,开奖API对接,时时彩API接口说明,GK彩票,腾讯统计,QQ在线人数统计,API开奖号码说明"></meta>
+		<meta name="description" content="GK网API开放平台(付费接口)提供稳定的彩票开奖信息，包括开奖期号、开奖号码、开奖时间（部份彩种还提供下期期号与倒计时）以及更多数据。GK网提供基于web的访问方式，格式支持xml与json两种格式，以后会陆续推出基于Socket、httpPush等的调用方式。"></meta>
+ <link href="css/style-pages.css" rel="stylesheet" type="text/css"/>
+   <div class="jcb-main">
+ <div class="cont-box-detail"> 
+ <div class="box"> 
+ <H1>一、 接口概述</H1>
+ <p>GK网API开放平台(<span style="color:#333;font-weight:bold">BLotteryAPI</span>)是GK网面向网络媒体、彩票行业客户、第三方彩票销售或分析机构等用户，通过web方式提供开奖数据服务的官方平台。是国内专业面向各彩票相关网站、开发人员和彩票分析的彩票开奖API开发接口。</p> <p>GK网的开奖数据来源默认为各地福彩或体彩中心提供，如果福彩或体彩中心不再经营某彩票的销售，我们会在不通知用户的情况下停止供应该彩票数据接口。</p> 
+ <h1>二、 接口限制</h1>
+ <p>GK网API开放平台(付费接口)的开奖结果<high>需要</high>进行注册或申请以后方可调用。</p>
+ <p>GK网API开放平台(付费接口)的开奖结果默认是实时提供<high>零延迟</high>，相对官方延迟-1至5秒，但由于网络或其它技术原因，偶尔有可能对开奖时间产生数秒延迟。</p>
+ <p>GK网API开放平台(付费接口)的每个注册账户下默认每种彩票每天不超过<red>3个IP地址同时访问。</p> 
+ <p>接口“按照最新查询”供频繁请求使用，请求限制为每个IP地址请求每个接口的间隔必须大于3秒，推荐间隔5-10秒。</p> 
+ <p>接口“按照日期查询”仅供补漏时使用，请求限制为每个IP地址请求每个接口的间隔必须大于20秒，推荐间隔30-40秒。</p> 
+ <p><high><b>注：如需要更多的服务器IP能同时并发访问，请将接口购买到不同token下,每个token支持3个IP地址同时访问。</b></high></p>
+ <h1>三、购买与试用</h1> 
+ <p>自助试用功能已经完成，有需要的用户请访问“<a href="/index/lottery_type.html" target="_blank">免费试用通道</a>”自助开通试用账号,获取试用API接口。</p> 
+ <p>自助购买功能已经完成，有需要的用户请访问“<a href="/index/lottery.html" target="_blank">开奖API接口租用页面</a>”查看购买事项。</p>
+ <h1>四、接口说明</h1> <p>GK网API开放平台(付费接口)提供稳定的彩票开奖信息，包括开奖期号、开奖号码、开奖时间（部份彩种还提供下期期号与倒计时）以及更多数据。</p>
+ <p>GK网API开放平台只提供基于web的访问方式，格式支持xml与json两种格式，以后会陆续推出基于Socket、httpPush等的调用方式。</p>
+ <p>GK网API开放平台彩票json接口支持以callback作为回调参数的jsonp调用方式。</p> 
+ <table> <tr><td>付费接口网址</td><td colspan="3">
+ <b>http://api.b1api.com/api?p=<high>[返回格式]</high>&t=<high>[彩票代码]</high>&limit=<high>[返回行数]</high>&token=<high>[接口密钥]</high></b></td></tr>
+ <tr>
+ <td>参数名称</td>
+ <td>是否必填</td>
+ <td>参数说明</td>
+ <td>参数演示</td></tr> <tr><td>
+ <b>[返回格式]</b></td><td>必填</td><td>返回的数据格式，xml或json</td><td>xml,json</td></tr> <tr><td>
+ <b>[彩票代码]</b></td><td>必填</td><td>详见彩票列表</td><td>重庆时时彩：cqssc<br/>双色球：ssq</td></tr>
+ <tr><td><b>[返回行数]</b></td><td>选填</td><td>不填时默认返回1行数据，如果需要返回不同的行数时填写，范围从1行到20行，</td><td>填写1-20均可,最多只返回20条</td></tr> <tr><td>
+ <b>[接口密钥]</b></td><td>必填</td><td>你购买的账户接口密钥，注：接口密钥不区分大小写，<br/></td><td>97ea1teb952bv903</td></tr>
+ <tr><td>付费接口例程</td>
+ <td colspan="2"><b>http://api.b1api.com/api?p=<high>xml</high>&t=<high>cqssc</high>&limit=<high>1</high>&token=<high>123</high></b>(重庆时时彩xml格式1行utf-8编码)<br/>
+ <b>http://api.b1api.com/api?p=<high>json</high>&t=<high>cqssc</high>&limit=<high>3</high>&token=<high>123</high></b>(重庆时时彩json格式3行utf-8编码)<br/>
+ <b>http://api.b1api.com/api?p=<high>json</high>&t=<high>cqssc</high>&limit=<high>5</high>&token=<high>123</high></b>(重庆时时彩json格式5行utf-8编码)<br/>
+  <b>http://api.b1api.com/api?p=<high>xml</high>&t=<high>cqssc</high>&token=<high>123</high>&date=<high>20160516</high></b>(重庆时时彩xml格式返回20160516当天所有数据)<br/></td>
+ <td>注：所有参数不区别大小写</td></tr></table> 
+ 
+ <div style="margin:0px 0px 10px 20px"><div style="display:none"></div> 
+</div> 
+ <h1>五、演示下载</h1>
+ <ul class="download"> 
+ <a href="/resource/yanshi/php-xml.zip" target="_blank"><li class="rar"><span>PHP采集Xml演示</span></li></a>
+ <a href="/resource/yanshi/php-json.zip" target="_blank"><li class="rar"><span>PHP采集Json演示</span></li></a> 
+ <a href="/resource/yanshi/asp-xml.zip" target="_blank"><li class="rar"><span>Asp采集Xml演示</span></li></a> 
+ <a href="/resource/yanshi/jquery-xml.zip" target="_blank"><li class="rar"><span>JQuery采集Xml演示</span></li></a> 
+ <a href="/resource/yanshi/jquery-json.zip" target="_blank"><li class="rar"><span>JQuery采集Json演示</span></li></a> 
+ <a href="/resource/yanshi/csharp-xml.zip" target="_blank"><li class="rar"><span>CSharp采集xml演示</span></li></a>
+ <a href="/resource/yanshi/csharp-json.zip" target="_blank"><li class="rar"><span>CSharp采集json演示</span></li></a>
+ <a href="/" target="_blank"><li class="rar"><span>(暂无) 手机端采集xml演示</span></li></a>
+ <a href="/" target="_blank"><li class="rar"><span>(暂无) 手机端采集Json演示</span></li></a>
+ 
+ <h1>六、免责声明</h1> <p>在使用GK网API开放平台之前，请您务必仔细阅读并透彻理解本声明。您可以选择不使用GK网API开放平台，但如果您使用GK网API开放平台，您的使用行为将被视为对本声明全部内容的认可。<p/> <p>除GK网API开放平台注明之服务条款外，其他一切因使用GK网API开放平台而可能遭致的意外、疏忽、侵权及其造成的损失（包括因下载被搜索链接到的第三方网站内容而感染电脑病毒），GK网对其概不负责，亦不承担任何法律责任。<p/> 
+ <p>任何通过使用GK网API开放平台而链接到的第三方网页均系他人制作或提供，您可能从该第三方网页上获得资讯及享用服务，GK网对其合法性概不负责，亦不承担任何法律责任。</p> 
+ <p>任何单位或个人认为通过GK网API开放平台链接到的第三方网页内容可能涉嫌侵犯其信息网络传播权，应该及时向GK网提出书面权利通知，并提供身份证明、权属证明及详细侵权情况证明。GK网在收到上述法律文件后，将会依法尽快断开相关链接内容。详情参见特定频道的著作权保护声明。<p/> 
+ <p>用户明确同意其使用本网站网络服务所存在的风险将完全由其自己承担；因其使用本网站网络服务而产生的一切后果也由其自己承担，GK网对用户不承担任何责任。</p>
+ <p>下列情况时本网站亦毋需承担任何责任：</p>
+ <p>1、由于您将账户或密码告知他人或与他人共享注册账户，由此导致的任何个人资料泄露及损失。</p>
+ <p>2、任何由于黑客攻击、计算机病毒侵入或发作、因政府管理而造成的暂时性关闭等影响网络正常经营之不可抗力而造成的个人资料泄露、丢失、被盗用或被窜改等。</p>
+ <p>3、由于与本网站链接的其它网站所造成之个人资料泄露及由此而导致的任何法律争议和后果。</p> 
+ <p>4、本站各频道内容除标明“GK网出品”外，其余内容皆由签约内容服务提供商（机构）、网友提供，本公司不承担由于内容的合法性及健康性所引起的一切争议和法律责任。如有疑异,请与本公司客服中心联系，我们将尽快处理。</p> 
+ <p>5、本网站网页上有与其他网站网页的链接，包括旗帜广告和网页上的其他广告。本网对其他任何网站的内容、隐私政策或运营，或经营这些网站的公司的行为概不负责。在向这些与本网链接的网站提供个人信息之前，请查阅它们的隐私政策。</p> 
+ <p>6、本站所有API开奖接口均为福彩官网及机构所提供,开奖结果如出现错误或漏开,黑客入侵等不可抗因素,本站不承担任何经济损失及法律责任,如您不认可本条款,请立即停用GK网开奖接口,以免造成不必要的纠纷！</p> 
+ <p>7、本站所有帖子、评论仅代表作者个人观点，不代表本站,欢迎大家对侵犯版权等不合法和不健康的内容进行监督和举报。</p>
+ </div></div></div>
+</body>
+</html>
+
+            <!--footer begin--><br><br><br><br>
+            <div class="layui-footer footer footer-index">
+                <div class="jcb-main">
+                    <p>
+                    <a href="/index/about.html"><font color="#C0C0C0">关于我们</a>
+                    <a href="/index/problem.html"><font color="#C0C0C0">常见问题</a>
+                    <a href="/index/show.html"><font color="#C0C0C0">接口概述</a>
+                    <a href="/index/lottery_type.html"><font color="#C0C0C0">免费试用</a>
+                    <a href="/index/contact.html" ><font color="#C0C0C0">联系我们</a>
+					
+                    </p>
+                    <p><font color="#C0C0C0">CopyRight © 2010-2019 GK网 <a href="http://www.miibeian.gov.cn" target="_blank"><font color="#C0C0C0">蜀ICP备17033890号</a>服务范围：本站仅提供彩票数据查询相关服务，无投注购彩业务。</p>
+                    <p class="site-union">
+                    
+                   
+                    </p>
+                </div>
+            </div>
+            <!--footer end-->            
+        </div>
+    </body> 
+    <script src="js/layui.js" charset="utf-8"></script> 
+	<script src="js/jquery.min.js" charset="utf-8"></script>
+	<script src="js/jquery.extend.js" charset="utf-8"></script>	 
+    <script type="text/javascript">
+        var table,form,laydate; 
+        layui.use(['form', 'table', 'laydate'], function(){
+            table = layui.table;form = layui.form;laydate = layui.laydate;  
+        });
+    </script>
+    
+<script>
+    layui.use(['form','upload', 'layedit','table', 'laydate','element'], function(){
+        var form = layui.form,layer = layui.layer,layedit = layui.layedit
+         ,laydate = layui.laydate,upload = layui.upload,element = layui.element,table = layui.table;
+
+    });
+</script>
+
+<script src="js/default.js"></script>
+</html>
