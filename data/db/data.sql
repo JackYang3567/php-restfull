@@ -296,7 +296,14 @@ CREATE VIEW `view_auth_token_api` AS
  -- where a.pened = 1 && unix_timestamp(NOW()) < unix_timestamp(`r.expire_at`) 
 
 
-
+-- select * from code where to_days(time) = to_days(now())  &&  type like '%28%'
+-- select * from code where to_days(time) = to_days(now())  &&  type in ('bj28','jnd28')
+-- select * from lottery
+-- select * from lottery_type
+ select l.name ,c.expect, c.code , c.time
+ from lottery l left join code c  on l.code = c.type  
+ left join lottery_type t on t.Id= l.type_id
+ where l.type_id = 7 && to_days(time) = to_days(now())
 
 
 
