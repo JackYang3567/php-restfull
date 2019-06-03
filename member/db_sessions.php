@@ -2,6 +2,7 @@
 /**
  * Fake Database. All records are stored in $_SESSION
  */
+namespace member;
 use Application\Database\Connection;
 
 class DB_Sessions

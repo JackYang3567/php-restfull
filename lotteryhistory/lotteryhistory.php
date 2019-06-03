@@ -22,8 +22,8 @@ class Lotteryhistory {
         $this->redis->connect('127.0.0.1', 6379);
 	}
 
-	function get($type=NULL, $time, $page=1,$split=10) {
-		return $time ? $this->dp->getAll($type, $page,$split) : $this->dp->get($type);
+	function get($type=NULL,$range, $time, $page=1,$split=10) {
+		return $range ? $this->dp->getAll($type,$range, $time, $page,$split) : $this->dp->get($type);
 	}
 
 	//CodeByTypeLatestOne

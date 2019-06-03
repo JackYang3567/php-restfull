@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 12:31:51
+/* Smarty version 3.1.33, created on 2019-05-31 06:19:43
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\payamount\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce62237e24e33_88753546',
+  'unifunc' => 'content_5cf0c77f1f7ee9_52894404',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fcecd3ad83845a87f190e4526fd70ab0e9c89ceb' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\payamount\\list.tpl',
-      1 => 1558585907,
+      1 => 1559283569,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce62237e24e33_88753546 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf0c77f1f7ee9_52894404 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf", "setup", 0);
 ?>
 
@@ -42,7 +42,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加预设金额','/backend/index.php/Admin/NewPayamount',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加预设金额','/backend/index.php/Admin/NewPayamount',600,550)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
       <table class="layui-table x-admin">
@@ -52,10 +52,16 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>预设金额</th>
+            <th>彩票分类名</th>
+            <th>月付金额</th>
+            <th>季付金额</th>
+            <th>年付金额</th>
+            <th>3年付金额</th>
+            <th>5年付金额</th>
+            <th>折扣</th>
             <th>排序号</th>
-
-            <th>操作</th></tr>
+            <th>操作</th>
+          </tr>
         </thead>
         <tbody id="tbody">
           </tbody>
@@ -150,8 +156,7 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
       
        function generatorTableTr(data){
        let trStr = ``
-       let gender =''
-       let status = ''
+     
        let len = data.length
       
        for(let k=0;k<len;k++){
@@ -161,14 +166,17 @@ $_smarty_tpl->smarty->ext->configLoad->_loadConfigFile($_smarty_tpl, "test.conf"
               
             </td>
             <td>`+data[k].Id +`</td>
-            <td>`+data[k].amount_val  +`</td>
-            
+            <td>`+data[k].name  +`</td>
+            <td>`+data[k].month_amount  +`</td>
+            <td>`+data[k].season_amount  +`</td>
+            <td>`+data[k].year_amount  +`</td>
+            <td>`+data[k].three_yaear_amount  +`</td>
+            <td>`+data[k].five_yaar_amount  +`</td>
+            <td>`+data[k].discount  +`</td>
             <td>`+data[k].sortId  +`</td>
             <td class="td-manage">
-           `  
-           
-                   
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,400)" href="javascript:;">
+           `   
+           trStr += ` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,550)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              

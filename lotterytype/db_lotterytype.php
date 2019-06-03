@@ -61,7 +61,6 @@ class DB_Lotterytype
             $sql .=" ORDER BY Id DESC";
         }
        
-
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);

@@ -19,9 +19,15 @@
         <form method="get" id="editForm" action="/lotteryhistory/index.php/Lotteryhistory" >
         
         <input type="text"  name="type" placeholder="彩票种类名称编码"  />
+          <hr class="hr15">
+             <input type="radio" name="range" value="0" />当前最新一条 &nbsp;&nbsp;
+             <input type="radio" name="rang" value="1"  />今天/昨天/前天
+             <input type="radio" name="rang" value="2"  />指定时间当天
+       
          <hr class="hr15">
-             <input type="radio" name="time" value="0" />当前最新一条 &nbsp;&nbsp;
-             <input type="radio" name="time" value="1"  />全部
+         <hr class="hr15">
+             <input type="text" name="time" />当前最新一条 &nbsp;&nbsp;
+       
          <hr class="hr15">
              <input type="text" name="page" placeholder="当前页"/>
         <hr class="hr15">

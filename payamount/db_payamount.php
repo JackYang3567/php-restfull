@@ -46,15 +46,15 @@ class DB_Payamount
 
     function getAll ($page,$split)
     {
-        $Count_sql  = "SELECT * FROM `payamount`";
+        $Count_sql  = "SELECT t.type_name as name ,p.*  FROM payamount p left join lottery_type t on p.type_id = t.id";
         $Count_sql .=" ORDER BY Id ";
         $count_stmt = $this->pdo->query($Count_sql);
         $count =  $count_stmt->rowCount();
 
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
-        $sql  = "SELECT * FROM `payamount`";
-        $sql .=" ORDER BY Id DESC";
+        $sql  = "SELECT t.type_name as name ,p.*  FROM payamount p left join lottery_type t on p.type_id = t.id";
+        $sql .=" ORDER BY Id ";
         $sql .=" limit $offset,$limit ";
         
          $stmt = $this->pdo->query($sql);
@@ -69,11 +69,16 @@ class DB_Payamount
             }
          }
     }
-
+   
     function insert ($rec)
     {
-       $sql  = "INSERT INTO  `payamount` (`amount_val`,`sortId`) ";
-       $sql .=" VALUES ('{$rec['amount_val']}','{$rec['sortId']}')";
+       $sql  = "INSERT INTO  `payamount` (`type_id`,`month_amount`,";
+       $sql .="  `season_amount`,   `year_amount`,`three_yaear_amount`,";
+       $sql .="  `five_yaar_amount`, `discount`,`sortId`) ";
+       $sql .=" VALUES ('{$rec['type_id']}','{$rec['month_amount']}','{$rec['season_amount']}'";
+       $sql .=" ,'{$rec['year_amount']}','{$rec['three_yaear_amount']}','{$rec['five_yaar_amount']}'";
+       $sql .=" ,'{$rec['discount']}','{$rec['sortId']}')";
+
        $this->pdo->query($sql);     
 
        if($this->pdo->lastInsertId())
@@ -90,7 +95,9 @@ class DB_Payamount
     {
        $_id = (int)$id;
 
-       $sql  = "update `payamount` set `amount_val`='{$rec['amount_val']}' ,`sortId`='{$rec['sortId']}'";
+       $sql  = "update `payamount` set `type_id`='{$rec['type_id']}' ,`month_amount`='{$rec['month_amount']}',`season_amount`='{$rec['season_amount']}' ,";
+       $sql .=" `year_amount`='{$rec['year_amount']}',`three_yaear_amount`='{$rec['three_yaear_amount']}',`five_yaar_amount`='{$rec['five_yaar_amount']}',";
+       $sql .=" `discount`='{$rec['discount']}', `sortId`='{$rec['sortId']}'";
        $sql .=" where Id={$_id}";
      
        $stmt=$this->pdo->query($sql);

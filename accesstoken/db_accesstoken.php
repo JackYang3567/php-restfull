@@ -87,9 +87,23 @@ class DB_AccessToken
 
     function insert ($rec)
     {
+      
+
+       $sql_session  = "SELECT * FROM `sessions` where uuid='{$rec['uuid']}'";
+       $sql_session .="  ORDER BY id DESC";
+    
+        $stmt = $this->pdo->query( $sql_session);
+        
+        if(is_object($stmt)){
+           $row = $stmt->fetchAll(PDO::FETCH_CLASS);
+           $rec['member_id'] = $row[0]->member_id;
+        }
+
        $countsql = "select count(*) as counter from access_token where `member_id`='{$rec['member_id']}' &&`opened` = 0";
        $_count = $this->pdo->query($countsql);  
        $count = $_count->fetchAll(PDO::FETCH_CLASS); 
+
+       
       /*
        echo "<pre>";
        var_dump($count[0]->counter);

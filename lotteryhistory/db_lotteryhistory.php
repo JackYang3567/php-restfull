@@ -39,9 +39,16 @@ class DB_Lotteryhistory
          }
     }
     
-    function getAll ($type,$page,$split)
+    function getAll ($type, $range, $time, $page, $split)
     {
+       
         $Count_sql  = "SELECT * FROM `code` WHERE `type`='".$type."'";
+        if((int)$range === 1){
+            $Count_sql .=" and DATE_SUB(CURDATE(), INTERVAL 2 DAY) <= date( time) ";
+        }
+        if((int)$range === 2){
+            $Count_sql .="  and to_days(time) = to_days('".$time."') ";
+        }
         $Count_sql .=" ORDER BY time desc ";
         $count_stmt = $this->pdo->query($Count_sql);
         $count =  $count_stmt->rowCount();
@@ -49,9 +56,16 @@ class DB_Lotteryhistory
         $offset = (int)( ($page - 1)* $split);  
         $limit = (int)$split;  
         $sql  = "SELECT * FROM `code` WHERE `type`='".$type."'";
+        if((int)$range === 1){
+            $sql .=" and DATE_SUB(CURDATE(), INTERVAL 2 DAY) <= date( time) ";
+        }
+        if((int)$range === 2){
+            $sql .="  and to_days(time) = to_days('".$time."') ";
+        }
         $sql .=" ORDER BY time desc";
         $sql .=" limit $offset,$limit ";
         
+      
          $stmt = $this->pdo->query($sql);
          if(is_object($stmt)){
             $row = $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -77,7 +91,7 @@ class DB_Lotteryhistory
         // select * from code where  type='bj28' order by time desc limit 1
       //  $stmt = $this->pdo->query('SELECT * FROM `lottery` WHERE `type_id` = ' . (int) $type_ids);
       //  $results = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($results);
+     var_dump($results);
         /*
         if ($results) {
             $results['history'] = 

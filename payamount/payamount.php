@@ -10,7 +10,10 @@ class Payamount {
 	
 	public $redis;
 	public $dp;
-	static $FIELDS = array('amount_val','sortId');
+	static $FIELDS = array('type_id','month_amount','season_amount',
+						   'year_amount','three_yaear_amount',
+						   'five_yaar_amount','discount','sortId'
+						);
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();

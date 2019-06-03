@@ -2,16 +2,17 @@
 
 require '../vendor/autoload.php';
 
+
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 const VERIFICATION_CODE_IS_INCORRECT = " 验证码不正确,请刷新页面后重试";
 
 class AccessToken {
-	
+	public $sessionDB;
 	public $redis;
 	public $dp;
 	public $dp_Recharge;
-	static $FIELDS = array('type_id','name', 'code','remarks');
+	static $FIELDS = array('member_id','token', 'opened','is_auth','status');
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
@@ -19,6 +20,7 @@ class AccessToken {
 		* $this->dp = new DB_Serialized_File();
 		*/
 		session_start();
+		
 		$this->dp = new DB_AccessToken();
 		$this->redis = new Redis();
         $this->redis->connect('127.0.0.1', 6379);
@@ -33,10 +35,9 @@ class AccessToken {
 	
 
 	function postAdd($request_data=NULL) {
-		
+	
 		$uuid = Uuid::uuid4();
 		$_uuid = strtoupper(str_replace('-','',$uuid->toString()));
-		$request_data['member_id'] = $_SESSION['member_id'];
 		$request_data['token'] = $_uuid;
 		
 		return $this->dp->insert($request_data);

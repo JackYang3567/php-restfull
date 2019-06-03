@@ -16,7 +16,7 @@
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>彩票种类id
                 </div>
-            </div>
+      </div>
        <input type="hidden" name="type_id" id="type_id_val"  />
        <div class="layui-form-item">
            <label for="name" class="layui-form-label">

@@ -13,7 +13,7 @@ CREATE TABLE `code` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `expect` (`expect`,`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=7083 DEFAULT CHARSET=utf8 COMMENT='彩票数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='彩票数据表';
 
 -- ======== 系统基本数据表 ======
 -- 管理员admin
@@ -124,15 +124,16 @@ INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALU
 DROP TABLE IF EXISTS `payamount`;
 CREATE TABLE `payamount` (
   `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键payamount id',
-  `amount_val` int(11)  NULL DEFAULT '0' COMMENT '金额预设值',
+  `type_id` int(11)  NULL  COMMENT 'lottery_type_Id',
+  `month_amount`  decimal(8,2)  NULL DEFAULT '0' COMMENT '月付金额预设值',
+  `season_amount`  decimal(8,2)  NULL DEFAULT '0' COMMENT '季付金额预设值',
+  `year_amount`  decimal(8,2)  NULL DEFAULT '0' COMMENT '年付金额预设值',
+  `three_yaear_amount`  decimal(8,2)  NULL DEFAULT '0' COMMENT '3年付金额预设值',
+  `five_yaar_amount`  decimal(8,2)  NULL DEFAULT '0' COMMENT '5年付金额预设值',
+  `discount`  decimal(8,2) NULL COMMENT '如果给定discount,从季开始之后在discount之上递减1 ', 
   `sortId` int(11) NOT NULL COMMENT '排序', 
   PRIMARY KEY (`Id`) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名payamount';
-INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (50,1);
-INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (100,2);
-INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (150,3);
-INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (200,4);
-INSERT INTO  `payamount` (`amount_val`,`sortId`) VALUES (500,5);
 
 --  ================
 -- IP白名单white_list
@@ -174,10 +175,11 @@ CREATE TABLE `access_token` (
   `token`  varchar(50) NOT NULL DEFAULT '' COMMENT 'token字符串', 
   `opened` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未开通API禁用 1:开通API可用',
   `is_auth` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:未授权接口 1:授权接口',
+  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:等待使用 1:正在使用', 
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'token生成时间',
   PRIMARY KEY (`Id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='试用token';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='试用access_token';
 
 
 -- 登录日志sessions

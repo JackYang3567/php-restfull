@@ -14,7 +14,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加预设金额','/backend/index.php/Admin/NewPayamount',600,400)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加预设金额','/backend/index.php/Admin/NewPayamount',600,550)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<span id="totalCount"></span> 条</span>
       </xblock>
       <table class="layui-table x-admin">
@@ -24,10 +24,16 @@
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>预设金额</th>
+            <th>彩票分类名</th>
+            <th>月付金额</th>
+            <th>季付金额</th>
+            <th>年付金额</th>
+            <th>3年付金额</th>
+            <th>5年付金额</th>
+            <th>折扣</th>
             <th>排序号</th>
-
-            <th>操作</th></tr>
+            <th>操作</th>
+          </tr>
         </thead>
         <tbody id="tbody">
           </tbody>
@@ -121,8 +127,7 @@
       
        function generatorTableTr(data){
        let trStr = ``
-       let gender =''
-       let status = ''
+     
        let len = data.length
       
        for(let k=0;k<len;k++){
@@ -132,14 +137,17 @@
               
             </td>
             <td>`+data[k].Id +`</td>
-            <td>`+data[k].amount_val  +`</td>
-            
+            <td>`+data[k].name  +`</td>
+            <td>`+data[k].month_amount  +`</td>
+            <td>`+data[k].season_amount  +`</td>
+            <td>`+data[k].year_amount  +`</td>
+            <td>`+data[k].three_yaear_amount  +`</td>
+            <td>`+data[k].five_yaar_amount  +`</td>
+            <td>`+data[k].discount  +`</td>
             <td>`+data[k].sortId  +`</td>
             <td class="td-manage">
-           `  
-           
-                   
-           trStr += status+` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,400)" href="javascript:;">
+           `   
+           trStr += ` <a title="编辑"  onclick="x_admin_show('编辑充值金额预设','/backend/index.php/Admin/EditPayamount?id=`+data[k].Id +`',600,550)" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
              

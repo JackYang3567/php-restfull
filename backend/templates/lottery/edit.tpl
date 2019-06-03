@@ -80,7 +80,7 @@
                 if(check()){
                     let reloadUrl ='/lottery/index.php/Lottery/Update';
                     let data = $("#edit_form").serialize();
-                   // alert(data);
+                    alert(data);
                      $.ajax({
                         url:reloadUrl,
                         type:"post",

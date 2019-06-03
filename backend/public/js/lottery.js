@@ -11,15 +11,7 @@ function changeSelect(obj){
         $("#type_id_val").val($(obj).attr('lay-value'));
 }
 
- $(function  () {
-        layui.use('form', function(){
-          var form = layui.form,
-              layer = layui.layer;
-          form.on('submit(add)', function(data){
-               submitAdd();
-          });
-        });
-    })
+ 
 
     function getLotteryTypeIds(){
      let Url = '/lotterytype/index.php/LotteryType';
