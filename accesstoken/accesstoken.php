@@ -12,7 +12,8 @@ class AccessToken {
 	public $redis;
 	public $dp;
 	public $dp_Recharge;
-	static $FIELDS = array('member_id','token', 'opened','is_auth','status');
+	static $FIELDS = array('member_id','token', 'opened','is_auth','status','notes');
+	static $FIELDS_EDIT = array('id','notes');
 	function __construct(){
 	    /**
 		* $this->dp = new DB_PDO_Sqlite();
@@ -26,9 +27,9 @@ class AccessToken {
         $this->redis->connect('127.0.0.1', 6379);
 	}
 
-	function get($id=NULL) {
+	function get($id=NULL,$muuid=NULL) {
 		//echo "uuid=====".$this->dp->getUuid()."\n";
-		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+		return is_null($id) ? (is_null($muuid)?$this->dp->getAll() :$this->dp->getByUuid($muuid) ): $this->dp->get($id);
 	}
 
 	
@@ -90,10 +91,14 @@ class AccessToken {
 	}
 	//function put($id=NULL, $request_data=NULL) {
 	function postUpdate($id=NULL, $request_data=NULL) {
-	
+		$uuid = Uuid::uuid4();
+		$_uuid = strtoupper(str_replace('-','',$uuid->toString()));
+		$request_data['token'] = $_uuid;
 		//return $request_data;
-		
-		return $this->dp->update($id, $this->_validate($request_data));
+		return	isset($request_data['notes']) ? 
+				$this->dp->update($id, $this->_edit_validate($request_data)) 
+				:$this->dp->update($id,$request_data) ;
+		// $this->dp->update($id, $this->_edit_validate($request_data));
 	}
 	function postDel($id=NULL) {
 	
@@ -102,8 +107,16 @@ class AccessToken {
 	
 	private function _validate($data){
 		$accesstoken=array();
-		foreach (Lottery::$FIELDS as $field) {
-//you may also vaildate the data here
+		foreach (AccessToken::$FIELDS as $field) {
+			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
+			$accesstoken[$field]=$data[$field];
+		}
+		return $accesstoken;
+	}
+
+	private function _edit_validate($data){
+		$accesstoken=array();
+		foreach (AccessToken::$FIELDS_EDIT as $field) {
 			if(!isset($data[$field]))throw new RestException(417,"$field field missing");
 			$accesstoken[$field]=$data[$field];
 		}

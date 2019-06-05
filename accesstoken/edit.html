@@ -35,52 +35,18 @@
         <div class="message"></div>
         <div id="darkbannerwrap">授权接口 接口面板  </div>
         
-        <form method="post" action="/accesstoken/index.php/AccessToken/Purchase" >
-         
+          <form method="post" action="/accesstoken/index.php/AccessToken/Update" >
+           
+            修改TOKEN备注
+            <hr />
+            <input type="text" name="id" placeholder="id"/>
+            <hr />
+            <input type="text" name="notes" placeholder="notes"/>
+           
+            
+            <input value="创建TOKEN账号" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
         </form>
-        
-        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
-          <tbody>
-            <tr data-index="0" class="layui-table-click">
-                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-0">腾讯分分彩</div>
-                    </td>
-                    <td data-field="e_name" data-key="1-0-1" align="center" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-1">txffc</div>
-                    </td>
-                    <td data-field="validtime" data-key="1-0-2" align="left" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-2">2020-03-27 16:34:17</div>
-                    </td>
-                      <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
-                    <div class="layui-table-cell laytable-cell-1-0-3"> 
-                        <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">续费</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="show">IP白名单</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="clear">清除IP</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="view">获取API</a> 
-                    </div>
-                </td>
-            </tr>
-            <tr data-index="1" class="">
-                <td data-field="lotteryname" data-key="1-0-0" align="center" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-0">湖南快乐10分</div>
-                </td>
-                <td data-field="e_name" data-key="1-0-1" align="center" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-1">hnklsf</div>
-                </td>
-                <td data-field="validtime" data-key="1-0-2" align="left" class="">
-                    <div class="layui-table-cell laytable-cell-1-0-2">2019-07-23 14:00:54</div>
-                </td>
-                <td data-field="3" data-key="1-0-3" align="center" data-off="true" class="layui-table-col-special">
-                    <div class="layui-table-cell laytable-cell-1-0-3"> 
-                        <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">续费</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="show">IP白名单</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="clear">清除IP</a> 
-                        <a class="layui-btn layui-btn-sm" lay-event="view">获取API</a> 
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-            </table>
     </div>
 </div>
 </body>

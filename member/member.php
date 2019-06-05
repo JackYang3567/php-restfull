@@ -73,9 +73,9 @@ class Member {
 		}
 
 		
-
 	function postSignin($request_data=NULL) {
 		 $_uuid='';
+		 $_memberId=0;
 		 $signinKey = "SIGNIN-CAPTCHA:".strtoupper($request_data['captcha']);
 		 if( $this->redis->exists($signinKey) ){
 		
@@ -84,6 +84,7 @@ class Member {
 				$uuid = Uuid::uuid4();
 				$_uuid = strtoupper(str_replace('-','',$uuid->toString()));
 				$logined['data']->uuid = $_uuid;
+				$_memberId = $logined['data']->Id;
 				$this->sessionDB->insert($logined['data']);
 			//	return $logined ;
 			}
@@ -93,6 +94,7 @@ class Member {
 			$session = $this->sessionDB->getSessByUuid($_uuid);
 		
 			$logined['data']->signinTime = $session->created_at;
+			$logined['data']->singinId = 	$_memberId;
 			return 	$logined ;
 		 }
 		 else{
