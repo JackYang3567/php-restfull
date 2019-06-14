@@ -122,7 +122,7 @@
                       </li>
                   </ul>-->
               </li>
-              <li>
+             <!-- <li>
                 <a _href="recharge/index.php/Recharge/RechargeList?page=1&split=10">
                       <i class="iconfont">&#xe6b4;</i>
                       <cite>充值管理</cite>
@@ -130,7 +130,15 @@
                   </a>
                   
               </li>
-             
+            -->
+            <li>
+                <a _href="/backend/index.php/Admin/PaymentList?page=1&split=10?page=1&split=10">
+                      <i class="iconfont">&#xe6b4;</i>
+                      <cite>充值管理</cite>
+                      <i class="iconfont nav_right">&#xe697;</i>
+                  </a>
+                  
+              </li>
           </ul>
         </div>
       </div>

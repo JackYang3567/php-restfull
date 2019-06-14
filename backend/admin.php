@@ -151,6 +151,25 @@ class Admin {
         $this->auth->render('payamount/edit.tpl', $data);
     }
 
+    function getPaymentList() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('payment/list.tpl', $data);
+    }
+    function getNewPayment() {
+        $this->_isAuth();  
+        $data = array();  
+        $this->auth->render('payment/new.tpl', $data);
+    }
+
+    function getEditPayment($request_data) {
+        $this->_isAuth();  
+        $data = $request_data;  
+        $this->auth->render('payment/edit.tpl', $data);
+    }
+
+    
+
     function getRechargeList() {
         $this->_isAuth();  
         $data = array();  

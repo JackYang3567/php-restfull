@@ -24,14 +24,17 @@ class Payment {
         $this->redis->connect('127.0.0.1', 6379);
 	}
 
-	function get($id=NULL) {
+	function get($id=NULL, $page=1,$split=10) {
 		//echo "uuid=====".$this->dp->getUuid()."\n";
-		return is_null($id) ? $this->dp->getAll() : $this->dp->get($id);
+		return is_null($id) ? $this->dp->getAll($page,$split) : $this->dp->get($id);
 	}
 
 	function postAdd($request_data=NULL) {
-		
-		return $this->dp->insert($this->_validate($request_data));
+		// $yCode = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
+        // $orderSn = $yCode[intval(date('Y')) - 2011] . strtoupper(dechex(date('m'))) . date('d') . substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('%02d', rand(0, 99));
+		// $str = date('YmdHis') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+		// var_dump($str);
+		 return $this->dp->insert($this->_validate($request_data));
 	}
 	
 	//function put($id=NULL, $request_data=NULL) {

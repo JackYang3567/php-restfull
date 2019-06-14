@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-22 09:32:09
+/* Smarty version 3.1.33, created on 2019-06-05 18:50:08
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\layouts\main_left.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce4a699966651_18767077',
+  'unifunc' => 'content_5cf79e604ca260_97863499',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c3323d9e54696340fc2ecb1429583317f90b76c6' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\layouts\\main_left.tpl',
-      1 => 1558488724,
+      1 => 1559731582,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ce4a699966651_18767077 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf79e604ca260_97863499 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="left-nav">
         <div id="side-nav">
           <ul id="nav">
@@ -145,7 +145,7 @@ function content_5ce4a699966651_18767077 (Smarty_Internal_Template $_smarty_tpl)
                       </li>
                   </ul>-->
               </li>
-              <li>
+             <!-- <li>
                 <a _href="recharge/index.php/Recharge/RechargeList?page=1&split=10">
                       <i class="iconfont">&#xe6b4;</i>
                       <cite>充值管理</cite>
@@ -153,7 +153,15 @@ function content_5ce4a699966651_18767077 (Smarty_Internal_Template $_smarty_tpl)
                   </a>
                   
               </li>
-             
+            -->
+            <li>
+                <a _href="/backend/index.php/Admin/PaymentList?page=1&split=10?page=1&split=10">
+                      <i class="iconfont">&#xe6b4;</i>
+                      <cite>充值管理</cite>
+                      <i class="iconfont nav_right">&#xe697;</i>
+                  </a>
+                  
+              </li>
           </ul>
         </div>
       </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-05-23 10:52:24
+/* Smarty version 3.1.33, created on 2019-06-06 11:10:10
   from 'D:\works\vmsworks\phpworks\rest-data\backend\templates\lottery\new.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ce60ae849c7f4_83101695',
+  'unifunc' => 'content_5cf88412bec4a0_45761556',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '90ca0f1810cd926ef8f18b5b01251df2c37b51a2' => 
     array (
       0 => 'D:\\works\\vmsworks\\phpworks\\rest-data\\backend\\templates\\lottery\\new.tpl',
-      1 => 1558579917,
+      1 => 1559281016,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../layouts/footer.tpl' => 1,
   ),
 ),false)) {
-function content_5ce60ae849c7f4_83101695 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf88412bec4a0_45761556 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('title'=>'GK数据API'), 0, false);
 ?>
 <form class="layui-form" id="add_form">
@@ -42,7 +42,7 @@ $_smarty_tpl->_subTemplateRender("file:../layouts/header.tpl", $_smarty_tpl->cac
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>彩票种类id
                 </div>
-            </div>
+      </div>
        <input type="hidden" name="type_id" id="type_id_val"  />
        <div class="layui-form-item">
            <label for="name" class="layui-form-label">

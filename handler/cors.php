@@ -1,7 +1,7 @@
 
 <?php
     //// 准许跨域请求。
-    date_default_timezone_set('PRC');
+    @date_default_timezone_set("PRC"); 
     header("Access-Control-Allow-Origin: * ");
     header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
     /**

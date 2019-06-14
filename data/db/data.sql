@@ -85,6 +85,42 @@ INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('marll
 INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('tncwong','tncwong@163.com','13908013968','234124124','MerDkA.pv1Bvk');
 INSERT INTO  `member` (`name`,`email`,`phone`,`qq_number`,`pass`) VALUES ('ritoyokado','ritoyokado@163.com','13908013668','234124124','MerDkA.pv1Bvk');
 
+-- 支付payment
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE `payment` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键payment id',
+  `member_id` int(11)  NULL  COMMENT '会员id', 
+  `order_id` varchar(50) NOT NULL DEFAULT '' COMMENT '订单号',
+  `method` bigint(1)  NULL  COMMENT 'paymethod id 支付方式1:支付宝,2:微信支付,3:微信支付官方,4:QQ钱包支付,5:QQ钱包支付官方',  
+  `amount` decimal(8,2)  NULL DEFAULT '0' COMMENT '支付金额', 
+  `payer` varchar(50) NOT NULL DEFAULT '0' COMMENT '付款人姓名',
+  `time`  timestamp NULL DEFAULT NULL COMMENT '付款时间',  
+  `pay_account_four`varchar(50)  NULL DEFAULT '0' COMMENT '付款账号后4位',  
+  `notes` VARCHAR(500)   NULL DEFAULT '' COMMENT '付款备注',
+  `examine`  int(11)  NULL DEFAULT 0 COMMENT '付款到账审核1:到账后手动添加余额',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付payment';
+
+-- 支付方式
+DROP TABLE IF EXISTS `paymethod`;
+CREATE TABLE `paymethod` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键paymethod id',
+  `name` varchar(50) NOT NULL DEFAULT '0' COMMENT '支付方式名，支付方式1:支付宝,2:微信支付,3:微信支付官方,4:QQ钱包支付,5:QQ钱包支付官方',
+  `code` varchar(50)   NULL  COMMENT '支付方式英文名', 
+  `icon_path` VARCHAR(500)   NULL DEFAULT '' COMMENT '支付方式图标路径',
+  `qrcode_path` VARCHAR(500)   NULL DEFAULT '' COMMENT '支付二维码图标路径',
+  `notes` VARCHAR(500) NOT  NULL DEFAULT '' COMMENT '支付方式备注', 
+  `status` bigint(1) NOT NULL DEFAULT '0' COMMENT '0:禁用 1:启用', 
+  `sortId` int(11) NOT NULL COMMENT '排序', 
+  PRIMARY KEY (`Id`) 
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付方式名paymethod';
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('支付宝','alipay','/index/images/method-ali.png','/index/images/Ali_QrCode.png','1');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信','Weixin','/index/images/method-wx.png','/index/images/Weixin_QrCode.png','2');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('微信官方','Weixin_gf','/index/images/method-wx.png','/index/images/Weixin_QrCode_gf.png','3');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包','QQwallet','/index/images/method-qq.png','/index/images/QQwallet_QrCode.png','4');
+INSERT INTO  `paymethod` (`name`,`code`,`icon_path`,`qrcode_path`,`sortId`) VALUES ('QQ钱包官方','QQwallet_gf','/index/images/method-qq.png','/index/images/QQwallet_gf_QrCode.png','5');
+
 -- 支付金额设置
 DROP TABLE IF EXISTS `payamount`;
 CREATE TABLE `payamount` (
@@ -254,6 +290,12 @@ CREATE TABLE `article_content` (
 
 -- ========================================
 -- 视图
+DROP VIEW IF EXISTS `view_payment_method` ;
+ CREATE VIEW `view_payment_method` AS 
+ select p.*, t.name
+ from payment p  left join paymethod t on t.Id= p.method
+
+
 DROP VIEW IF EXISTS `view_auth_token_api` ;
 CREATE VIEW `view_auth_token_api` AS 
  select r.token_id,r.amount,r.purchase_month, r.code,l.name,
